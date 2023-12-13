@@ -1,0 +1,21 @@
+import express from 'express';
+import { AuthController } from '../controllers';
+import { AUTH_API } from '../constant';
+
+const router = express.Router();
+
+router.route(AUTH_API.FEATURE.LOGIN).post(AuthController.login);
+router.route(AUTH_API.FEATURE.LOGOUT).post(AuthController.logout);
+router.route(AUTH_API.FEATURE.GENERATE_OTP).post(AuthController.generateOTP);
+router.route(AUTH_API.FEATURE.CONFIRM_OTP).post(AuthController.confirmOTP);
+router
+  .route(AUTH_API.FEATURE.CREATE_SESSION_RESET_PASSWORD)
+  .post(AuthController.createSessionResetPassword);
+router
+  .route(AUTH_API.FEATURE.CONFIRM_RESET_PASSWORD)
+  .post(AuthController.confirmResetPassword);
+router
+  .route(AUTH_API.FEATURE.REFRESH_TOKEN)
+  .get(AuthController.refreshAccessToken);
+
+export default router;

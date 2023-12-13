@@ -1,0 +1,136 @@
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:10:56"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:11:08"}
+{"message":"Tên người dùng không tồn tại!","method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:11:09"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:11:21"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:11:58"}
+{"message":"Tên người dùng không tồn tại!","method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:11:58"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:12:17"}
+{"message":"Tên người dùng không tồn tại!","method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:12:17"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:16:53"}
+{"message":"Email không tồn tại!","method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:16:56"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:17:04"}
+{"message":"Tên người dùng không tồn tại!","method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 08:17:04"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 08:17:12"}
+{"message":"Email người dùng không tồn tại trong hệ thống","method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 08:17:12"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 08:17:16"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 08:17:16"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 08:20:41"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 09:32:32"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 09:32:32"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 09:35:13"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 09:35:13"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 09:35:35"}
+{"message":"Tên người dùng không tồn tại!","method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 09:35:35"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 09:38:02"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 09:38:02"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 09:48:18"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 09:48:18"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:20:35"}
+{"message":"Mã OTP không chính xác, vui lòng kiểm tra lại","method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:20:35"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:24:09"}
+{"message":"Mã OTP không chính xác, vui lòng kiểm tra lại","method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:24:09"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:24:10"}
+{"message":"Mã OTP không chính xác, vui lòng kiểm tra lại","method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:24:10"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:25:22"}
+{"message":"Mã OTP hết hạn, nhấn vào nút gửi lại để xác nhận mã khác","method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:25:22"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:25:30"}
+{"message":"Mã OTP không chính xác, vui lòng kiểm tra lại","method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:25:30"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:25:32"}
+{"message":"Mã OTP hết hạn, nhấn vào nút gửi lại để xác nhận mã khác","method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:25:32"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 10:25:35"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:25:57"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:28:09"}
+{"message":"data and salt arguments required","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:28:09"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:28:20"}
+{"message":"data and salt arguments required","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:28:20"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 10:29:12"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 10:29:13"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:29:53"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:29:59"}
+{"message":"data and salt arguments required","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:29:59"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:31:54"}
+{"message":"Có lỗi xảy ra, vui lòng thử lại","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:31:54"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:31:58"}
+{"message":"Có lỗi xảy ra, vui lòng thử lại","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:31:58"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:32:37"}
+{"message":"Có lỗi xảy ra, vui lòng thử lại","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:32:37"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:32:46"}
+{"message":"Có lỗi xảy ra, vui lòng thử lại","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:32:46"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:33:01"}
+{"message":"Có lỗi xảy ra, vui lòng thử lại","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:33:01"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:34:17"}
+{"message":"Có lỗi xảy ra, vui lòng thử lại","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:34:17"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:34:20"}
+{"message":"Có lỗi xảy ra, vui lòng thử lại","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:34:21"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:34:31"}
+{"message":"Có lỗi xảy ra, vui lòng thử lại123","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:34:31"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 10:34:50"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 10:34:52"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:35:14"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:35:19"}
+{"message":"data and salt arguments required","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:35:19"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:36:50"}
+{"message":"data and salt arguments required","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:36:50"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:36:57"}
+{"message":"data and salt arguments required","method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:36:58"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 10:37:39"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 10:37:39"}
+{"method":"POST","url":"/api/auth/confirm-otp","timeStamp":"11/12/2023 10:38:44"}
+{"method":"POST","url":"/api/auth/confirm-reset-password","timeStamp":"11/12/2023 10:38:48"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 10:38:57"}
+{"method":"GET","url":"/api/auth/logout","timeStamp":"11/12/2023 10:43:50"}
+{"message":"Delete RT Error","method":"GET","url":"/api/auth/logout","timeStamp":"11/12/2023 10:43:51"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 10:44:47"}
+{"method":"GET","url":"/api/auth/logout","timeStamp":"11/12/2023 10:44:50"}
+{"method":"GET","url":"/api/auth/logout","timeStamp":"11/12/2023 10:44:57"}
+{"message":"Chưa có phiên đăng nhập","method":"GET","url":"/api/auth/logout","timeStamp":"11/12/2023 10:44:57"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 10:45:41"}
+{"method":"GET","url":"/api/auth/logout","timeStamp":"11/12/2023 10:45:43"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 10:50:55"}
+{"message":"Chưa có phiên đăng nhập","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 10:50:55"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 10:54:10"}
+{"message":"Delete RT Error","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 10:54:11"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 10:57:11"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 10:57:31"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 10:57:46"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 10:59:55"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:01:18"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:01:35"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:01:55"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:02:18"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:02:22"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:02:57"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:03:40"}
+{"message":"Unexpected token 'n', \"#\" is not valid JSON","method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:03:49"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:05:01"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:06:33"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:06:37"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:06:57"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:07:01"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:07:48"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:07:53"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:08:54"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:09:24"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:10:20"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:10:50"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:12:53"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:13:04"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:13:08"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:13:30"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:13:35"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:17:31"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:17:52"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:21:12"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 11:21:22"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 11:21:22"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 11:22:04"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 11:26:50"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 11:30:04"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 11:30:04"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 11:32:55"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 11:32:55"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 13:40:03"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"11/12/2023 15:57:57"}
+{"method":"POST","url":"/api/auth/create-session-reset-password","timeStamp":"11/12/2023 16:02:19"}
+{"method":"POST","url":"/api/auth/generate-otp","timeStamp":"11/12/2023 16:02:19"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"11/12/2023 16:30:14"}
