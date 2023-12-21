@@ -1,124 +1,135 @@
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
-import qs from 'qs';
-import { Table } from 'antd';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import type { FilterValue, SorterResult } from 'antd/es/table/interface';
+import { formatDate, getQueries } from '@/utils';
+import { IWeb } from '@/interfaces/models';
+import { useEffect, useState } from 'react';
+import { TableV1 } from '@/components/tables';
+import { ToolBar } from '@/layouts/admin/toolbar';
+import { SpinnerPage } from '@/components/loadings';
+import { FeatureCreateWeb, FeatureUpdateWeb } from './feature';
+import {
+  useWebApiDelete,
+  useWebApiGetAll,
+  useWebApiSearch,
+  useWebApiUpdate,
+} from '@/apis-use/UseWebApi';
+import { useQueriesString } from '@/hooks/useQueriesString';
+import { IDataTable, IResultGetMany } from '@/interfaces/common';
+import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 
-const CustomerPageStyle = styled.div``;
-
-interface DataType {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: string;
-  email: string;
-  login: {
-    uuid: string;
-  };
-}
-
-interface TableParams {
-  pagination?: TablePaginationConfig;
-  sortField?: string;
-  sortOrder?: string;
-  filters?: Record<string, FilterValue>;
-}
-
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    sorter: true,
-    render: (name) => `${name.first} ${name.last}`,
-    width: '20%',
-  },
-  {
-    title: 'Gender',
-    dataIndex: 'gender',
-    filters: [
-      { text: 'Male', value: 'male' },
-      { text: 'Female', value: 'female' },
-    ],
-    width: '20%',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-];
-
-const getRandomuserParams = (params: TableParams) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
+const headersKeyWeb: Omit<IWeb, '_id'> = {
+  web_name: 'Tên nguồn sự kiện',
+  web_url: 'Link sự kiện',
+  createdAt: 'Ngày tạo',
+  updatedAt: 'Ngày cập nhật',
+};
 
 export default function WebPage() {
-  const [data, setData] = useState<DataType[]>();
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
+  const queryString = useQueriesString();
+  const query = getQueries(queryString);
+  const [headersName, setHeadersName] = useState<string[]>([]);
+  const [dataBody, setDataBody] = useState<Array<IDataTable>>([]);
+  const [idItemChose, setIdItemChose] = useState<string>('');
 
-  const fetchData = () => {
-    setLoading(true);
-    fetch(
-      `https://randomuser.me/api?${qs.stringify(
-        getRandomuserParams(tableParams)
-      )}`
-    )
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
-          },
-        });
-      });
+  const [isDisplayDelete, setIsDisplayDelete] = useState<boolean>(false);
+  const [isDisplayUpdate, setIsDisplayUpdate] = useState<boolean>(false);
+  const { isDeletingWeb, deleteWeb } = useWebApiDelete();
+
+  let metadata: IResultGetMany<IWeb> | undefined;
+  let isGetting: boolean;
+
+  if (!query.search) {
+    const { isGettingWebs, metadata: webs } = useWebApiGetAll(query);
+    metadata = webs;
+    isGetting = isGettingWebs;
+  } else {
+    const { isSearchingWebs, metadata: webs } = useWebApiSearch(query);
+    metadata = webs;
+    isGetting = isSearchingWebs;
+  }
+
+  const closePopupDelete = () => setIsDisplayDelete(false);
+  const closePopupUpdate = () => setIsDisplayUpdate(false);
+
+  const actionDelete = (id?: string) => {
+    setIsDisplayDelete(true);
+    setIdItemChose(`${id}`);
   };
+
+  const onDelete = () => {
+    deleteWeb(idItemChose, { onSuccess: () => setIsDisplayDelete(false) });
+  };
+
+  const actionUpdate = (id?: string) => {
+    setIdItemChose(`${id}`);
+    setIsDisplayUpdate(true);
+  };
+
+  const isLoading: boolean = isGetting || isDeletingWeb;
 
   useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(tableParams)]);
+    console.log('metadata?.items:::,', metadata?.items);
+    if (metadata?.items) {
+      const { ...columnDisplay } = metadata.items[0];
 
-  const handleTableChange = (
-    pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue>,
-    sorter: SorterResult<DataType>
-  ) => {
-    setTableParams({
-      pagination,
-      filters,
-      ...sorter,
-    });
+      const headerDisplay = {};
+      Object.keys(columnDisplay).forEach((column) => {
+        if (headersKeyWeb[column])
+          headerDisplay[column] = headersKeyWeb[column];
+      });
 
-    // `dataSource` is useless since `pageSize` changed
-    if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-      setData([]);
+      setHeadersName(Object.values(headerDisplay));
+      const data: IDataTable[] = [];
+
+      for (let i = 0; i < metadata.items.length; i++) {
+        const dataTable: string[] = Object.keys(headerDisplay).map(
+          (headerKey) => {
+            if (headerKey === 'createdAt' || headerKey === 'updatedAt') {
+              return formatDate(metadata?.items[i][headerKey] as Date);
+            } else {
+              return metadata?.items[i][headerKey];
+            }
+          }
+        );
+        const itemData: IDataTable = {
+          id: metadata.items[i]._id,
+          dataTable: dataTable,
+        };
+        data.push(itemData);
+      }
+
+      setDataBody(data);
     }
-  };
+  }, [isGetting, metadata?.items]);
 
   return (
-    <CustomerPageStyle>
-      <Table
-        columns={columns}
-        rowKey={(record) => record.login.uuid}
-        dataSource={data}
-        pagination={tableParams.pagination}
-        loading={loading}
-        onChange={handleTableChange}
+    <>
+      {isLoading && <SpinnerPage />}
+      <ToolBar>
+        <FeatureCreateWeb />
+      </ToolBar>
+      <TableV1
+        totalItems={metadata?.totalItems}
+        // actionSeeDetail={() => {}}
+        actionUpdate={actionUpdate}
+        actionDelete={actionDelete}
+        dataBody={dataBody}
+        headersName={headersName}
+        templateColumns={`min-content  ${headersName
+          .map((_) => 'minmax(10rem, 1fr)')
+          .join(' ')} minmax(10rem, 1fr)`}
       />
-    </CustomerPageStyle>
+      <PopupDelete
+        close={closePopupDelete}
+        isDisplay={isDisplayDelete}
+        onDelete={onDelete}
+      />
+      {isDisplayUpdate && (
+        <FeatureUpdateWeb
+          id={idItemChose}
+          isDisplay={isDisplayUpdate}
+          close={closePopupUpdate}
+        />
+      )}
+    </>
   );
 }

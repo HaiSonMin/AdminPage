@@ -21,6 +21,22 @@ export default class WebController {
     }).send(res);
   }
 
+  static async getById(req: Request, res: Response) {
+    const { id } = req.params;
+    new OK({
+      message: 'Lấy thông tin web thành công',
+      metadata: await WebService.getById(id),
+    }).send(res);
+  }
+
+  static async searchWebs(req: Request, res: Response) {
+    const query = req.query as IQuery | unknown;
+    new OK({
+      message: 'Tìm kiếm webs thành công',
+      metadata: await WebService.searchWebs(query as IQuery),
+    }).send(res);
+  }
+
   static async updateWeb(req: Request, res: Response) {
     const { id } = req.params;
     const payload = req.body as IWebDto;

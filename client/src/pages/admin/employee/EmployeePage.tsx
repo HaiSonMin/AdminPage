@@ -5,125 +5,143 @@ import { Table } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import type { FilterValue, SorterResult } from 'antd/es/table/interface';
 import { ToolBar } from '@/layouts/admin/toolbar';
-import { FeatureCreateEmployee } from './feature-tool-bar/FeatureCreateEmployee';
+import { FeatureCreateEmployee } from './feature/FeatureCreateEmployee';
+import { SpinnerPage } from '@/components/loadings';
+import { TableV1 } from '@/components/tables';
+import {
+  useEmployeeApiDelete,
+  useEmployeeApiGetAll,
+  useEmployeeApiSearch,
+  useEmployeeApiUpdate,
+} from '@/apis-use';
+import { useQueriesString } from '@/hooks/useQueriesString';
+import { formatDate, getQueries } from '@/utils';
+import { IEmployee } from '@/interfaces/models';
+import { IDataTable, IResultGetMany } from '@/interfaces/common';
+import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
+import { FeatureUpdateEmployee } from './feature/FeatureUpdateEmployee';
 
-const CustomerPageStyle = styled.div``;
+const headersKeyVoucher: Partial<IEmployee> = {
+  _id: 'Mã voucher',
+  employee_fullName: 'Họ và tên',
+  employee_email: 'Email',
+  employee_gender: 'Giới tính',
+  employee_role: 'Phòng ban',
+  employee_userName: 'Tên người dùng',
+  employee_phoneNumber: 'Số điện thoại',
+  createdAt: 'Ngày tạo',
+  updatedAt: 'Ngày cập nhật',
+};
 
-interface DataType {
-  name: {
-    first: string;
-    last: string;
+export default function VoucherPage() {
+  const queryString = useQueriesString();
+  const query = getQueries(queryString);
+  const [idItemChose, setIdItemChose] = useState<string>('');
+  const [headersName, setHeadersName] = useState<string[]>([]);
+  const [dataBody, setDataBody] = useState<Array<IDataTable>>([]);
+
+  const [isDisplayDelete, setIsDisplayDelete] = useState<boolean>(false);
+  const [isDisplayUpdate, setIsDisplayUpdate] = useState<boolean>(false);
+
+  const { isDeletingEmployee, deleteEmployee } = useEmployeeApiDelete();
+
+  let metadata: IResultGetMany<IEmployee> | undefined;
+  let isGetting: boolean = false;
+
+  if (!query.search) {
+    const { isGettingEmployees, metadata: employees } =
+      useEmployeeApiGetAll(query);
+    metadata = employees;
+    isGetting = isGettingEmployees;
+  } else {
+    const { isSearchingEmployees, metadata: employees } =
+      useEmployeeApiSearch(query);
+    metadata = employees;
+    isGetting = isSearchingEmployees;
+  }
+
+  const closePopupDelete = () => setIsDisplayDelete(false);
+  const closePopupUpdate = () => setIsDisplayUpdate(false);
+
+  const actionDelete = (id?: string) => {
+    setIsDisplayDelete(true);
+    setIdItemChose(`${id}`);
   };
-  gender: string;
-  email: string;
-  login: {
-    uuid: string;
+
+  const onDelete = () => {
+    deleteEmployee(idItemChose, { onSuccess: () => setIsDisplayDelete(false) });
   };
-}
 
-interface TableParams {
-  pagination?: TablePaginationConfig;
-  sortField?: string;
-  sortOrder?: string;
-  filters?: Record<string, FilterValue>;
-}
-
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    sorter: true,
-    render: (name) => `${name.first} ${name.last}`,
-    width: '20%',
-  },
-  {
-    title: 'Gender',
-    dataIndex: 'gender',
-    filters: [
-      { text: 'Male', value: 'male' },
-      { text: 'Female', value: 'female' },
-    ],
-    width: '20%',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-];
-
-const getRandomuserParams = (params: TableParams) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
-
-export default function EmployeePage() {
-  const [data, setData] = useState<DataType[]>();
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
-
-  const fetchData = () => {
-    setLoading(true);
-    fetch(
-      `https://randomuser.me/api?${qs.stringify(
-        getRandomuserParams(tableParams)
-      )}`
-    )
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
-          },
-        });
-      });
+  const actionUpdate = (id?: string) => {
+    setIdItemChose(`${id}`);
+    setIsDisplayUpdate(true);
   };
+
+  const isLoading: boolean = isGetting || isDeletingEmployee;
 
   useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(tableParams)]);
+    if (metadata?.items) {
+      const { ...columnDisplay } = metadata.items[0];
 
-  const handleTableChange = (
-    pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue>,
-    sorter: SorterResult<DataType>
-  ) => {
-    setTableParams({
-      pagination,
-      filters,
-      ...sorter,
-    });
+      const headerDisplay = {};
+      Object.keys(columnDisplay).forEach((column) => {
+        if (headersKeyVoucher[column])
+          headerDisplay[column] = headersKeyVoucher[column];
+      });
 
-    // `dataSource` is useless since `pageSize` changed
-    if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-      setData([]);
+      setHeadersName(Object.values(headerDisplay));
+
+      const data: IDataTable[] = [];
+      for (let i = 0; i < metadata.items.length; i++) {
+        const dataTable: string[] = Object.keys(headerDisplay).map(
+          (headerKey) => {
+            if (headerKey === 'createdAt' || headerKey === 'updatedAt') {
+              return formatDate(metadata?.items[i][headerKey] as Date);
+            } else {
+              return metadata?.items[i][headerKey];
+            }
+          }
+        );
+        const itemData: IDataTable = {
+          id: metadata.items[i]._id,
+          dataTable: dataTable,
+        };
+        data.push(itemData);
+      }
+
+      setDataBody(data);
     }
-  };
+  }, [isGetting, metadata?.items]);
 
   return (
-    <CustomerPageStyle>
+    <>
+      {isLoading && <SpinnerPage />}
       <ToolBar>
         <FeatureCreateEmployee />
       </ToolBar>
-      <Table
-        columns={columns}
-        rowKey={(record) => record.login.uuid}
-        dataSource={data}
-        pagination={tableParams.pagination}
-        loading={loading}
-        onChange={handleTableChange}
+      <TableV1
+        totalItems={metadata?.totalItems}
+        actionDelete={actionDelete}
+        actionUpdate={actionUpdate}
+        // actionSeeDetail={() => {}}
+        dataBody={dataBody}
+        headersName={headersName}
+        templateColumns={`min-content  ${headersName
+          .map((_) => 'minmax(10rem, 1fr)')
+          .join(' ')} minmax(10rem, 1fr)`}
       />
-    </CustomerPageStyle>
+      <PopupDelete
+        close={closePopupDelete}
+        isDisplay={isDisplayDelete}
+        onDelete={onDelete}
+      />
+      {isDisplayUpdate && (
+        <FeatureUpdateEmployee
+          id={idItemChose}
+          isDisplay={isDisplayUpdate}
+          close={closePopupUpdate}
+        />
+      )}
+    </>
   );
 }

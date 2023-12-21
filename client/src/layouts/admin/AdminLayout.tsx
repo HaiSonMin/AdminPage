@@ -8,7 +8,7 @@ import { CSSProperties } from 'styled-components';
 
 const spaceStyle: CSSProperties = {
   width: '100%',
-  height: '100vh',
+  minHeight: '100vh',
   backgroundColor: 'var(--color-background-sidebar)',
 };
 

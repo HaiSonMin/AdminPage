@@ -1,18 +1,23 @@
 import express from 'express';
 import { EmployeeController } from '../controllers';
-import { checkAuth } from '../middleware/auth.middleware';
-import { EMPLOYEE_API } from '../constant';
+import { checkAuth, checkAuthIsAdmin } from '../middleware/auth.middleware';
 
 const router = express.Router();
 
 router.use(checkAuth);
 
-router
-  .route(EMPLOYEE_API.FEATURE.GET_ALL_CUSTOMER)
-  .get(EmployeeController.getAllCustomers);
+router.use(checkAuthIsAdmin);
 
-router
-  .route(EMPLOYEE_API.FEATURE.SEARCH_CUSTOMER)
-  .get(EmployeeController.searchCustomers);
+router.route(`/search`).get(EmployeeController.searchEmployees);
+
+router.route(`/:id`).get(EmployeeController.getEmployee);
+
+router.route(``).get(EmployeeController.getAllEmployees);
+
+router.route(``).post(EmployeeController.createEmployee);
+
+router.route(`/:id`).patch(EmployeeController.updateEmployee);
+
+router.route(`/:id`).delete(EmployeeController.deleteEmployee);
 
 export default router;

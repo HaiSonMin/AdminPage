@@ -1,8 +1,8 @@
 import { webModel } from '../models';
 import { WebRepository } from '../repositories';
-import { IQuery } from '../interface';
+import { IQuery, IResultGetMany } from '../interface';
 import { BadRequestError, NotFoundError } from '../core/error.response';
-import { IWebDto } from '../interface/model/web';
+import { IWeb, IWebDto } from '../interface/model/web';
 
 export default class WebService {
   static async createWeb(payload: IWebDto) {
@@ -16,9 +16,14 @@ export default class WebService {
     return web;
   }
 
-  static async getAllWebs(query: IQuery) {
+  static async getAllWebs(query: IQuery): Promise<IResultGetMany<IWeb>> {
     const { totalWebs, webs } = await WebRepository.getAll(query);
-    return { totalWebs, webs };
+    return { items: webs, totalItems: totalWebs };
+  }
+
+  static async searchWebs(query: IQuery): Promise<IResultGetMany<IWeb>> {
+    const { totalWebs, webs } = await WebRepository.getAll(query);
+    return { items: webs, totalItems: totalWebs };
   }
 
   static async updateWeb(webId: string, payload: IWebDto) {

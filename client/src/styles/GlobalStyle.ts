@@ -73,7 +73,10 @@ const GlobalStyles = createGlobalStyle`
   --color-text-sidebar: #8681a2;
   --color-background-sidebar: #edf1f8;
 
+  --font-size-8: 0.8rem;
+  --font-size-10: 1rem;
   --font-size-12: 1.2rem;
+  --font-size-13: 1.3rem;
   --font-size-14: 1.4rem;
   --font-size-16: 1.6rem;
   --font-size-18: 1.8rem;
@@ -91,6 +94,7 @@ const GlobalStyles = createGlobalStyle`
   --border-radius-large: 12px;
   --border-radius-xl: 16px;
   --border-radius-2xl: 20px;
+  --border-radius-cyc: 50%;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
@@ -172,6 +176,8 @@ html {
 
   ::-webkit-scrollbar {
     width: 1rem;
+    height: 5px;
+    background-color: var(--color-grey-100); 
   }
 
   /* Track */
@@ -182,15 +188,13 @@ html {
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    /* background: var(--color-red-100);  */
     background: var(--color-grey-400); 
     border-radius: 1rem;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-grey-5 00); 
-    /* width: 1.5rem; */
+    background: var(--color-grey-800); 
 
   }
 }
@@ -198,7 +202,7 @@ html {
 
 
 body {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   color: var(--color-text);
 
   transition: color 0.3s, background-color 0.3s;
@@ -245,7 +249,7 @@ select:focus {
 
 /* Parent selector, finally 😃 */
 button:has(svg) {
-  line-height: 0;
+  line-height: 1;
 }
 
 a {
@@ -272,7 +276,6 @@ h6 {
 img {
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
-
 `;
 
 export default GlobalStyles;

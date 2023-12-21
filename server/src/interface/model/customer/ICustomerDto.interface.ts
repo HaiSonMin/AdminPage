@@ -1,6 +1,6 @@
 import { ICustomer } from './ICustomer.interface';
 
-export interface ICustomerDto
+export interface ICustomerCreateDto
   extends Pick<
     ICustomer,
     | 'customer_fullName'
@@ -8,6 +8,8 @@ export interface ICustomerDto
     | 'customer_requirement'
     | 'customer_source'
   > {}
+
+export interface ICustomerUpdateDto extends Partial<ICustomer> {}
 
 export interface ICustomerAddVoucherDto
   extends Pick<ICustomer, 'customer_voucher' | 'customer_phoneNumber'> {}

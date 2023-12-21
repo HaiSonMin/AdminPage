@@ -1,3 +1,6 @@
+import toast from 'react-hot-toast';
+import { AuthApi } from '@/apis/Auth.api';
+import { useMutation } from '@tanstack/react-query';
 import {
   IAuthResultApiLogin,
   IAuthResultApiLogout,
@@ -5,12 +8,11 @@ import {
   IAuthResultApiGenerateOtp,
   IAuthResultApiConfirmResetPassword,
   IAuthResultApiCreateSessionResetPassword,
+  IAuthResultApiRefreshAT,
 } from '@/interfaces/result-apis/auth';
-import toast from 'react-hot-toast';
-import { AuthApi } from '@/apis/Auth.api';
-import { useMutation } from '@tanstack/react-query';
+import { IError } from '@/interfaces/common';
 
-export const useLoginApi = (): IAuthResultApiLogin => {
+export const useAuthApiLogin = (): IAuthResultApiLogin => {
   const {
     data,
     mutate,
@@ -20,7 +22,7 @@ export const useLoginApi = (): IAuthResultApiLogin => {
     onSuccess: (data) => {
       toast.success(`${data?.message}`);
     },
-    onError: (error: any) => {
+    onError: (error: IError) => {
       toast.error(error.message);
     },
   });
@@ -35,7 +37,7 @@ export const useLoginApi = (): IAuthResultApiLogin => {
   };
 };
 
-export const useLogoutApi = (): IAuthResultApiLogout => {
+export const useAuthApiLogout = (): IAuthResultApiLogout => {
   const {
     data,
     mutate,
@@ -45,7 +47,7 @@ export const useLogoutApi = (): IAuthResultApiLogout => {
     onSuccess: (data) => {
       toast.success(`${data?.message}`);
     },
-    onError: (error: any) => {
+    onError: (error: IError) => {
       toast.error(error.message);
     },
   });
@@ -59,7 +61,7 @@ export const useLogoutApi = (): IAuthResultApiLogout => {
   };
 };
 
-export const useGenerateOTPApi = (): IAuthResultApiGenerateOtp => {
+export const useAuthApiGenerateOTP = (): IAuthResultApiGenerateOtp => {
   const {
     data,
     mutate,
@@ -69,7 +71,7 @@ export const useGenerateOTPApi = (): IAuthResultApiGenerateOtp => {
     onSuccess: (data) => {
       toast.success(`${data?.message}`);
     },
-    onError: (error: any) => {
+    onError: (error: IError) => {
       toast.error(error.message);
     },
   });
@@ -84,7 +86,7 @@ export const useGenerateOTPApi = (): IAuthResultApiGenerateOtp => {
   };
 };
 
-export const useCreateSessionResetPasswordApi =
+export const useAuthApiCreateSessionResetPassword =
   (): IAuthResultApiCreateSessionResetPassword => {
     const {
       data,
@@ -92,10 +94,7 @@ export const useCreateSessionResetPasswordApi =
       isPending: isCreateSessionResetPassword,
     } = useMutation({
       mutationFn: AuthApi.createSessionResetPassword,
-      // onSuccess: (data) => {
-      //   toast.success(`${data?.message}`);
-      // },
-      onError: (error: any) => {
+      onError: (error: IError) => {
         toast.error(error.message);
       },
     });
@@ -110,17 +109,14 @@ export const useCreateSessionResetPasswordApi =
     };
   };
 
-export const useConfirmOTPApi = (): IAuthResultApiConfirmOtp => {
+export const useAuthApiConfirmOTP = (): IAuthResultApiConfirmOtp => {
   const {
     data,
     mutate,
     isPending: isConfirmOtp,
   } = useMutation({
     mutationFn: AuthApi.confirmOTP,
-    // onSuccess: (data) => {
-    //   toast.success(`${data?.message}`);
-    // },
-    onError: (error: any) => {
+    onError: (error: IError) => {
       toast.error(error.message);
     },
   });
@@ -134,7 +130,7 @@ export const useConfirmOTPApi = (): IAuthResultApiConfirmOtp => {
     reasonStatusCode: data?.reasonStatusCode,
   };
 };
-export const useConfirmResetPassword =
+export const useAuthApiConfirmResetPassword =
   (): IAuthResultApiConfirmResetPassword => {
     const {
       data,
@@ -145,7 +141,7 @@ export const useConfirmResetPassword =
       onSuccess: (data) => {
         toast.success(`${data?.message}`);
       },
-      onError: (error: any) => {
+      onError: (error: IError) => {
         toast.error(error.message);
       },
     });
@@ -159,4 +155,25 @@ export const useConfirmResetPassword =
       reasonStatusCode: data?.reasonStatusCode,
     };
   };
-export const useRefreshToken = () => {};
+
+export const useAuthApiRefreshToken = (): IAuthResultApiRefreshAT => {
+  const {
+    data,
+    mutate,
+    isPending: isRefreshAT,
+  } = useMutation({
+    mutationFn: AuthApi.refreshToken,
+    onError: (error: IError) => {
+      toast.error(error.message);
+    },
+  });
+
+  return {
+    refreshAT: mutate,
+    isRefreshAT,
+    message: data?.message,
+    metadata: data?.metadata,
+    statusCode: data?.statusCode,
+    reasonStatusCode: data?.reasonStatusCode,
+  };
+};

@@ -16,6 +16,6 @@ router
   .post(AuthController.confirmResetPassword);
 router
   .route(AUTH_API.FEATURE.REFRESH_TOKEN)
-  .get(AuthController.refreshAccessToken);
+  .post(AuthController.refreshAccessToken);
 
 export default router;

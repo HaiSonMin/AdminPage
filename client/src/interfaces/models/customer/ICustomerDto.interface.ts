@@ -9,3 +9,5 @@ export interface ICustomerCreateDto
     | 'customer_source'
     | 'customer_voucher'
   > {}
+
+export interface ICustomerUpdateDto extends Partial<ICustomer> {}

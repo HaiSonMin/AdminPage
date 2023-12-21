@@ -1,5 +1,5 @@
-import { IEmployee } from 'src/interface/model/employee';
-import { ERole } from '../enum';
+import { IEmployee } from '../interface/model/employee';
+import { EGender, ERole } from '../enum';
 import { env } from 'process';
 export const VALUE_CONSTANT = {
   SALT_PASSWORD: 10,
@@ -11,6 +11,7 @@ export const infoAdmin: IEmployee = {
   employee_userName: env.ADMIN_USERNAME || '',
   employee_fullName: env.ADMIN_FULLNAME || '',
   employee_password: env.ADMIN_PASSWORD || '',
+  employee_gender: EGender.MALE,
   employee_phoneNumber: env.ADMIN_PHONENUMBER || '',
   employee_role: ERole.ADMIN,
 };

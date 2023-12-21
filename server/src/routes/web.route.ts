@@ -8,6 +8,7 @@ router.use(checkAuth);
 
 router.route('').post(WebController.createWeb);
 router.route('').get(WebController.getAllWebs);
+router.route('/:id').get(WebController.getById);
 router.route('/:id').patch(WebController.updateWeb);
 router.route('/:id').delete(WebController.deleteWeb);
 

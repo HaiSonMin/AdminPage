@@ -13,6 +13,14 @@ export default class EmployeeController {
     }).send(res);
   }
 
+  static async getVoucherById(req: Request, res: Response) {
+    const { id } = req.params;
+    new OK({
+      message: 'Lấy voucher thành công',
+      metadata: await VoucherService.getVoucherById(id),
+    }).send(res);
+  }
+
   static async getAllVouchers(req: Request, res: Response) {
     const query = req.query as IQuery | unknown;
     new OK({

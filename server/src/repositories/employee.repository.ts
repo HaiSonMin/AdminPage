@@ -1,6 +1,7 @@
-import { skipPage } from '../utils';
+import { sortBy, skipPage, filterBy } from '../utils';
 import { employeeModel } from '../models';
 import { IEmployeeDto } from '../interface/model/employee';
+import { IQuery } from '../interface';
 
 export class EmployeeRepository {
   static async getById(employeeId: string) {
@@ -22,23 +23,46 @@ export class EmployeeRepository {
       .exec();
   }
 
-  static async getAll(limit: number, page: number) {
-    return await employeeModel
-      .find()
-      .limit(limit)
-      .skip(skipPage({ limit, page }))
-      .lean()
-      .exec();
+  static async getAll({ limit, page, sort, filters }: IQuery) {
+    const [totalEmployees, employees] = await Promise.all([
+      employeeModel.countDocuments({ $or: [filterBy(filters)] }),
+      employeeModel
+        .find({ $or: [filterBy(filters)] })
+        .skip(skipPage({ limit, page }))
+        .limit(limit)
+        .sort(sortBy(sort))
+        .lean()
+        .exec(),
+    ]);
+    return { totalEmployees, employees };
   }
-  static async search(limit: number, page: number, keySearch: string) {
-    const regex = new RegExp(keySearch, 'i');
-    return await employeeModel
-      .find({ $text: { $search: keySearch } })
-      .limit(limit)
-      .skip(skipPage({ limit, page }))
-      .lean()
-      .exec();
+
+  static async search({ limit, page, search }: IQuery) {
+    const [totalEmployees, employees] = await Promise.all([
+      employeeModel.countDocuments({ $text: { $search: search } }),
+      employeeModel
+        .find({ $text: { $search: search } }, { score: { $meta: 'textScore' } })
+        .limit(limit)
+        .skip(skipPage({ limit, page }))
+        .sort({ score: { $meta: 'textScore' } }) // Assuming you have a convertSortBy function
+        .lean()
+        .exec(),
+    ]);
+    return { totalEmployees, employees };
+    // const regex = new RegExp(search, 'i');
+    // const [totalEmployees, employees] = await Promise.all([
+    //   employeeModel.countDocuments({ employee_email: { $regex: regex } }),
+    //   employeeModel
+    //     .find({ employee_email: { $regex: regex } })
+    //     .limit(limit)
+    //     .skip(skipPage({ limit, page }))
+    //     .sort(sortBy(sort))
+    //     .lean()
+    //     .exec(),
+    // ]);
+    // return { totalEmployees, employees };
   }
+
   static async update(employeeId: string, payload: IEmployeeDto) {
     return await employeeModel
       .findByIdAndUpdate(employeeId, payload, {
@@ -47,6 +71,7 @@ export class EmployeeRepository {
       .lean()
       .exec();
   }
+
   static async delete(employeeId: string) {
     return await employeeModel.findByIdAndDelete(employeeId).lean().exec();
   }

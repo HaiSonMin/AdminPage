@@ -10,10 +10,12 @@ export const generateAdmin = async () => {
   //   ADMIN_EMAIL;
   const admin = await employeeModel
     .findOne({
-      employee_userName: env.ADMIN_USERNAME,
+      employee_fullName: env.ADMIN_FULLNAME,
     })
     .lean()
     .exec();
+
   if (!admin) await employeeModel.create(infoAdmin);
+
   return;
 };

@@ -8,6 +8,7 @@ const WebSchema = new Schema<IWeb>(
       type: String,
       required: [true, 'Vui lòng bổ sung tên web'],
       unique: true,
+      index: 'text',
     },
     web_url: {
       type: String,

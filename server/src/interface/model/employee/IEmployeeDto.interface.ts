@@ -6,6 +6,7 @@ export interface IEmployeeDto
     | 'employee_userName'
     | 'employee_email'
     | 'employee_fullName'
+    | 'employee_gender'
     | 'employee_password'
     | 'employee_phoneNumber'
     | 'employee_role'

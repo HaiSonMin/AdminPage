@@ -5,12 +5,11 @@ const { Content } = Layout;
 
 const contentStyle: CSSProperties = {
   color: 'var(--color-text)',
-  overflow: 'hidden',
-  marginTop: '2rem',
-  height: '100vh',
+  paddingTop: '1.5rem',
+  paddingBottom: '8rem',
 };
 
-const ContentAdminStyle = styled.main`
+const ContentAdminStyle = styled.div`
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   background-color: 'var(--color-background-sidebar)';

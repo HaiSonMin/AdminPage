@@ -1,7 +1,7 @@
-import { useConfirmResetPassword } from '@/apis-use';
+import { useAuthApiConfirmResetPassword } from '@/apis-use';
 import { ButtonText } from '@/components/buttons';
 import { FormBasic } from '@/components/forms';
-import { Heading3XL, HeadingXL, HeadingXXL } from '@/components/heading';
+import { Heading3XL } from '@/components/heading';
 import { InputAuth } from '@/components/inputs';
 import { PATH_AUTH, PATH_ROOT_ADMIN } from '@/constants/paths';
 import { IResetPassword } from '@/interfaces/auth';
@@ -46,7 +46,7 @@ export const ResetPasswordLayout = () => {
   const navigate = useNavigate();
 
   const { confirmResetPassword, isConfirmResetPassword } =
-    useConfirmResetPassword();
+    useAuthApiConfirmResetPassword();
 
   const {
     register,

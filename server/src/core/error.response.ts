@@ -1,4 +1,4 @@
-import { StatusCodes, ReasonPhrases } from "http-status-codes";
+import { StatusCodes, ReasonPhrases } from 'http-status-codes';
 
 class CustomErrorApi extends Error {
   statusCode: number;

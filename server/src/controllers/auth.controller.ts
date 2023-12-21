@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { CREATED, OK } from '../core/success.response';
 import { AuthService } from '../services';
 import { IAuthLogin } from '../interface';
+
 export default class AuthController {
   static async login(req: Request, res: Response) {
     const dataLogin = req.body as IAuthLogin;

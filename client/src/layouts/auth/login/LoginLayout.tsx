@@ -1,4 +1,4 @@
-import { ButtonText } from '@/components/buttons';
+import { ButtonSubmit, ButtonText } from '@/components/buttons';
 import { FormBasic } from '@/components/forms';
 import { InputAuth } from '@/components/inputs';
 import { ILogin } from '@/interfaces/auth';
@@ -6,15 +6,13 @@ import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import LogoWeb from '@/assets/images/image-logo/logo_seadragon_w506-h506.webp';
 import {
-  useCreateSessionResetPasswordApi,
-  useGenerateOTPApi,
-  useLoginApi,
+  useAuthApiLogin,
+  useAuthApiGenerateOTP,
+  useAuthApiCreateSessionResetPassword,
 } from '@/apis-use';
 import { SpinnerPage } from '@/components/loadings';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { PATH_ADMIN, PATH_AUTH, PATH_ROOT_ADMIN } from '@/constants/paths';
-import { useLocalStorage } from '@mantine/hooks';
-import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
 import { IDataLocalUser } from '@/interfaces/common/IDataLocalUser.interface';
@@ -30,8 +28,6 @@ const LoginLayoutStyle = styled.div`
 
 const ImageStyle = styled.div<{ $width?: string; $height?: string }>`
   overflow: hidden;
-  /* width: ${(props) => `${props.$width}rem`};
-  height: ${(props) => `${props.$height}rem`}; */
   width: 28rem;
   height: 28rem;
   img {
@@ -54,12 +50,12 @@ const LinkForgot = styled.p`
 
 export const LoginLayout = () => {
   const navigate = useNavigate();
-  const { login, isLogin } = useLoginApi();
+  const { login, isLogin } = useAuthApiLogin();
 
   const { createSessionResetPassword, isCreateSessionResetPassword } =
-    useCreateSessionResetPasswordApi();
+    useAuthApiCreateSessionResetPassword();
 
-  const { generateOtp, isGenerateOtp } = useGenerateOTPApi();
+  const { generateOtp, isGenerateOtp } = useAuthApiGenerateOTP();
 
   const {
     register,
@@ -70,17 +66,20 @@ export const LoginLayout = () => {
 
   const onClickForget = () => {
     if (!watch('employee_userName')) return toast.error('Vui lòng nhập email');
-    createSessionResetPassword(watch('employee_userName'), {
-      onSuccess: (dataRes) => {
-        generateOtp(null, {
-          onSuccess: () => {
-            navigate(
-              `/${PATH_ROOT_ADMIN}/${PATH_AUTH.ROOT}/${PATH_AUTH.FEATURE.CONFIRM_OTP}`
-            );
-          },
-        });
-      },
-    });
+    createSessionResetPassword(
+      { employee_email: watch('employee_userName') },
+      {
+        onSuccess: (dataRes) => {
+          generateOtp(null, {
+            onSuccess: () => {
+              navigate(
+                `/${PATH_ROOT_ADMIN}/${PATH_AUTH.ROOT}/${PATH_AUTH.FEATURE.CONFIRM_OTP}`
+              );
+            },
+          });
+        },
+      }
+    );
   };
 
   const onLogin = (dataForm: ILogin) => {
@@ -89,7 +88,7 @@ export const LoginLayout = () => {
         const atToken = `${dataRes?.metadata?.accessToken}`;
         const dataStore: IDataLocalUser = {
           AT_TOKEN: atToken,
-          employee_fullName: dataRes?.metadata?.employee?.employee_fullName,
+          employee_fullName: `${dataRes?.metadata?.employee.employee_fullName}`,
         };
         localStorage.setItem(
           LOCAL_STORE_KEYS.DATA_USER,
@@ -129,9 +128,7 @@ export const LoginLayout = () => {
           isRequired
         />
         <LinkForgot onClick={onClickForget}>Quên mật khẩu?</LinkForgot>
-        <ButtonText type='submit' disabled={isLogin}>
-          Đăng nhập
-        </ButtonText>
+        <ButtonSubmit $isPrimarySolid>Đăng nhập</ButtonSubmit>
       </FormBasic>
     </LoginLayoutStyle>
   );

@@ -1,4 +1,4 @@
-import { useConfirmOTPApi, useGenerateOTPApi } from '@/apis-use';
+import { useAuthApiConfirmOTP, useAuthApiGenerateOTP } from '@/apis-use';
 import { ButtonText } from '@/components/buttons';
 import { Heading3XL } from '@/components/heading';
 import { InputOtp } from '@/components/inputs';
@@ -74,15 +74,10 @@ export const ConfirmLayout = () => {
   const [isDisplayEmail, setIsDisplayEmail] = useState<boolean>(false);
   const goBack = useMoveBack();
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<IConfirmOtp>();
+  const { handleSubmit } = useForm<IConfirmOtp>();
 
-  const { generateOtp } = useGenerateOTPApi();
-  const { confirmOtp, isConfirmOtp } = useConfirmOTPApi();
+  const { generateOtp } = useAuthApiGenerateOTP();
+  const { confirmOtp, isConfirmOtp } = useAuthApiConfirmOTP();
 
   const onRefreshOtp = () => {
     generateOtp(null, {

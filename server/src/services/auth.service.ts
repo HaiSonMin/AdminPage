@@ -10,7 +10,7 @@ import {
   NotFoundError,
   BadRequestError,
   UnavailableError,
-  UnauthenticatedError,
+  ForbiddenError,
 } from '../core/error.response';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
@@ -27,17 +27,12 @@ import { IAuthLogin, ISessionLocal, ITokenVerify } from '../interface';
 
 export default class AuthService {
   static async login(dataLogin: IAuthLogin, res: Response) {
-    const { employee_userName, employee_email, employee_password } = dataLogin;
+    const { employee_userName, employee_password } = dataLogin;
     console.log('dataLogin:::', dataLogin);
     let employee;
     if (employee_userName) {
       employee = await EmployeeRepository.getByUserName(employee_userName);
       if (!employee) throw new NotFoundError('Tên người dùng không tồn tại!');
-    }
-
-    if (employee_email) {
-      employee = await EmployeeRepository.getByEmail(employee_email);
-      if (!employee) throw new NotFoundError('Email không tồn tại!');
     }
 
     const isMatchingPassword = await bcrypt.compare(
@@ -93,7 +88,7 @@ export default class AuthService {
     saveTokenCookie({
       tokenName: VALUE_CONSTANT.RT_NAME,
       tokenValue: refreshToken,
-      day: 7,
+      day: 30,
       res,
     });
     return {
@@ -240,7 +235,7 @@ export default class AuthService {
     // Check cookie
     const { refreshToken } = req.cookies;
     if (!refreshToken)
-      throw new UnauthenticatedError(
+      throw new ForbiddenError(
         'Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại'
       );
     // Check DB
@@ -255,7 +250,7 @@ export default class AuthService {
     try {
       tokenVerify = verifyToken(refreshToken, token_publicKey);
     } catch (error) {
-      throw new UnauthenticatedError(
+      throw new ForbiddenError(
         'Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại'
       );
     }
@@ -289,11 +284,11 @@ export default class AuthService {
     saveTokenCookie({
       tokenName: VALUE_CONSTANT.RT_NAME,
       tokenValue: newRT,
-      day: 7,
+      day: 30,
       res,
     });
     return {
-      user: payload,
+      employee: payload,
       newAccessToken: newAT,
     };
   }

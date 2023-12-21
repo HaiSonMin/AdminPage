@@ -108,15 +108,12 @@ const MenuList = styled(Menu)`
     font-size: 1.4rem;
     font-weight: 500;
     color: var(--color-text-secondary);
-    display: flex;
-    gap: 5px;
   }
 `;
 
 export const SiderAdmin = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [dataStore] = useLocalStorage({ key: LOCAL_STORE_KEYS.DATA_USER });
-  console.log('dataStore:::', dataStore);
 
   return (
     <Sider

@@ -1,7 +1,7 @@
+import { EVoucherType } from '../enum';
 import { model, Schema } from 'mongoose';
 import { MODALS_NAME } from '../constant';
 import { IVoucher } from '../interface/model/voucher';
-import { EVoucherType } from '../enum';
 import { BadRequestError } from '../core/error.response';
 
 const VoucherSchema = new Schema<IVoucher>(
@@ -10,6 +10,7 @@ const VoucherSchema = new Schema<IVoucher>(
       type: String,
       unique: true,
       required: [true, 'Vui lòng bổ tên voucher'],
+      index: 'text',
     },
     voucher_type: {
       type: String,
@@ -17,13 +18,12 @@ const VoucherSchema = new Schema<IVoucher>(
       default: EVoucherType.FIX_AMOUNT,
     },
     voucher_value: {
-      type: Number,
+      type: String,
       required: [true, 'Vui lòng bổ sung giá trị voucher'],
     },
     voucher_web: {
       type: Schema.ObjectId,
       ref: MODALS_NAME.WEB,
-      required: [true, 'Vui lòng bổ sung nguồn sự kiện'],
     },
   },
   { timestamps: true }
@@ -31,12 +31,12 @@ const VoucherSchema = new Schema<IVoucher>(
 
 VoucherSchema.pre<IVoucher>('save', function (next) {
   if (this.voucher_type === EVoucherType.FIX_AMOUNT) {
-    if (this.voucher_value < 50_000)
+    if (parseInt(this.voucher_value) < 50_000)
       next(new BadRequestError('Giá trị voucher phải >= 50000nvđ'));
-    if (this.voucher_value % 10000 !== 0)
+    if (parseInt(this.voucher_value) % 10000 !== 0)
       next(new BadRequestError('Giá trị voucher phải là bội số của 10000vnđ'));
   } else if (this.voucher_type === EVoucherType.PERCENTAGE) {
-    if (this.voucher_value < 1 || this.voucher_value > 100)
+    if (parseInt(this.voucher_value) < 1 || parseInt(this.voucher_value) > 100)
       next(new BadRequestError('Giá trị 1 < voucher < 100'));
   }
   next();

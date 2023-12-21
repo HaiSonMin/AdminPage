@@ -18,7 +18,8 @@ const errorHandlerMiddleware = function (
   // Duplicate Error
   if (err.code || err.code === 11000) {
     const fieldDuplicate = Object.keys(err.keyValue)[0];
-    customError.message = `Dữ liệu trường ${fieldDuplicate} đã tồn tại giá trị: {${err.keyValue[fieldDuplicate]}}`;
+    customError.message = `Dữ liệu trường ${fieldDuplicate} đã tồn tại`;
+    // customError.message = `Dữ liệu trường ${fieldDuplicate} đã tồn tại giá trị: {${err.keyValue[fieldDuplicate]}}`;
     customError.statusCode = StatusCodes.BAD_REQUEST;
   }
 

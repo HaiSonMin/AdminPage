@@ -1,71 +1,67 @@
-import { Heading3XL, HeadingMD, HeadingSM } from '@/components/heading';
+import { HeadingSM } from '@/components/heading';
 import styled, { css } from 'styled-components';
 import { Overlay } from '../Overlay';
-import { IoClose } from 'react-icons/io5';
-const PopupFormStyle = styled.div<{ $isDisplay: boolean }>`
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+import { PopupStyle } from '../common';
+import { TfiClose } from 'react-icons/tfi';
+import { CiEdit } from 'react-icons/ci';
+import { MdOutlinePostAdd } from 'react-icons/md';
+const Header = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  padding: 2rem 2rem;
-  border-radius: var(--border-radius-md);
-  background-color: #fff;
-  box-shadow: var(--shadow-around);
-  min-height: fit-content;
-  min-width: fit-content;
-  z-index: 100;
-  transition: all 0.5s;
-  ${(props) =>
-    !props.$isDisplay
-      ? css`
-          opacity: 0;
-          top: 100%;
-          pointer-events: none;
-        `
-      : css`
-          opacity: 1;
-          top: 50%;
-        `}
+  padding: 0 0 1rem;
 `;
 
-const BtnClose = styled(IoClose)`
-  position: absolute;
-  top: 7px;
-  right: 7px;
+const BtnClose = styled(TfiClose)`
   width: 2rem;
   height: 2rem;
   cursor: pointer;
   transition: all 0.3s;
-  color: var(--color-text-secondary);
+  color: var(--color-primary);
   &:hover {
     color: var(--color-text);
     scale: 1.1;
   }
 `;
 
-const Heading = styled(HeadingMD)`
+const Heading = styled(HeadingSM)`
+  display: flex;
+  align-items: center;
+  gap: 5px;
   color: var(--color-primary);
 `;
+
+type typeAction = 'update' | 'create';
 
 interface IProp {
   isDisplay: boolean;
   title: string;
   children: React.ReactNode;
   close: () => void;
+  typeAction: typeAction;
 }
 
-export function PopupForm({ title, isDisplay, children, close }: IProp) {
+export function PopupForm({
+  title,
+  isDisplay,
+  children,
+  close,
+  typeAction,
+}: IProp) {
   return (
     <>
       <Overlay $isDisplay={isDisplay} onClick={close} />
-      <PopupFormStyle $isDisplay={isDisplay}>
-        <BtnClose onClick={close} />
-        <Heading $isBold>{title.toLocaleUpperCase()}</Heading>
+      <PopupStyle $isDisplay={isDisplay}>
+        <Header>
+          <Heading>
+            {typeAction === 'update' ? <CiEdit /> : <MdOutlinePostAdd />}
+            <span>{title.toLocaleUpperCase()}</span>
+          </Heading>
+          <BtnClose onClick={close} />
+        </Header>
         {children}
-      </PopupFormStyle>
+      </PopupStyle>
     </>
   );
 }

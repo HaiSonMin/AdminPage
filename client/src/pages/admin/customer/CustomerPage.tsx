@@ -1,123 +1,133 @@
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
-import qs from 'qs';
-import { Table } from 'antd';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import type { FilterValue, SorterResult } from 'antd/es/table/interface';
+import { TableV1 } from '@/components/tables';
+import {
+  useCustomerApiDelete,
+  useCustomerApiGetAll,
+  useCustomerApiSearch,
+  useCustomerApiUpdate,
+} from '@/apis-use/UseCustomerApi';
+import { useQueriesString } from '@/hooks/useQueriesString';
+import { formatDate, getQueries } from '@/utils';
+import { SpinnerPage } from '@/components/loadings';
+import { ICustomer } from '@/interfaces/models';
+import { useEffect, useState } from 'react';
+import { ToolBar } from '@/layouts/admin/toolbar';
+import { FeatureCreateCustomer } from './feature';
+import { IDataTable, IResultGetMany } from '@/interfaces/common';
+import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 
 const CustomerPageStyle = styled.div``;
 
-interface DataType {
-  name: {
-    first: string;
-    last: string;
-  };
-  gender: string;
-  email: string;
-  login: {
-    uuid: string;
-  };
-}
-
-interface TableParams {
-  pagination?: TablePaginationConfig;
-  sortField?: string;
-  sortOrder?: string;
-  filters?: Record<string, FilterValue>;
-}
-
-const columns: ColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    sorter: true,
-    render: (name) => `${name.first} ${name.last}`,
-    width: '20%',
-  },
-  {
-    title: 'Gender',
-    dataIndex: 'gender',
-    filters: [
-      { text: 'Male', value: 'male' },
-      { text: 'Female', value: 'female' },
-    ],
-    width: '20%',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-];
-
-const getRandomuserParams = (params: TableParams) => ({
-  results: params.pagination?.pageSize,
-  page: params.pagination?.current,
-  ...params,
-});
+const headersKeyCustomer: Omit<ICustomer, '_id'> = {
+  customer_fullName: 'Họ và tên',
+  customer_phoneNumber: 'Số điện thoại',
+  customer_requirement: 'Yêu cầu khách hàng',
+  customer_source: 'Nguồn sự kiện',
+  customer_voucher: 'Mã giảm giá',
+  createdAt: 'Ngày tạo',
+  updatedAt: 'Ngày cập nhật',
+};
 
 export default function CustomerPage() {
-  const [data, setData] = useState<DataType[]>();
-  const [loading, setLoading] = useState(false);
-  const [tableParams, setTableParams] = useState<TableParams>({
-    pagination: {
-      current: 1,
-      pageSize: 10,
-    },
-  });
+  const [headersName, setHeadersName] = useState<string[]>([]);
+  const [dataBody, setDataBody] = useState<Array<IDataTable>>([]);
+  const queryString = useQueriesString();
+  const query = getQueries(queryString);
 
-  const fetchData = () => {
-    setLoading(true);
-    fetch(
-      `https://randomuser.me/api?${qs.stringify(
-        getRandomuserParams(tableParams)
-      )}`
-    )
-      .then((res) => res.json())
-      .then(({ results }) => {
-        setData(results);
-        setLoading(false);
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
-          },
-        });
-      });
+  const [isDisplayAction, setIsDisplayAction] = useState<boolean>(false);
+  const [idItemChose, setIdItemChose] = useState<string>('');
+
+  const { isDeletingCustomer, deleteCustomer } = useCustomerApiDelete();
+  const { isUpdatingCustomer, updateCustomer } = useCustomerApiUpdate();
+
+  let metadata: IResultGetMany<ICustomer> | undefined;
+  let isGetting: boolean = false;
+
+  if (!query.search) {
+    const { isGettingCustomers, metadata: customers } =
+      useCustomerApiGetAll(query);
+    metadata = customers;
+    isGetting = isGettingCustomers;
+  } else {
+    const { isSearchingCustomers, metadata: customers } =
+      useCustomerApiSearch(query);
+    metadata = customers;
+    isGetting = isSearchingCustomers;
+  }
+
+  const closePopup = () => setIsDisplayAction(false);
+
+  const actionDelete = (id?: string) => {
+    setIsDisplayAction(true);
+    setIdItemChose(`${id}`);
   };
+
+  const onDelete = () => {
+    deleteCustomer(idItemChose, { onSuccess: () => setIsDisplayAction(false) });
+  };
+
+  const isLoading: boolean = isGetting || isDeletingCustomer;
 
   useEffect(() => {
-    fetchData();
-  }, [JSON.stringify(tableParams)]);
+    if (metadata?.items) {
+      const { ...columnDisplay } = metadata.items[0];
 
-  const handleTableChange = (
-    pagination: TablePaginationConfig,
-    filters: Record<string, FilterValue>,
-    sorter: SorterResult<DataType>
-  ) => {
-    setTableParams({
-      pagination,
-      filters,
-      ...sorter,
-    });
+      // {
+      //   customer_fullName:"Họ và tên"
+      //   customer_phoneNumber:"Số điện thoại"
+      // }
+      const headerDisplay = {};
+      Object.keys(columnDisplay).forEach((column) => {
+        if (headersKeyCustomer[column]) {
+          headerDisplay[column] = headersKeyCustomer[column];
+        }
+      });
 
-    // `dataSource` is useless since `pageSize` changed
-    if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-      setData([]);
+      setHeadersName(Object.values(headerDisplay));
+
+      const data: IDataTable[] = [];
+      for (let i = 0; i < metadata.items.length; i++) {
+        const dataTable: string[] = Object.keys(headerDisplay).map(
+          (headerKey) => {
+            if (headerKey === 'createdAt' || headerKey === 'updatedAt') {
+              return formatDate(metadata?.items[i][headerKey] as Date);
+            } else {
+              return metadata?.items[i][headerKey];
+            }
+          }
+        );
+        const itemData: IDataTable = {
+          id: metadata.items[i]._id,
+          dataTable: dataTable,
+        };
+        data.push(itemData);
+      }
+
+      setDataBody(data);
     }
-  };
+  }, [isGetting, metadata?.items]);
 
   return (
     <CustomerPageStyle>
-      <Table
-        columns={columns}
-        rowKey={(record) => record.login.uuid}
-        dataSource={data}
-        pagination={tableParams.pagination}
-        loading={loading}
-        onChange={handleTableChange}
+      {isLoading && <SpinnerPage />}
+      <ToolBar>
+        <FeatureCreateCustomer />
+      </ToolBar>
+      <TableV1
+        totalItems={metadata?.totalItems}
+        actionDelete={actionDelete}
+        actionUpdate={() => {}}
+        // actionSeeDetail={() => {}}
+        dataBody={dataBody}
+        headersName={headersName}
+        templateColumns={`min-content  ${headersName
+          .map((_) => '20rem')
+          .join(' ')} minmax(10rem, 1fr)`}
+      />
+      <PopupDelete
+        close={closePopup}
+        isDisplay={isDisplayAction}
+        onDelete={onDelete}
       />
     </CustomerPageStyle>
   );

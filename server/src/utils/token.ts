@@ -1,16 +1,16 @@
-import JWT from "jsonwebtoken";
-import crypto from "crypto";
+import JWT from 'jsonwebtoken';
+import crypto from 'crypto';
 
 const createDoubleKeys = () => {
-  const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
+  const { privateKey, publicKey } = crypto.generateKeyPairSync('rsa', {
     modulusLength: 2048,
     publicKeyEncoding: {
-      type: "pkcs1",
-      format: "pem",
+      type: 'pkcs1',
+      format: 'pem',
     },
     privateKeyEncoding: {
-      type: "pkcs1",
-      format: "pem",
+      type: 'pkcs1',
+      format: 'pem',
     },
   });
   return { privateKey, publicKey };
@@ -26,12 +26,12 @@ const createDoubleTokens = async ({
   publicKey: crypto.KeyObject;
 }) => {
   const accessToken = JWT.sign(payload, privateKey, {
-    algorithm: "RS256",
-    expiresIn: "1h",
+    algorithm: 'RS256',
+    expiresIn: '1d',
   });
   const refreshToken = JWT.sign(payload, privateKey, {
-    algorithm: "RS256",
-    expiresIn: "30d",
+    algorithm: 'RS256',
+    expiresIn: '30d',
   });
 
   // Check AT have valid

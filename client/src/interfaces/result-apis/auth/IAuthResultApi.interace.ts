@@ -1,39 +1,57 @@
 import { IConfirmOtp, ILogin, IResetPassword } from '@/interfaces/auth';
-import { IApi } from '@/interfaces/common';
+import { IApi, IError } from '@/interfaces/common';
 import { IEmployee } from '@/interfaces/models';
 import { UseMutateFunction } from '@tanstack/react-query';
 
-export interface IAuthResultApiLogin extends IApi {
-  login: UseMutateFunction<IApi, any, ILogin, unknown>;
+export interface IAuthResultApiLogin extends IApi<any> {
+  login: UseMutateFunction<
+    IApi<{
+      accessToken: string;
+      employee: IEmployee;
+    }>,
+    IError,
+    ILogin,
+    unknown
+  >;
   isLogin: boolean;
 }
 
-export interface IAuthResultApiLogout extends IApi {
-  logout: UseMutateFunction<IApi, void, any, unknown>;
+export interface IAuthResultApiLogout extends IApi<any> {
+  logout: UseMutateFunction<IApi<any>, IError, any, unknown>;
   isLogout: boolean;
 }
 
-export interface IAuthResultApiCreateSessionResetPassword extends IApi {
+export interface IAuthResultApiCreateSessionResetPassword extends IApi<any> {
   createSessionResetPassword: UseMutateFunction<
-    IApi,
+    IApi<string>,
+    IError,
     Pick<IEmployee, 'employee_email'>,
-    any,
     unknown
   >;
   isCreateSessionResetPassword: boolean;
 }
 
-export interface IAuthResultApiGenerateOtp extends IApi {
-  generateOtp: UseMutateFunction<IApi, void, any, unknown>;
+export interface IAuthResultApiGenerateOtp extends IApi<any> {
+  generateOtp: UseMutateFunction<IApi<any>, IError, any, unknown>;
   isGenerateOtp: boolean;
 }
 
-export interface IAuthResultApiConfirmOtp extends IApi {
-  confirmOtp: UseMutateFunction<IApi, IConfirmOtp, any, unknown>;
+export interface IAuthResultApiConfirmOtp extends IApi<any> {
+  confirmOtp: UseMutateFunction<IApi<any>, IError, IConfirmOtp, unknown>;
   isConfirmOtp: boolean;
 }
 
-export interface IAuthResultApiConfirmResetPassword extends IApi {
-  confirmResetPassword: UseMutateFunction<IApi, IResetPassword, any, unknown>;
+export interface IAuthResultApiConfirmResetPassword extends IApi<any> {
+  confirmResetPassword: UseMutateFunction<
+    IApi<any>,
+    IError,
+    IResetPassword,
+    unknown
+  >;
   isConfirmResetPassword: boolean;
+}
+
+export interface IAuthResultApiRefreshAT extends IApi<any> {
+  refreshAT: UseMutateFunction<IApi<any>, IError, void, unknown>;
+  isRefreshAT: boolean;
 }

@@ -1,14 +1,14 @@
 import { voucherModel } from '../models';
-import { IQuery } from '../interface';
-import { VoucherRepository, WebRepository } from '../repositories';
+import { IQuery, IResultGetMany } from '../interface';
+import { VoucherRepository } from '../repositories';
 import { BadRequestError, NotFoundError } from '../core/error.response';
 import { IVoucher, IVoucherDto } from '../interface/model/voucher';
-import WebService from './web.service';
+import { WebService } from '.';
 
 export default class VoucherService {
   static async createVoucher(payload: IVoucherDto) {
     // Check web have exist
-    await WebService.getById(payload.voucher_web);
+    if (payload.voucher_web) await WebService.getById(payload.voucher_web);
 
     const newVoucher = await voucherModel.create(payload);
     return newVoucher;
@@ -20,9 +20,18 @@ export default class VoucherService {
     return voucher;
   }
 
-  static async getAllVouchers(query: IQuery) {
+  static async getAllVouchers(
+    query: IQuery
+  ): Promise<IResultGetMany<IVoucher>> {
     const { totalVoucher, vouchers } = await VoucherRepository.getAll(query);
-    return { totalVoucher, vouchers };
+    return { totalItems: totalVoucher, items: vouchers };
+  }
+
+  static async searchVouchers(
+    query: IQuery
+  ): Promise<IResultGetMany<IVoucher>> {
+    const { totalVoucher, vouchers } = await VoucherRepository.getAll(query);
+    return { totalItems: totalVoucher, items: vouchers };
   }
 
   static async updateVoucher(

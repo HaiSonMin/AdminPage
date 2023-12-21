@@ -1,0 +1,196 @@
+{"method":"GET","url":"/api/employees/customers","timeStamp":"16/12/2023 09:27:04"}
+{"message":"Invalid credential AT","method":"GET","url":"/api/employees/customers","timeStamp":"16/12/2023 09:27:04"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 09:27:11"}
+{"message":"Tên người dùng không tồn tại!","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 09:27:12"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 09:27:19"}
+{"method":"GET","url":"/api/employees/customers","timeStamp":"16/12/2023 09:27:22"}
+{"message":"Invalid credential AT","method":"GET","url":"/api/employees/customers","timeStamp":"16/12/2023 09:27:22"}
+{"method":"GET","url":"/api/employees/customers","timeStamp":"16/12/2023 09:27:24"}
+{"message":"Invalid credential AT","method":"GET","url":"/api/employees/customers","timeStamp":"16/12/2023 09:27:24"}
+{"method":"GET","url":"/api/employees/customers","timeStamp":"16/12/2023 09:27:28"}
+{"method":"GET","url":"/api/employees/customers?limit=1&page=1","timeStamp":"16/12/2023 09:27:59"}
+{"method":"GET","url":"/api/employees/customers?limit=1&page=2","timeStamp":"16/12/2023 09:28:06"}
+{"method":"GET","url":"/api/employees/customers?limit=1&page=3","timeStamp":"16/12/2023 09:28:09"}
+{"method":"GET","url":"/api/employees/customers?limit=1&page=1","timeStamp":"16/12/2023 09:28:12"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:34:47"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=ctime","timeStamp":"16/12/2023 09:35:05"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=ctime","timeStamp":"16/12/2023 09:35:07"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=ctime1","timeStamp":"16/12/2023 09:35:09"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=ctime","timeStamp":"16/12/2023 09:35:13"}
+{"method":"POST","url":"/api/customers","timeStamp":"16/12/2023 09:36:20"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=ctime","timeStamp":"16/12/2023 09:36:26"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:36:33"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=ctime","timeStamp":"16/12/2023 09:36:40"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:39:42"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:40:35"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:40:54"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:40:58"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:41:16"}
+{"method":"POST","url":"/api/customers","timeStamp":"16/12/2023 09:41:31"}
+{"message":"Tạo người dùng thất bại, vui lòng thử lại","method":"POST","url":"/api/customers","timeStamp":"16/12/2023 09:41:32"}
+{"method":"POST","url":"/api/customers","timeStamp":"16/12/2023 09:41:38"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:41:43"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:42:55"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:45:20"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:45:43"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:49:38"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:50:11"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10","timeStamp":"16/12/2023 09:50:24"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=customer_fullName-asc","timeStamp":"16/12/2023 09:58:14"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=customer_fullName-desc","timeStamp":"16/12/2023 09:58:22"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=customer_source-desc","timeStamp":"16/12/2023 09:58:29"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=ctime","timeStamp":"16/12/2023 09:58:36"}
+{"message":"Không tìm thấy item với Id:ctime","method":"GET","url":"/api/employees/customers?page=1&limit=ctime","timeStamp":"16/12/2023 09:58:37"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=ctime","timeStamp":"16/12/2023 09:58:48"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=customer_source-asc","timeStamp":"16/12/2023 09:58:58"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=customer_source-desc","timeStamp":"16/12/2023 09:59:05"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1","timeStamp":"16/12/2023 10:07:35"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-asc","timeStamp":"16/12/2023 10:08:33"}
+{"method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:08:53"}
+{"message":"Vui lòng bổ sung giới tính","method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:08:54"}
+{"method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:09:24"}
+{"message":"Dữ liệu trường employee_email đã tồn tại","method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:09:26"}
+{"method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:09:31"}
+{"message":"Dữ liệu trường employee_phoneNumber đã tồn tại","method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:09:32"}
+{"method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:09:49"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-asc","timeStamp":"16/12/2023 10:09:58"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=2&sort=employee_fullName-asc","timeStamp":"16/12/2023 10:10:07"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-asc","timeStamp":"16/12/2023 10:10:14"}
+{"method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:10:56"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-asc","timeStamp":"16/12/2023 10:11:00"}
+{"method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:11:23"}
+{"message":"Dữ liệu trường employee_phoneNumber đã tồn tại","method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:11:24"}
+{"method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 10:11:26"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-asc","timeStamp":"16/12/2023 10:11:30"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc","timeStamp":"16/12/2023 10:11:36"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-nam","timeStamp":"16/12/2023 10:15:28"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&search=hson","timeStamp":"16/12/2023 10:20:21"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson","timeStamp":"16/12/2023 10:20:48"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson","timeStamp":"16/12/2023 10:23:40"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson","timeStamp":"16/12/2023 10:24:22"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson","timeStamp":"16/12/2023 10:25:26"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson","timeStamp":"16/12/2023 10:25:50"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson","timeStamp":"16/12/2023 10:26:46"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hs","timeStamp":"16/12/2023 10:26:57"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hs2","timeStamp":"16/12/2023 10:27:01"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hs1","timeStamp":"16/12/2023 10:27:05"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hs","timeStamp":"16/12/2023 10:27:21"}
+{"message":"AT hết hạn, refresh lại token mau lên!","method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hs","timeStamp":"16/12/2023 10:27:21"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"16/12/2023 10:27:30"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hs","timeStamp":"16/12/2023 10:27:32"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hs","timeStamp":"16/12/2023 10:32:21"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson2210","timeStamp":"16/12/2023 10:32:35"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson22102000","timeStamp":"16/12/2023 10:32:39"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson22102000@gmail.com","timeStamp":"16/12/2023 10:32:49"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson22102000@gmail.com","timeStamp":"16/12/2023 10:32:51"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson22102000@gmail.com","timeStamp":"16/12/2023 10:32:53"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson22102000@gmail","timeStamp":"16/12/2023 10:33:03"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=hson22102000","timeStamp":"16/12/2023 10:33:15"}
+{"method":"GET","url":"/api/admin/employees/search?limit=10&page=1&search=22102000@gmail","timeStamp":"16/12/2023 10:33:36"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10","timeStamp":"16/12/2023 10:46:50"}
+{"message":"Invalid credential AT","method":"GET","url":"/api/employees/customers/search?page=1&limit=10","timeStamp":"16/12/2023 10:46:50"}
+{"method":"GET","url":"/api/employees/customers/search?search=son,page=1&limit=10","timeStamp":"16/12/2023 10:48:28"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10,search=son","timeStamp":"16/12/2023 10:48:38"}
+{"message":"Không tìm thấy item với Id:10,search=son","method":"GET","url":"/api/employees/customers/search?page=1&limit=10,search=son","timeStamp":"16/12/2023 10:48:38"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10,search=son","timeStamp":"16/12/2023 10:48:43"}
+{"message":"Không tìm thấy item với Id:10,search=son","method":"GET","url":"/api/employees/customers/search?page=1&limit=10,search=son","timeStamp":"16/12/2023 10:48:44"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10","timeStamp":"16/12/2023 10:48:48"}
+{"method":"GET","url":"/api/employees/customers?page=1&limit=10&sort=customer_source-desc","timeStamp":"16/12/2023 10:48:56"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10,search=Nguy%E1%BB%85n","timeStamp":"16/12/2023 10:49:06"}
+{"message":"Không tìm thấy item với Id:10,search=Nguyễn","method":"GET","url":"/api/employees/customers/search?page=1&limit=10,search=Nguy%E1%BB%85n","timeStamp":"16/12/2023 10:49:06"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10,search=nguyen","timeStamp":"16/12/2023 10:49:11"}
+{"message":"Không tìm thấy item với Id:10,search=nguyen","method":"GET","url":"/api/employees/customers/search?page=1&limit=10,search=nguyen","timeStamp":"16/12/2023 10:49:12"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=nguyen","timeStamp":"16/12/2023 10:49:16"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=nguyen","timeStamp":"16/12/2023 10:50:04"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=a","timeStamp":"16/12/2023 10:50:25"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=V%C4%83n","timeStamp":"16/12/2023 10:50:31"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=V%C4%83","timeStamp":"16/12/2023 10:50:36"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=Ngu","timeStamp":"16/12/2023 10:50:44"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=0345299087","timeStamp":"16/12/2023 10:50:54"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=0345299087","timeStamp":"16/12/2023 10:51:35"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=03452990","timeStamp":"16/12/2023 10:51:45"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=03452990","timeStamp":"16/12/2023 10:51:48"}
+{"method":"GET","url":"/api/employees/customers/search?page=1&limit=10&search=03452990","timeStamp":"16/12/2023 10:52:19"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 10:52:49"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&sort=voucher_value-asc","timeStamp":"16/12/2023 10:53:18"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&sort=voucher_value-desc","timeStamp":"16/12/2023 10:53:22"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=41","timeStamp":"16/12/2023 10:56:04"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 10:56:12"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 10:56:15"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 10:56:36"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 10:57:33"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 10:57:57"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 10:59:46"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 11:00:15"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 11:00:46"}
+{"method":"POST","url":"/api/vouchers","timeStamp":"16/12/2023 11:02:26"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 11:02:30"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-PERCENTAGE","timeStamp":"16/12/2023 11:05:21"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-PERCENTAGE","timeStamp":"16/12/2023 11:05:46"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUD","timeStamp":"16/12/2023 11:06:17"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUT","timeStamp":"16/12/2023 11:06:22"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT","timeStamp":"16/12/2023 11:06:35"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT","timeStamp":"16/12/2023 11:06:38"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,%20voucher_type-FIX_AMOUNT","timeStamp":"16/12/2023 11:06:52"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,voucher_type-FIX_AMOUNT","timeStamp":"16/12/2023 11:07:02"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 11:07:17"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,voucher_type-PERCENTAGE","timeStamp":"16/12/2023 11:07:23"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,voucher_name-%22Gi%E1%BA%A3m%20gi%C3%A1%201%20tri%E1%BB%87u%22","timeStamp":"16/12/2023 11:07:54"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_name-%22Gi%E1%BA%A3m%20gi%C3%A1%201%20tri%E1%BB%87u%22","timeStamp":"16/12/2023 11:08:01"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_name-Gi%E1%BA%A3m%20gi%C3%A1%201%20tri%E1%BB%87u","timeStamp":"16/12/2023 11:08:05"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-PERCENTAGE,voucher_name-Gi%E1%BA%A3m%20gi%C3%A1%201%20tri%E1%BB%87u","timeStamp":"16/12/2023 11:08:25"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,voucher_name-Gi%E1%BA%A3m%20gi%C3%A1%201%20tri%E1%BB%87u","timeStamp":"16/12/2023 11:08:38"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1","timeStamp":"16/12/2023 11:08:49"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,voucher_name-Gi%E1%BA%A3m%20gi%C3%A1%20500k%20","timeStamp":"16/12/2023 11:09:04"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,voucher_name-Gi%E1%BA%A3m%20gi%C3%A1%20500","timeStamp":"16/12/2023 11:09:08"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,voucher_name-Gi%E1%BA%A3m%20gi%C3%A1%20500k","timeStamp":"16/12/2023 11:09:25"}
+{"method":"GET","url":"/api/vouchers?limit=10&page=1&filter=voucher_type-FIX_AMOUNT,voucher_name-Gi%E1%BA%A3m%20gi%C3%A1%20500k%20","timeStamp":"16/12/2023 11:09:28"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-Nam","timeStamp":"16/12/2023 11:11:37"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-Nu","timeStamp":"16/12/2023 11:11:44"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-N%E1%BB%AF","timeStamp":"16/12/2023 11:11:48"}
+{"method":"POST","url":"/api/admin/employees","timeStamp":"16/12/2023 11:12:14"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-N%E1%BB%AF","timeStamp":"16/12/2023 11:12:19"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-N%E1%BB%AF","timeStamp":"16/12/2023 11:28:02"}
+{"message":"AT hết hạn, refresh lại token mau lên!","method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-N%E1%BB%AF","timeStamp":"16/12/2023 11:28:02"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"16/12/2023 11:28:07"}
+{"message":"Cannot read properties of undefined (reading 'refreshAccessToken')","method":"POST","url":"/api/auth/refresh-token","timeStamp":"16/12/2023 11:28:07"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:28:19"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:28:19"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:28:57"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:28:57"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:28:59"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:28:59"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:32:21"}
+{"message":"Cannot read properties of undefined (reading 'logout')","method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:32:21"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:33:15"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:33:15"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:33:36"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:33:36"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:07"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:07"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:08"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:08"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:13"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:13"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:14"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:14"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:14"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:14"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:18"}
+{"message":"Cannot read properties of undefined (reading 'login')","method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:35:18"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:36:20"}
+{"message":"Cannot read properties of undefined (reading 'logout')","method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:36:20"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:36:30"}
+{"message":"Cannot read properties of undefined (reading 'logout')","method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:36:30"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:37:27"}
+{"message":"Cannot read properties of undefined (reading 'logout')","method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:37:27"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:39:14"}
+{"method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:41:17"}
+{"message":"Delete RT Error","method":"POST","url":"/api/auth/logout","timeStamp":"16/12/2023 11:41:21"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 11:42:47"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-N%E1%BB%AF","timeStamp":"16/12/2023 14:13:20"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-N%E1%BB%AF","timeStamp":"16/12/2023 14:13:20"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"16/12/2023 14:13:23"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-N%E1%BB%AF","timeStamp":"16/12/2023 14:13:26"}
+{"method":"GET","url":"/api/admin/employees?limit=10&page=1&sort=employee_fullName-desc&filter=employee_gender-N%E1%BB%AF","timeStamp":"16/12/2023 14:50:47"}
+{"method":"POST","url":"/api/employees","timeStamp":"16/12/2023 14:56:57"}

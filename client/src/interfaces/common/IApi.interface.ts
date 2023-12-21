@@ -1,5 +1,5 @@
-export interface IApi {
-  metadata?: any;
+export interface IApi<T> {
+  metadata?: T;
   message?: string;
   reasonStatusCode?: string;
   statusCode?: number;

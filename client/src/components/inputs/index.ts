@@ -1,4 +1,2 @@
-export * from './InputAuth';
-export * from './InputOtp';
-export * from './InputSearch';
-export * from './InputSearchV2';
+export * from './inputs';
+export * from './selects';

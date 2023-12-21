@@ -1,0 +1,37 @@
+version: '3'
+services:
+  # nginx:
+  #   image: nginx:stable-alpine
+  #   container_name: container-nginx
+  #   ports:
+  #     - "3000:80"
+  #   volumes:
+  #     - ./src/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+  #   environment:
+  #     - NGINX_PORT=80
+  #   networks:
+  #     - network_common
+  server:
+    build: .
+    container_name: container_sys
+    ports:
+      - 9000:80
+    env_file:
+      - ./.env
+    depends_on:
+      - mongo
+      - redis
+  mongo:
+    image: mongo
+    container_name: container_mongo
+    environment:
+      - name=value
+    volumes:
+      - /mongo-db:/data/db
+  redis:
+    image: redis
+    container_name: container_redis
+    volumes:
+      - /docker/host/dir:/data
+volumes:
+  mongo-db:

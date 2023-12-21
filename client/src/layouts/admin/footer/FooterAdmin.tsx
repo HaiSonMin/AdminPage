@@ -3,6 +3,10 @@ import { CSSProperties } from 'styled-components';
 const { Footer } = Layout;
 
 const footerStyle: CSSProperties = {
+  position: 'fixed',
+  height: '6rem',
+  bottom: 0,
+  width: '100%',
   display: 'flex',
   marginTop: '2px',
   alignItems: 'center',

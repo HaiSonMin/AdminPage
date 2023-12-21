@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { IoKeyOutline } from 'react-icons/io5';
 import { HiOutlineLogout } from 'react-icons/hi';
-import { useLogoutApi } from '@/apis-use';
+import { useAuthApiLogout } from '@/apis-use';
 import { SpinnerPage } from '@/components/loadings';
-import { useNavigate } from 'react-router-dom';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
 
 const PopupUserFooterStyle = styled.div`
@@ -39,7 +38,7 @@ const PopupUserFooterStyle = styled.div`
 `;
 
 export const PopupUserFooter = () => {
-  const { isLogout, logout } = useLogoutApi();
+  const { isLogout, logout } = useAuthApiLogout();
 
   const handleLogout = () => {
     logout(null, {
