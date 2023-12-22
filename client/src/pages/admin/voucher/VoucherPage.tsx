@@ -132,7 +132,7 @@ export default function VoucherPage() {
         actionDelete={actionDelete}
         actionUpdate={actionUpdate}
         // actionSeeDetail={() => {}}
-        actionSearch={() => {}}
+        actionSearch={() => (abf: string) => {}}
         dataBody={dataBody}
         headersName={headersName}
         templateColumns={`min-content  ${headersName

@@ -109,7 +109,7 @@ export default function CustomerPage() {
         actionDelete={actionDelete}
         actionUpdate={() => {}}
         // actionSeeDetail={() => {}}
-        actionSearch={() => {}}
+        actionSearch={() => (abf: string) => {}}
         dataBody={dataBody}
         headersName={headersName}
         templateColumns={`min-content  ${headersName

@@ -104,7 +104,7 @@ export default function WebPage() {
         // actionSeeDetail={() => {}}
         actionUpdate={actionUpdate}
         actionDelete={actionDelete}
-        actionSearch={() => {}}
+        actionSearch={() => (abf: string) => {}}
         dataBody={dataBody}
         headersName={headersName}
         templateColumns={`min-content  ${headersName

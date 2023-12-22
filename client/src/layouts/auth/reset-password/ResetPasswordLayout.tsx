@@ -1,5 +1,5 @@
 import { useAuthApiConfirmResetPassword } from '@/apis-use';
-import { ButtonText } from '@/components/buttons';
+import { ButtonSubmit, ButtonText } from '@/components/buttons';
 import { FormBasic } from '@/components/forms';
 import { Heading3XL } from '@/components/heading';
 import { InputAuth } from '@/components/inputs';
@@ -100,9 +100,9 @@ export const ResetPasswordLayout = () => {
           error={errors.employee_confirmPassword?.message}
           isRequired
         />
-        <ButtonText type='submit' disabled={isConfirmResetPassword}>
+        <ButtonSubmit type='submit' disabled={isConfirmResetPassword}>
           Xác nhận
-        </ButtonText>
+        </ButtonSubmit>
       </FormResetPassword>
     </ResetPasswordLayoutStyle>
   );
