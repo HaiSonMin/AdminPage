@@ -1,5 +1,5 @@
 import { randomKey } from '@/utils';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   TbSortAscendingLetters,
   TbSortDescendingLetters,
@@ -18,30 +18,37 @@ const TableRowHeader = styled.div<{ $templateColumns: string }>`
   grid-template-columns: ${(props) => props.$templateColumns};
 `;
 
-const TableDataHeader = styled.div`
+const TableDataHeaderCss = css`
   padding: 1.4rem 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 5px;
   font-weight: 500;
   font-size: var(--font-size-12);
   color: var(--color-text-secondary);
-  min-width: fit-content;
+  min-width: max-content;
   white-space: nowrap;
+`;
 
-  &:first-child {
-    gap: 0;
-  }
+const TableDataHeader = styled.div`
+  ${TableDataHeaderCss}
+`;
 
-  svg {
+const TableDataHeaderField = styled.div`
+  ${TableDataHeaderCss}
+`;
+
+const TableDataHeaderFieldContent = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  cursor: pointer;
+  .icon {
     width: 1.4rem;
     height: 1.4rem;
-    cursor: pointer;
-    transition: all 0.3s;
     color: var(--color-primary);
-
-    &:hover {
+    transition: all 0.3s;
+  }
+  &:hover {
+    .icon {
       scale: 1.1;
     }
   }
@@ -61,9 +68,11 @@ export const TableHeader = ({ templateColumns, headersName }: IProps) => {
             <Checkbox isChose={false} />
           </TableDataHeader>
           {headersName.map((name) => (
-            <TableDataHeader key={randomKey()}>
-              {name} <TbSortAscendingLetters />
-            </TableDataHeader>
+            <TableDataHeaderField>
+              <TableDataHeaderFieldContent key={randomKey()}>
+                {name} <TbSortAscendingLetters className='icon' />
+              </TableDataHeaderFieldContent>
+            </TableDataHeaderField>
           ))}
           <TableDataHeader>Hành động</TableDataHeader>
         </>
