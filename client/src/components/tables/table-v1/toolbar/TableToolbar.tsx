@@ -31,9 +31,14 @@ const InfoDisplay = styled.p`
 interface IProps {
   totalItems?: number;
   numberDisplayOnPage: number;
+  actionSearch: (keySearch: string) => void;
 }
 
-export function TableToolbar({ totalItems, numberDisplayOnPage }: IProps) {
+export function TableToolbar({
+  totalItems,
+  numberDisplayOnPage,
+  actionSearch,
+}: IProps) {
   return (
     <TableToolbarStyle>
       <Left>
@@ -44,7 +49,7 @@ export function TableToolbar({ totalItems, numberDisplayOnPage }: IProps) {
         <InfoDisplay>
           Hiển thị 1-{numberDisplayOnPage} trong số {totalItems} bản ghi
         </InfoDisplay>
-        <InputSearchV2 />
+        <InputSearchV2 actionSearch={actionSearch} />
       </Right>
     </TableToolbarStyle>
   );

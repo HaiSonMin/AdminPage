@@ -11,6 +11,9 @@ import axios, {
 } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 
+const dataStore = JSON.parse(
+  `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
+);
 const convertToStringToken = (token: string) => `Bearer ${token}`;
 class Http {
   baseURl: string;
@@ -18,9 +21,6 @@ class Http {
   instancePublic: AxiosInstance;
   constructor() {
     // Now convertToStringToken is defined
-    const dataStore = JSON.parse(
-      `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
-    );
 
     // Bind the class methods to the current instance
     this.handlerSuccessResponse = this.handlerSuccessResponse.bind(this);
@@ -82,7 +82,7 @@ class Http {
 
       // Send continue pre request
       // Ensure that preRequest is not undefined before using it
-      if (preRequest) {
+      if (preRequest && preRequest.headers) {
         preRequest.headers['Authorization'] = convertToStringToken(
           result.metadata.newAccessToken
         );

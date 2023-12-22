@@ -72,12 +72,9 @@ export const useVoucherApiGetAll = (
 
   let totalPages: number = 1;
   const currentPage: number = query?.page || 1;
-  console.log(
-    'data?.metadata?.totalVouchers:::',
-    data?.metadata?.totalVouchers
-  );
-  if (data?.metadata?.totalVouchers)
-    totalPages = Math.ceil(data?.metadata?.totalVouchers / 10);
+
+  if (data?.metadata?.totalItems)
+    totalPages = Math.ceil(data?.metadata?.totalItems / 10);
 
   console.log('currentPage, totalPages:::', { currentPage, totalPages });
   // Get Data Next Page
@@ -115,8 +112,8 @@ export const useVoucherApiSearch = (
   let totalPages: number = 1;
   const currentPage: number = query?.page || 1;
 
-  if (data?.metadata?.totalVouchers)
-    totalPages = Math.ceil(data?.metadata?.totalVouchers / 10);
+  if (data?.metadata?.totalItems)
+    totalPages = Math.ceil(data?.metadata?.totalItems / 10);
 
   // Get Data Next Page
   if (currentPage < totalPages)

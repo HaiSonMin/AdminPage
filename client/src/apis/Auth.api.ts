@@ -54,9 +54,9 @@ export class AuthApi {
     }
   }
 
-  static async createSessionResetPassword(
-    employee_email: Pick<IEmployee, 'employee_email'>
-  ) {
+  static async createSessionResetPassword({
+    employee_email,
+  }: Pick<IEmployee, 'employee_email'>) {
     try {
       console.log(employee_email);
       const response = await httpPublic.post(

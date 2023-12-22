@@ -33,6 +33,8 @@ export function FeatureUpdateEmployee({ id, isDisplay, close }: IProps) {
   const [selectRole, setSelectRole] = useState<string>('');
   const [selectGender, setSelectGender] = useState<string>('');
 
+  console.log('employee::::', employee);
+
   const {
     handleSubmit,
     formState: { errors },
@@ -72,6 +74,8 @@ export function FeatureUpdateEmployee({ id, isDisplay, close }: IProps) {
       Object.keys(employee).forEach((key) => {
         setValue(key as keyof IEmployeeUpdateDto, employee[key]);
       });
+      setSelectRole(employee?.employee_role);
+      setSelectGender(employee?.employee_gender);
     }
   }, [employee, isGettingEmployee, setValue]);
 
@@ -148,7 +152,6 @@ export function FeatureUpdateEmployee({ id, isDisplay, close }: IProps) {
               placeholder='Chọn phòng ban'
               options={[
                 { label: 'Sale', value: ERole.SALE },
-                { label: 'Admin', value: ERole.ADMIN },
                 { label: 'Marketing', value: ERole.MKT },
               ]}
               onChange={onSelectRole}

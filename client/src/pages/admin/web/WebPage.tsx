@@ -15,13 +15,7 @@ import {
 import { useQueriesString } from '@/hooks/useQueriesString';
 import { IDataTable, IResultGetMany } from '@/interfaces/common';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
-
-const headersKeyWeb: Omit<IWeb, '_id'> = {
-  web_name: 'Tên nguồn sự kiện',
-  web_url: 'Link sự kiện',
-  createdAt: 'Ngày tạo',
-  updatedAt: 'Ngày cập nhật',
-};
+import { WEB_FIELD } from '@/constants/fields';
 
 export default function WebPage() {
   const queryString = useQueriesString();
@@ -67,14 +61,12 @@ export default function WebPage() {
   const isLoading: boolean = isGetting || isDeletingWeb;
 
   useEffect(() => {
-    console.log('metadata?.items:::,', metadata?.items);
     if (metadata?.items) {
-      const { ...columnDisplay } = metadata.items[0];
+      const columnDisplay = Object.keys(WEB_FIELD);
 
       const headerDisplay = {};
-      Object.keys(columnDisplay).forEach((column) => {
-        if (headersKeyWeb[column])
-          headerDisplay[column] = headersKeyWeb[column];
+      columnDisplay.forEach((column) => {
+        if (WEB_FIELD[column]) headerDisplay[column] = WEB_FIELD[column];
       });
 
       setHeadersName(Object.values(headerDisplay));
@@ -112,6 +104,7 @@ export default function WebPage() {
         // actionSeeDetail={() => {}}
         actionUpdate={actionUpdate}
         actionDelete={actionDelete}
+        actionSearch={() => {}}
         dataBody={dataBody}
         headersName={headersName}
         templateColumns={`min-content  ${headersName

@@ -1,0 +1,664 @@
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:37:26"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:37:26"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:37:34"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:37:34"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:37:34"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:37:34"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:37:35"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:37:35"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:37:35"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:37:35"}
+{"message":"Refresh token dost not exist","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:37:35"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:37:35"}
+{"message":"Refresh token dost not exist","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:37:37"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:37:38"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:37:38"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:37:38"}
+{"message":"Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:37:38"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"22/12/2023 08:37:59"}
+{"message":"Mật khẩu không đúng!","method":"POST","url":"/api/auth/login","timeStamp":"22/12/2023 08:37:59"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"22/12/2023 08:38:00"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:38:22"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:38:22"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:38:23"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:38:23"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:38:23"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:38:23"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:38:24"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:38:33"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:38:34"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:38:34"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:38:34"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:38:36"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:38:36"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:38:36"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:38:37"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:50"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:50"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:50"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:39:50"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:50"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:39:50"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:51"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:51"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:54"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:54"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:54"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:39:54"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:54"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:39:54"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:55"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:55"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:58"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:58"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:58"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:39:58"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:58"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:39:58"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:39:59"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:39:59"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:02"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:02"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:02"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:02"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:02"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:02"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:03"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:03"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:08"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:08"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:08"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:08"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:08"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:08"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:09"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:09"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:13"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:13"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:13"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:13"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:13"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:13"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:14"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:14"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:22"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:22"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:22"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:22"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:22"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:22"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:23"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:23"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:32"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:32"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:32"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:32"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:32"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:40:32"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:40:33"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:40:33"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:41:49"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:41:50"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:41:50"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:41:51"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:41:56"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:41:56"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:41:56"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:41:56"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:41:56"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:41:56"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:41:56"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:41:56"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:41:57"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:41:57"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:41:57"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:41:57"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:42:10"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:42:10"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:42:10"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:10"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:42:10"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:10"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:42:11"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:42:11"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:11"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:42:11"}
+{"message":"Refresh token dost not exist","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:11"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:42:17"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:42:17"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:42:17"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:42:17"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:42:18"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:42:18"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:18"}
+{"message":"Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:18"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:18"}
+{"message":"Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:18"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:18"}
+{"message":"Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:18"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:42:19"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:42:19"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:19"}
+{"message":"Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:19"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"22/12/2023 08:42:26"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:42:38"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:42:39"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:39"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:42:39"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:42:41"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:42:41"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:41"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:42:42"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:42:45"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:42:45"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:42:46"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:46"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:42:46"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:46"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:42:46"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:42:46"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:42:47"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:42:47"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:42:47"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:42:48"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:43:07"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:43:07"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:43:07"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:43:08"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:43:08"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:43:08"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:43:08"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:43:08"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:43:08"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:43:17"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:43:17"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:43:17"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:43:21"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:43:21"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:43:21"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:43:22"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:43:22"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:43:22"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:43:44"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:43:44"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:43:44"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:44:08"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:44:08"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:44:08"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:44:10"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:44:10"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:44:14"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:44:14"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:44:19"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:44:19"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:44:20"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:44:20"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:44:20"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:44:23"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 08:44:24"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 08:44:32"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:44:32"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 08:44:34"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:44:34"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 08:44:43"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:44:43"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:44:46"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 08:44:46"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:44:49"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:44:49"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:44:50"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:44:51"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:44:51"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 08:44:51"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:44:51"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 08:44:52"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:44:54"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:44:54"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 08:44:55"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:44:55"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:44:55"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 08:44:56"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:44:56"}
+{"method":"GET","url":"/api/employees?page=2&limit=10","timeStamp":"22/12/2023 08:44:58"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:44:58"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:49:08"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:49:08"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:49:08"}
+{"message":"Refresh token dost not exist","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:49:08"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:49:48"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:49:48"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:49:48"}
+{"message":"Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:49:48"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"22/12/2023 08:50:51"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:50:54"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:50:54"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:50:54"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:50:54"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:52:52"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:52:52"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:52:52"}
+{"message":"Refresh token dost not exist","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:52:52"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:52:53"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:52:53"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:52:53"}
+{"message":"Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:52:53"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"22/12/2023 08:55:03"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:55:10"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:55:10"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:10"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:55:11"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:55:13"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:55:13"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:55:13"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:55:13"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:13"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:13"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:55:13"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:55:13"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:55:14"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:55:14"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:15"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:55:15"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:55:16"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:55:16"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:16"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:55:16"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:55:18"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:55:18"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:55:18"}
+{"message":"AT hết hạn, refresh lại token mau lên","method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:55:18"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:18"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:18"}
+{"message":"Refresh token dost not exist","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:18"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:55:18"}
+{"message":"Vui lòng đăng nhập lại","method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:55:18"}
+{"method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:18"}
+{"message":"Phiên bảng đăng nhập hết hạn, vui lòng đăng nhập lại","method":"POST","url":"/api/auth/refresh-token","timeStamp":"22/12/2023 08:55:18"}
+{"method":"POST","url":"/api/auth/login","timeStamp":"22/12/2023 08:55:53"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:57:20"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:57:20"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:57:22"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:57:23"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:57:24"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:57:24"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:57:25"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 08:57:26"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 08:57:27"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 08:57:29"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:57:30"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:57:31"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:57:31"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:57:31"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:57:31"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:57:31"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:57:32"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 08:57:32"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 08:57:32"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:57:33"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:58:09"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 08:58:47"}
+{"method":"POST","url":"/api/employees","timeStamp":"22/12/2023 08:58:57"}
+{"message":"Dữ liệu trường employee_phoneNumber đã tồn tại","method":"POST","url":"/api/employees","timeStamp":"22/12/2023 08:58:57"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:02:47"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:05:51"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:05:53"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:09:05"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:09:08"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:09:10"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:09:12"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:09:13"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:09:47"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:09:49"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:09:49"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:09:50"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:09:51"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:09:51"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:09:51"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:09:54"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:09:55"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:09:55"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:09:56"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:10:02"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:10:03"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:10:03"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:10:04"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:10:05"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:10:07"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:10:11"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:10:13"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:10:14"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:10:14"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:10:15"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:10:23"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:10:27"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:10:31"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:10:34"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:10:37"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:10:44"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:10:50"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:10:52"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:16"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:20"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:21"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:21"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:11:22"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:23"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:25"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:27"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:37"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:37"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:11:38"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:39"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:47"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:11:48"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:12:06"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:12:13"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:12:14"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:12:19"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:12:19"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:12:19"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:12:38"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:12:43"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:13:26"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:13:32"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:13:46"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:13:47"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:13:49"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:13:50"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:14:02"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:14:03"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:14:19"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:14:21"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:14:43"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:14:44"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:14:45"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:15:12"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:15:13"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:15:15"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:15:16"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:15:32"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:15:34"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:16:20"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:16:22"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:16:37"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:29:29"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:29:30"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:24"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:26"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:29"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:30"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:35"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:44"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:48"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:50"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:51"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:52"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:55"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:30:56"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:31:01"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:31:02"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:31:54"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:31:55"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:05"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:06"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:29"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:32"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:36"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:37"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:38"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:43"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:44"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:47"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:48"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:49"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:32:51"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:32:58"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:33:01"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:33:01"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:33:02"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:33:03"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:33:03"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:33:04"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:33:06"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:33:06"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:33:09"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:33:11"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:33:11"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:35:56"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:35:56"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:36:00"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:36:00"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:36:03"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:36:04"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:36:04"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:36:57"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:36:57"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:41:17"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:41:17"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:41:24"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:41:24"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:42:23"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:42:23"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:42:39"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:42:40"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:42:52"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:42:52"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:42:55"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:42:55"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:43:14"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:43:14"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:43:35"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:43:35"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:43:50"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:43:50"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:44:01"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:44:01"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:44:29"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:44:29"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:44:33"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:44:33"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:44:57"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:44:57"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:45:27"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:45:27"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:45:37"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:45:37"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:45:39"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:47:02"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:47:04"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:47:22"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:47:23"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:47:24"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:48:40"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:48:41"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:48:42"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:48:43"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:48:45"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:48:46"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:48:47"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:49:32"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:49:35"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:49:36"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:49:39"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:49:43"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:49:43"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:49:48"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:49:54"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:49:54"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:49:57"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:49:57"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:50:01"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:01"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:50:05"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:05"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:50:09"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:09"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:50:12"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:12"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:50:15"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:15"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:50:19"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:19"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:50:22"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:22"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:32"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:38"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:41"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:47"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:49"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:53"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:50:56"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:50:56"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:50:56"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:50:57"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:51:02"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:02"}
+{"method":"POST","url":"/api/webs","timeStamp":"22/12/2023 09:51:09"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:09"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:09"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:09"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:14"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:14"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:14"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:17"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:17"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:17"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:27"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:29"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:51:41"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:51:41"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:41"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:51:42"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:42"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:42"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:43"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:46"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:51:46"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:51:46"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:46"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:51:47"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:47"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:51:47"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:51:47"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:47"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:48"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:48"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:48"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:50"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:51:50"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:51:50"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:50"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:51:50"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:51"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:51:51"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:51:51"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:51:51"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:52"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:51:52"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:51:52"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:52:03"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:52:57"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:53:02"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:53:02"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:53:02"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:53:02"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:53:03"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:53:04"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:53:05"}
+{"method":"GET","url":"/api/employees/6584ebc6afceef41b63ae461","timeStamp":"22/12/2023 09:53:07"}
+{"method":"GET","url":"/api/employees/6584ebc6afceef41b63ae461","timeStamp":"22/12/2023 09:53:09"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:10"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:53:10"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:10"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:11"}
+{"method":"GET","url":"/api/webs/6584f952bf2a40da3ffd8029","timeStamp":"22/12/2023 09:53:11"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:12"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:12"}
+{"method":"GET","url":"/api/webs/6584f955bf2a40da3ffd802f","timeStamp":"22/12/2023 09:53:12"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:13"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:53:14"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:53:14"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:53:14"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:53:14"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:53:15"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:17"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:53:17"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:17"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:53:17"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:18"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:53:19"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:53:19"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:53:20"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:56:14"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:56:14"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:56:14"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:56:18"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:56:30"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:56:30"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:56:30"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:56:32"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:56:32"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:56:32"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:56:33"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:56:33"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:56:33"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:56:33"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:56:35"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:56:35"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:56:35"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:56:35"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:56:37"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:56:38"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:56:46"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:56:48"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:56:48"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:56:48"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:56:50"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:57:15"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:57:15"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:57:31"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:57:32"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:57:32"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:57:33"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:57:49"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:57:49"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:57:49"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:57:51"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 09:57:51"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 09:57:51"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 09:57:51"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 09:57:52"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 09:57:52"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:59:28"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 09:59:28"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 09:59:28"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 10:00:10"}
+{"method":"POST","url":"/api/customers","timeStamp":"22/12/2023 10:00:38"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 10:00:39"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 10:01:29"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 10:01:32"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 10:01:32"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 10:01:32"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 10:01:34"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 10:01:34"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 10:01:34"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 10:01:34"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 10:02:34"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 10:02:34"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 10:02:47"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 10:02:47"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 10:02:48"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 10:02:48"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 10:02:49"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 10:02:49"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 10:02:49"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 10:02:51"}
+{"method":"GET","url":"/api/webs?page=1&limit=10000000000","timeStamp":"22/12/2023 10:02:51"}
+{"method":"GET","url":"/api/vouchers?page=1&limit=10","timeStamp":"22/12/2023 10:02:51"}
+{"method":"GET","url":"/api/webs?page=2&limit=10000000000","timeStamp":"22/12/2023 10:02:51"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 10:02:53"}
+{"method":"GET","url":"/api/webs?page=1&limit=10","timeStamp":"22/12/2023 10:02:53"}
+{"method":"GET","url":"/api/webs?page=2&limit=10","timeStamp":"22/12/2023 10:02:53"}
+{"method":"GET","url":"/api/customers?page=1&limit=10","timeStamp":"22/12/2023 10:02:55"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 10:03:01"}
+{"method":"GET","url":"/api/employees?page=1&limit=10","timeStamp":"22/12/2023 10:03:18"}

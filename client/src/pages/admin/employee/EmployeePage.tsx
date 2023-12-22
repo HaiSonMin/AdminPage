@@ -20,18 +20,7 @@ import { IEmployee } from '@/interfaces/models';
 import { IDataTable, IResultGetMany } from '@/interfaces/common';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 import { FeatureUpdateEmployee } from './feature/FeatureUpdateEmployee';
-
-const headersKeyVoucher: Partial<IEmployee> = {
-  _id: 'Mã voucher',
-  employee_fullName: 'Họ và tên',
-  employee_email: 'Email',
-  employee_gender: 'Giới tính',
-  employee_role: 'Phòng ban',
-  employee_userName: 'Tên người dùng',
-  employee_phoneNumber: 'Số điện thoại',
-  createdAt: 'Ngày tạo',
-  updatedAt: 'Ngày cập nhật',
-};
+import { EMPLOYEE_FIELD } from '@/constants/fields';
 
 export default function VoucherPage() {
   const queryString = useQueriesString();
@@ -81,12 +70,12 @@ export default function VoucherPage() {
 
   useEffect(() => {
     if (metadata?.items) {
-      const { ...columnDisplay } = metadata.items[0];
+      const columnDisplay = Object.keys(EMPLOYEE_FIELD);
 
       const headerDisplay = {};
-      Object.keys(columnDisplay).forEach((column) => {
-        if (headersKeyVoucher[column])
-          headerDisplay[column] = headersKeyVoucher[column];
+      columnDisplay.forEach((column) => {
+        if (EMPLOYEE_FIELD[column])
+          headerDisplay[column] = EMPLOYEE_FIELD[column];
       });
 
       setHeadersName(Object.values(headerDisplay));
@@ -106,6 +95,7 @@ export default function VoucherPage() {
           id: metadata.items[i]._id,
           dataTable: dataTable,
         };
+        console.log('itemData:::');
         data.push(itemData);
       }
 
@@ -124,10 +114,11 @@ export default function VoucherPage() {
         actionDelete={actionDelete}
         actionUpdate={actionUpdate}
         // actionSeeDetail={() => {}}
+        actionSearch={() => {}}
         dataBody={dataBody}
         headersName={headersName}
         templateColumns={`min-content  ${headersName
-          .map((_) => 'minmax(10rem, 1fr)')
+          .map((_) => '20rem')
           .join(' ')} minmax(10rem, 1fr)`}
       />
       <PopupDelete

@@ -65,7 +65,7 @@ export const TableHeader = ({ templateColumns, headersName }: IProps) => {
               {name} <TbSortAscendingLetters />
             </TableDataHeader>
           ))}
-          <TableDataHeader>Action</TableDataHeader>
+          <TableDataHeader>Hành động</TableDataHeader>
         </>
       </TableRowHeader>
     </TableHeaderStyle>

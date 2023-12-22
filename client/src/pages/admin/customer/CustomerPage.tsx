@@ -15,18 +15,9 @@ import { ToolBar } from '@/layouts/admin/toolbar';
 import { FeatureCreateCustomer } from './feature';
 import { IDataTable, IResultGetMany } from '@/interfaces/common';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
+import { CUSTOMER_FIELD } from '@/constants/fields';
 
 const CustomerPageStyle = styled.div``;
-
-const headersKeyCustomer: Omit<ICustomer, '_id'> = {
-  customer_fullName: 'Họ và tên',
-  customer_phoneNumber: 'Số điện thoại',
-  customer_requirement: 'Yêu cầu khách hàng',
-  customer_source: 'Nguồn sự kiện',
-  customer_voucher: 'Mã giảm giá',
-  createdAt: 'Ngày tạo',
-  updatedAt: 'Ngày cập nhật',
-};
 
 export default function CustomerPage() {
   const [headersName, setHeadersName] = useState<string[]>([]);
@@ -70,16 +61,16 @@ export default function CustomerPage() {
 
   useEffect(() => {
     if (metadata?.items) {
-      const { ...columnDisplay } = metadata.items[0];
+      const columnDisplay = Object.keys(CUSTOMER_FIELD);
 
       // {
       //   customer_fullName:"Họ và tên"
       //   customer_phoneNumber:"Số điện thoại"
       // }
       const headerDisplay = {};
-      Object.keys(columnDisplay).forEach((column) => {
-        if (headersKeyCustomer[column]) {
-          headerDisplay[column] = headersKeyCustomer[column];
+      columnDisplay.forEach((column) => {
+        if (CUSTOMER_FIELD[column]) {
+          headerDisplay[column] = CUSTOMER_FIELD[column];
         }
       });
 
@@ -118,6 +109,7 @@ export default function CustomerPage() {
         actionDelete={actionDelete}
         actionUpdate={() => {}}
         // actionSeeDetail={() => {}}
+        actionSearch={() => {}}
         dataBody={dataBody}
         headersName={headersName}
         templateColumns={`min-content  ${headersName

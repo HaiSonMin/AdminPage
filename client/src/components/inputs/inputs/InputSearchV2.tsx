@@ -51,19 +51,24 @@ const IconRemove = styled(MdOutlineCancel)`
   ${commonIconCss}
 `;
 
-export function InputSearchV2() {
-  const [valueSearch, setValueSearch] = useState<string>('');
+interface IProps {
+  actionSearch: (keySearch: string) => void;
+}
+
+export function InputSearchV2({ actionSearch }: IProps) {
+  const [searchValue, setSearchValue] = useState<string>('');
 
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValueSearch(e.target.value);
+    setSearchValue(e.target.value);
   };
 
   const handleSearch = () => {
-    console.log('Search Term:::', valueSearch);
+    actionSearch(searchValue);
+    setSearchValue('');
   };
 
   const handleClearInput = () => {
-    setValueSearch('');
+    setSearchValue('');
   };
 
   return (
@@ -71,7 +76,7 @@ export function InputSearchV2() {
       <input
         placeholder='Tìm kiếm mọi người'
         onChange={handleChangeSearch}
-        value={valueSearch}
+        value={searchValue}
       />
       <IConSearch onClick={handleSearch} />
       <IconRemove onClick={handleClearInput} />

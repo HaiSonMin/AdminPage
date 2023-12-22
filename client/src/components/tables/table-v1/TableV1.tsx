@@ -8,8 +8,7 @@ import { IDataTable } from '@/interfaces/common';
 const TableStyle = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 70vh;
-  max-height: 70vh;
+  max-height: 70vh; 
   width: 100%;
   border-radius: 1rem;
   box-shadow: var(--shadow-around);
@@ -27,7 +26,7 @@ interface IProps {
   templateColumns: string;
   actionDelete: (id?: string) => void;
   actionUpdate: (id?: string) => void;
-  actionSearch?: (keySearch: string) => void;
+  actionSearch: (keySearch: string) => void;
   // actionSeeDetail: (id?: string) => void;
 }
 
@@ -46,6 +45,7 @@ IProps) {
       <TableToolbar
         totalItems={totalItems}
         numberDisplayOnPage={dataBody?.length}
+        actionSearch={actionSearch}
       />
       <Overflow>
         <TableHeader

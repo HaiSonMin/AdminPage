@@ -1,6 +1,10 @@
 import { VOUCHER_API } from '@/constants/paths-apis';
-import { IApi, IError, IQuery } from '@/interfaces/common';
-import { IVoucherCreateDto, IVoucherUpdateDto } from '@/interfaces/models';
+import { IApi, IError, IQuery, IResultGetMany } from '@/interfaces/common';
+import {
+  IVoucher,
+  IVoucherCreateDto,
+  IVoucherUpdateDto,
+} from '@/interfaces/models';
 import { httpPrivate } from '@/utils';
 
 export class VoucherApi {
@@ -10,7 +14,7 @@ export class VoucherApi {
         `/${VOUCHER_API.ROOT}`,
         voucherCreateDto
       );
-      const result: IApi = response.data;
+      const result: IApi<IVoucher> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
@@ -24,7 +28,7 @@ export class VoucherApi {
       const response = await httpPrivate.get(`/${VOUCHER_API.ROOT}/search`, {
         params: query,
       });
-      const result: IApi = response.data;
+      const result: IApi<IResultGetMany<IVoucher>> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
@@ -38,7 +42,7 @@ export class VoucherApi {
       const response = await httpPrivate.get(
         `/${VOUCHER_API.ROOT}/${voucherId}`
       );
-      const result: IApi = response.data;
+      const result: IApi<IVoucher> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
@@ -52,7 +56,7 @@ export class VoucherApi {
       const response = await httpPrivate.get(`/${VOUCHER_API.ROOT}`, {
         params: query,
       });
-      const result: IApi = response.data;
+      const result: IApi<IResultGetMany<IVoucher>> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
@@ -73,7 +77,7 @@ export class VoucherApi {
         `/${VOUCHER_API.ROOT}/${voucherId}`,
         voucherUpdateDto
       );
-      const result: IApi = response.data;
+      const result: IApi<IVoucher> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
@@ -88,7 +92,7 @@ export class VoucherApi {
         `/${VOUCHER_API.ROOT}/${voucherId}`
       );
 
-      const result: IApi = response.data;
+      const result: IApi<IVoucher> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;

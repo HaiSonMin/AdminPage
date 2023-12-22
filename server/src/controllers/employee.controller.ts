@@ -41,7 +41,7 @@ export default class EmployeeController {
     const { id } = req.params;
     const payload = req.body as IEmployeeDto;
     new OK({
-      message: 'Tìm kiếm nhân viên thành công',
+      message: 'Cập nhật nhân viên thành công',
       metadata: await EmployeeService.updateEmployee(id, payload),
     }).send(res);
   }

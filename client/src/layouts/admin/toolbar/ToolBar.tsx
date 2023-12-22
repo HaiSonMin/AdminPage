@@ -20,7 +20,7 @@ const BoxMoreAction = styled.div`
   color: var(--color-text-secondary);
   font-weight: 500;
   font-size: var(--font-size-10);
-  gap:1.5rem;
+  gap: 1.5rem;
   .item-action {
     padding: 5px;
     display: flex;
@@ -54,7 +54,7 @@ export function ToolBar({ children }: IProps) {
       <BoxMoreAction>
         <div className='item-action'>
           <TbFileExport />
-          <span>Export</span>
+          <span>Xuất file</span>
         </div>
         <div className='item-action'>
           <BsPatchQuestion />

@@ -158,7 +158,6 @@ export function FeatureCreateCustomer() {
             placeholder='Chọn phòng ban'
             options={[
               { label: 'Sale', value: ERole.SALE },
-              { label: 'Admin', value: ERole.ADMIN },
               { label: 'Marketing', value: ERole.MKT },
             ]}
             onChange={onSelectRole}

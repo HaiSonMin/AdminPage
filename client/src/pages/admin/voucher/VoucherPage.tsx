@@ -15,16 +15,7 @@ import { SpinnerPage } from '@/components/loadings';
 import { IDataTable, IResultGetMany } from '@/interfaces/common';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 import { EVoucherType } from '@/enums';
-
-const headersKeyVoucher: IVoucher = {
-  _id: 'Mã voucher',
-  voucher_name: 'Tên voucher',
-  voucher_type: 'Loại voucher',
-  voucher_value: 'Giá trị voucher',
-  voucher_web: 'Nguồn sự kiện',
-  createdAt: 'Ngày tạo',
-  updatedAt: 'Ngày cập nhật',
-};
+import { VOUCHER_FIELD } from '@/constants/fields';
 
 export default function VoucherPage() {
   const queryString = useQueriesString();
@@ -72,7 +63,7 @@ export default function VoucherPage() {
 
   useEffect(() => {
     if (metadata?.items) {
-      const { _id, createdAt, ...columnDisplay } = metadata.items[0];
+      const columnDisplay = Object.keys(VOUCHER_FIELD);
 
       // headerDisplay = {
       //   voucher_name: '',
@@ -83,9 +74,9 @@ export default function VoucherPage() {
       //   updatedAt: '',
       // };
       const headerDisplay = {};
-      Object.keys(columnDisplay).forEach((column) => {
-        if (headersKeyVoucher[column])
-          headerDisplay[column] = headersKeyVoucher[column];
+      columnDisplay.forEach((column) => {
+        if (VOUCHER_FIELD[column])
+          headerDisplay[column] = VOUCHER_FIELD[column];
       });
 
       setHeadersName(Object.values(headerDisplay));
@@ -141,6 +132,7 @@ export default function VoucherPage() {
         actionDelete={actionDelete}
         actionUpdate={actionUpdate}
         // actionSeeDetail={() => {}}
+        actionSearch={() => {}}
         dataBody={dataBody}
         headersName={headersName}
         templateColumns={`min-content  ${headersName

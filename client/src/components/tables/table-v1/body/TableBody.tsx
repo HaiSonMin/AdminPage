@@ -1,13 +1,19 @@
 import { randomKey } from '@/utils';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { BiEditAlt } from 'react-icons/bi';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { IDataTable } from '@/interfaces/common';
 import { Checkbox } from '@/components/inputs/checkboxs';
-const TableBodyStyle = styled.div`
-  display: block;
+import IconEmpty from '@/assets/images/image-icon/empty.webp';
+const TableBodyStyle = styled.div<{ $isEmpty: boolean }>`
+  ${(props) =>
+    props.$isEmpty &&
+    css`
+      display: flex;
+      align-items: center;
+    `}
   background-color: #fff;
-  min-height: 50vh;
+  min-height: 45vh;
   max-height: fit-content;
   min-width: fit-content;
   max-width: 100%;
@@ -77,6 +83,19 @@ const TableDataBody = styled.div`
   }
 `;
 
+const BoxImg = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 15rem;
+    height: 15rem;
+  }
+`;
+
 interface IProps {
   templateColumns: string;
   dataBody: Array<IDataTable>;
@@ -93,35 +112,41 @@ export const TableBody = ({
   actionUpdate,
 }: IProps) => {
   return (
-    <TableBodyStyle>
-      {dataBody.map((item) => (
-        <TableRowBody key={randomKey()} $templateColumns={templateColumns}>
-          <TableDataBody>
-            <Checkbox isChose={true} />
-          </TableDataBody>
-          {item?.dataTable?.map((value) => (
-            <TableDataBody key={randomKey()}>{value}</TableDataBody>
-          ))}
-          <TableDataBody>
-            <div className='action'>
-              {/* <FaRegEye
+    <TableBodyStyle $isEmpty={!dataBody.length}>
+      {dataBody.length ? (
+        dataBody.map((item) => (
+          <TableRowBody key={randomKey()} $templateColumns={templateColumns}>
+            <TableDataBody>
+              <Checkbox isChose={true} />
+            </TableDataBody>
+            {item?.dataTable?.map((value) => (
+              <TableDataBody key={randomKey()}>{value}</TableDataBody>
+            ))}
+            <TableDataBody>
+              <div className='action'>
+                {/* <FaRegEye
                 className='icon icon-detail'
                 onClick={() => actionSeeDetail(item?.id)}
               /> */}
-              <BiEditAlt
-                className='icon icon-edit'
-                onClick={() => actionUpdate(item?.id)}
-              />
-              <RiDeleteBinLine
-                className='icon icon-delete'
-                onClick={() => {
-                  actionDelete(item?.id);
-                }}
-              />
-            </div>
-          </TableDataBody>
-        </TableRowBody>
-      ))}
+                <BiEditAlt
+                  className='icon icon-edit'
+                  onClick={() => actionUpdate(item?.id)}
+                />
+                <RiDeleteBinLine
+                  className='icon icon-delete'
+                  onClick={() => {
+                    actionDelete(item?.id);
+                  }}
+                />
+              </div>
+            </TableDataBody>
+          </TableRowBody>
+        ))
+      ) : (
+        <BoxImg>
+          <img src={IconEmpty} alt='Empty Icon' />
+        </BoxImg>
+      )}
     </TableBodyStyle>
   );
 };

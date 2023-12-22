@@ -8,6 +8,7 @@ import { ERole } from '../enum';
 
 const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
   const accessToken = req.headers.authorization;
+  console.log('accessToken::::', accessToken);
   if (!accessToken) throw new UnauthenticatedError('Invalid credential AT');
 
   const refreshToken = req.cookies?.refreshToken;

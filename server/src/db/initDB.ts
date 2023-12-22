@@ -3,16 +3,15 @@ import { env } from 'process';
 
 class Database {
   static INSTANCE: any;
-  MONGO_URI: string =
-    env.MONGO_URI ||
-    'mongodb+srv://haison:haison@nodeexpressproject.adv3gf0.mongodb.net/PROJECT_LANDING_PAGE?retryWrites=true&w=majority';
+  // MONGO_URI: string = env.MONGO_HOST || 'mongodb://localhost:27017';
+  MONGO_HOST: string = env.MONGO_HOST || 'mongodb://localhost:27017';
   constructor() {
     this.connect();
   }
 
   private connect(typeDb: string = 'MongoDb') {
     mongoose
-      .connect(this.MONGO_URI)
+      .connect(this.MONGO_HOST, { dbName: 'SicnewDB' })
       .then(() => console.log(`Connect ${typeDb} Successfully`))
       .catch((err) => console.log(err));
   }
