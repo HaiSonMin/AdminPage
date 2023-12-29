@@ -3,12 +3,13 @@ import { TableBody } from './body';
 import { TableHeader } from './header';
 import { TableFooter } from './footer';
 import { TableToolbar } from './toolbar';
-import { IDataTable } from '@/interfaces/common';
+import { IBodyTable, IHeaderTable } from '@/interfaces/common/table';
+import { IItemDrag } from '@/interfaces/common';
 
 const TableStyle = styled.div`
   display: flex;
   flex-direction: column;
-  max-height: 70vh; 
+  max-height: 70vh;
   width: 100%;
   border-radius: 1rem;
   box-shadow: var(--shadow-around);
@@ -20,42 +21,61 @@ const Overflow = styled.div`
 `;
 
 interface IProps {
+  tableName: string;
   totalItems?: number;
-  dataBody: Array<IDataTable>;
-  headersName: string[];
+  dataBody: Array<IBodyTable>;
   templateColumns: string;
+  headersTable: IItemDrag[];
+  fieldHidden: IItemDrag[];
+  fieldDisplay: IItemDrag[];
+  setFieldHidden: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
+  setFieldDisplay: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
+  setHeadersTable: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
+  handleAddFieldHidden: (numberDisplay: number) => void;
+  handleAddFieldDisplay: (numberHidden: number) => void;
   actionDelete: (id?: string) => void;
   actionUpdate: (id?: string) => void;
-  actionSearch: (keySearch: string) => void;
   // actionSeeDetail: (id?: string) => void;
 }
 
 export function TableV1({
+  tableName,
   dataBody,
   totalItems,
-  headersName,
+  headersTable,
   templateColumns,
+  fieldHidden,
+  fieldDisplay,
+  setFieldHidden,
+  setFieldDisplay,
+  setHeadersTable,
+  handleAddFieldHidden,
+  handleAddFieldDisplay,
   actionDelete,
   actionUpdate,
-  actionSearch,
-}: // actionSeeDetail,
-IProps) {
+}: IProps) {
   return (
     <TableStyle>
       <TableToolbar
+        tableName={tableName}
         totalItems={totalItems}
         numberDisplayOnPage={dataBody?.length}
-        actionSearch={actionSearch}
+        fieldDisplay={fieldDisplay}
+        fieldHidden={fieldHidden}
+        setFieldHidden={setFieldHidden}
+        setFieldDisplay={setFieldDisplay}
+        setHeadersTable={setHeadersTable}
+        handleAddFieldHidden={handleAddFieldHidden}
+        handleAddFieldDisplay={handleAddFieldDisplay}
       />
       <Overflow>
         <TableHeader
-          headersName={headersName}
+          headersTable={headersTable}
           templateColumns={templateColumns}
         />
         <TableBody
           actionDelete={actionDelete}
           actionUpdate={actionUpdate}
-          // actionSeeDetail={actionSeeDetail}
           dataBody={dataBody}
           templateColumns={templateColumns}
         />

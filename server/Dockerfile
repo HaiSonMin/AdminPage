@@ -1,20 +1,19 @@
-FROM node
+FROM node:20-alpine
 
-WORKDIR /app
+WORKDIR /src/app
 
-COPY package.json .
+COPY package*.json ./
 
-ARG NODE_ENV
-
-RUN if [ "${NODE_ENV}" = "production" ]; then npm install; else npm install --only=production; fi
-
-# Install nodemon globally
-RUN if [ "${NODE_ENV}" = "development" ]; then npm install -g nodemon; fi
+RUN npm install
 
 COPY . .
 
-ENV PORT=80
+EXPOSE 9000
 
-EXPOSE ${PORT}
+# Remove the existing build folder
+RUN rm -rf build
 
-CMD [ "node","app.js" ]
+# # Run the build command
+RUN npm run build
+
+CMD [ "npm","run","start" ]

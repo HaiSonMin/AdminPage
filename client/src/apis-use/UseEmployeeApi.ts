@@ -21,12 +21,10 @@ export const useEmployeeApiCreate = (): IEmployeeResultApiCreate => {
   } = useMutation({
     mutationFn: EmployeeApi.create,
     onSuccess: (data: IApi<IEmployee>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['employees'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });
@@ -108,19 +106,18 @@ export const useEmployeeApiSearch = (
   if (data?.metadata?.totalItems)
     totalPages = Math.ceil(data?.metadata?.totalItems / 10);
 
-  console.log('currentPage, totalPages:::', { currentPage, totalPages });
   // Get Data Next Page
   if (currentPage < totalPages)
     queryClient.prefetchQuery({
       queryKey: ['employees', { ...query, page: currentPage + 1 }],
-      queryFn: () => EmployeeApi.getAll({ ...query, page: currentPage + 1 }),
+      queryFn: () => EmployeeApi.search({ ...query, page: currentPage + 1 }),
     });
 
   // Get Data Next Page
   if (currentPage > 1)
     queryClient.prefetchQuery({
       queryKey: ['employees', { ...query, page: currentPage - 1 }],
-      queryFn: () => EmployeeApi.getAll({ ...query, page: currentPage - 1 }),
+      queryFn: () => EmployeeApi.search({ ...query, page: currentPage - 1 }),
     });
 
   return {
@@ -141,12 +138,10 @@ export const useEmployeeApiUpdate = (): IEmployeeResultApiUpdate => {
   } = useMutation({
     mutationFn: EmployeeApi.update,
     onSuccess: (data: IApi<IEmployee>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['employees'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });
@@ -170,12 +165,10 @@ export const useEmployeeApiDelete = (): IEmployeeResultApiDelete => {
   } = useMutation({
     mutationFn: EmployeeApi.delete,
     onSuccess: (data: IApi<IEmployee>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['employees'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });

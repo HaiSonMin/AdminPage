@@ -34,13 +34,13 @@ export function FeatureUpdateVoucher({ id, isDisplay, close }: IProps) {
   const { updateVoucher, isUpdatingVoucher } = useVoucherApiUpdate();
   const queryString = useQueriesString();
   const query = getQueries(queryString);
-  const { isGettingWebs, metadata } = useWebApiGetAll({
+  const { isGettingWebs, metadata: webs } = useWebApiGetAll({
     ...query,
     limit: getMaxItems(),
   });
 
-  const [selectType, setSelectType] = useState<string>('');
-  const [selectSource, setSelectSource] = useState<string>('');
+  const [selectType, setSelectType] = useState<string>();
+  const [selectSource, setSelectSource] = useState<string>();
 
   const {
     handleSubmit,
@@ -83,6 +83,8 @@ export function FeatureUpdateVoucher({ id, isDisplay, close }: IProps) {
       Object.keys(voucher).forEach((key) => {
         setValue(key as keyof IVoucherUpdateDto, voucher[key]);
       });
+      setSelectType(voucher.voucher_type);
+      setSelectSource(voucher.voucher_web);
     }
   }, [voucher, isGettingVoucher, setValue]);
 
@@ -150,13 +152,13 @@ export function FeatureUpdateVoucher({ id, isDisplay, close }: IProps) {
               isRequired
             />
             <InputSelectSingle
-              options={metadata?.items.map((web) => {
+              // defaultValue={`${voucher?.voucher_web}`}
+              options={webs?.items.map((web) => {
                 return { label: web.web_name, value: web._id };
               })}
               onChange={onSelectSource}
               placeholder='Nguồn sự kiện'
               isLoading={isGettingWebs}
-              defaultValue={`${voucher?.voucher_web}`}
             />
             <BoxBtnAction>
               <ButtonSubmit $isPrimarySolid>Cập nhật</ButtonSubmit>

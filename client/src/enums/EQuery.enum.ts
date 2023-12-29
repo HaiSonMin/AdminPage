@@ -1,9 +1,9 @@
 export enum EQuery {
-  'LIMIT' = 'limit',
-  'PAGE' = 'page',
   'SORT' = 'sort',
-  'SEARCH' = 'search',
-  'FILTERS' = 'filters',
-  'NUMERIC_FILTERS' = 'numericFilters',
+  'PAGE' = 'page',
+  'LIMIT' = 'limit',
   'FIELDS' = 'fields',
+  'FILTERS' = 'filters',
+  'KEY_SEARCH' = 'keySearch',
+  'NUMERIC_FILTERS' = 'numericFilters',
 }

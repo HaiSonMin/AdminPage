@@ -28,7 +28,6 @@ import { IAuthLogin, ISessionLocal, ITokenVerify } from '../interface';
 export default class AuthService {
   static async login(dataLogin: IAuthLogin, res: Response) {
     const { employee_userName, employee_password } = dataLogin;
-    console.log('dataLogin:::', dataLogin);
     let employee;
     if (employee_userName) {
       employee = await EmployeeRepository.getByUserName(employee_userName);
@@ -104,7 +103,6 @@ export default class AuthService {
 
   static async logout(req: Request, res: Response) {
     const refreshToken = req.cookies[VALUE_CONSTANT.RT_NAME];
-    console.log('refreshToken:::', refreshToken);
     if (!refreshToken) throw new BadRequestError('Chưa có phiên đăng nhập');
     deleteTokenCookie(VALUE_CONSTANT.RT_NAME, res);
     // Delete RT in Db
@@ -145,7 +143,6 @@ export default class AuthService {
   }
 
   static async createSessionResetPassword(req: Request) {
-    console.log('req.body:::', req.body);
     const { employee_email } = req.body as Pick<IEmployee, 'employee_email'>;
     const checkEmail = await EmployeeRepository.getByEmail(employee_email);
     if (!checkEmail)
@@ -198,7 +195,6 @@ export default class AuthService {
       IEmployeeDto,
       'employee_password' | 'employee_confirmPassword'
     >;
-    console.log({ employee_password, employee_confirmPassword });
 
     const { employee_email } = sessionData;
     if (!sessionConfirm) {
@@ -206,8 +202,6 @@ export default class AuthService {
         'Không thể truy cập trang này khi chưa xác nhận OTP'
       );
     }
-
-    console.log({ employee_password, employee_confirmPassword });
 
     if (employee_password !== employee_confirmPassword) {
       throw new BadRequestError('Mật khẩu xác nhận không khớp');

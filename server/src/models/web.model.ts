@@ -8,7 +8,6 @@ const WebSchema = new Schema<IWeb>(
       type: String,
       required: [true, 'Vui lòng bổ sung tên web'],
       unique: true,
-      index: 'text',
     },
     web_url: {
       type: String,
@@ -17,5 +16,7 @@ const WebSchema = new Schema<IWeb>(
   },
   { timestamps: true }
 );
+
+WebSchema.index({ web_name: 'text' });
 
 export default model(MODALS_NAME.WEB, WebSchema);

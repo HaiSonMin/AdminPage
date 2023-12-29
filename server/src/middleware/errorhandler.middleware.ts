@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 ``;
-import logging from '../helper/logging';
+// import logging from '../helper/logging';
 
 const errorHandlerMiddleware = function (
   err: any,
@@ -37,14 +37,14 @@ const errorHandlerMiddleware = function (
     customError.statusCode = StatusCodes.NOT_FOUND;
   }
 
-  let userInfo: any;
-  if (req.app.locals.user) userInfo = req.app.locals.user;
-  logging({
-    message: customError.message,
-    method: req.method,
-    url: req.url,
-    ...userInfo,
-  });
+  // let userInfo: any;
+  // if (req.app.locals.user) userInfo = req.app.locals.user;
+  // logging({
+  //   message: customError.message,
+  //   method: req.method,
+  //   url: req.url,
+  //   ...userInfo,
+  // });
 
   return res.status(customError.statusCode).json({
     status: customError.statusCode,

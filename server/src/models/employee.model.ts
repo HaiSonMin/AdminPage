@@ -10,7 +10,6 @@ const EmployeeSchema = new Schema<IEmployee>(
   {
     employee_userName: {
       type: String,
-      index: true,
     },
     employee_fullName: {
       type: String,
@@ -26,7 +25,6 @@ const EmployeeSchema = new Schema<IEmployee>(
       ],
       unique: true,
       required: true,
-      index: 'text',
     },
     employee_gender: {
       type: String,
@@ -62,6 +60,8 @@ const EmployeeSchema = new Schema<IEmployee>(
 
 EmployeeSchema.index({
   employee_email: 'text',
+  employee_fullName: 'text',
+  employee_phoneNumber: 'text',
 });
 
 EmployeeSchema.pre('save', async function (next) {

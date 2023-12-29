@@ -1,4 +1,4 @@
-import { IBaseModel } from 'src/interface/common';
+import { IBaseModel } from '../../common';
 
 export interface IWeb extends IBaseModel {
   web_name: string;

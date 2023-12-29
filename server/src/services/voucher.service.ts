@@ -23,15 +23,15 @@ export default class VoucherService {
   static async getAllVouchers(
     query: IQuery
   ): Promise<IResultGetMany<IVoucher>> {
-    const { totalVoucher, vouchers } = await VoucherRepository.getAll(query);
-    return { totalItems: totalVoucher, items: vouchers };
+    const { totalVouchers, vouchers } = await VoucherRepository.getAll(query);
+    return { totalItems: totalVouchers, items: vouchers };
   }
 
   static async searchVouchers(
     query: IQuery
   ): Promise<IResultGetMany<IVoucher>> {
-    const { totalVoucher, vouchers } = await VoucherRepository.getAll(query);
-    return { totalItems: totalVoucher, items: vouchers };
+    const { totalVouchers, vouchers } = await VoucherRepository.search(query);
+    return { totalItems: totalVouchers, items: vouchers };
   }
 
   static async updateVoucher(

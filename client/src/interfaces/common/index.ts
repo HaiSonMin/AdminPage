@@ -2,7 +2,6 @@ export * from './IApi.interface';
 export * from './IQuery.interface';
 export * from './IError.interface';
 export * from './IBaseModel.interface';
-export * from './table/IDataTable.interface';
 export * from './IItemDrag.interface';
 export * from './IOptionInput.interface';
 export * from './IDataLocalUser.interface';

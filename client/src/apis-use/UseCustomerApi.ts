@@ -21,12 +21,10 @@ export const useCustomerApiCreate = (): ICustomerResultApiCreate => {
   } = useMutation({
     mutationFn: CustomerApi.create,
     onSuccess: (data: IApi<ICustomer>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['customers'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });
@@ -140,12 +138,10 @@ export const useCustomerApiUpdate = (): ICustomerResultApiUpdate => {
   } = useMutation({
     mutationFn: CustomerApi.update,
     onSuccess: (data: IApi<ICustomer>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['customers'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });
@@ -169,12 +165,10 @@ export const useCustomerApiDelete = (): ICustomerResultApiDelete => {
   } = useMutation({
     mutationFn: CustomerApi.delete,
     onSuccess: (data: IApi<ICustomer>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['customers'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });

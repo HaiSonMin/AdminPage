@@ -5,7 +5,7 @@ import {
   IEmployeeCreateDto,
   IEmployeeUpdateDto,
 } from '@/interfaces/models';
-import { httpPrivate } from '@/utils';
+import { getUserLocalStore, httpPrivate } from '@/utils';
 
 export class EmployeeApi {
   static async create(
@@ -14,13 +14,15 @@ export class EmployeeApi {
     try {
       const response = await httpPrivate.post(
         `/${EMPLOYEE_API.ROOT}`,
-        employeeCreateDto
+        employeeCreateDto,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
       const result: IApi<IEmployee> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }
@@ -28,7 +30,10 @@ export class EmployeeApi {
   static async getById(employeeId: string): Promise<IApi<IEmployee>> {
     try {
       const response = await httpPrivate.get(
-        `/${EMPLOYEE_API.ROOT}/${employeeId}`
+        `/${EMPLOYEE_API.ROOT}/${employeeId}`,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
 
       const result: IApi<IEmployee> = response.data;
@@ -46,12 +51,12 @@ export class EmployeeApi {
     try {
       const response = await httpPrivate.get(`/${EMPLOYEE_API.ROOT}`, {
         params: query,
+        headers: { Authorization: getUserLocalStore() },
       });
       const result: IApi<IResultGetMany<IEmployee>> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }
@@ -62,12 +67,12 @@ export class EmployeeApi {
     try {
       const response = await httpPrivate.get(`/${EMPLOYEE_API.ROOT}/search`, {
         params: query,
+        headers: { Authorization: getUserLocalStore() },
       });
       const result: IApi<IResultGetMany<IEmployee>> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }
@@ -82,7 +87,10 @@ export class EmployeeApi {
     try {
       const response = await httpPrivate.patch(
         `/${EMPLOYEE_API.ROOT}/${employeeId}`,
-        employeeUpdateDto
+        employeeUpdateDto,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
 
       const result: IApi<IEmployee> = response.data;
@@ -97,7 +105,10 @@ export class EmployeeApi {
   static async delete(employeeId: string): Promise<IApi<IEmployee>> {
     try {
       const response = await httpPrivate.delete(
-        `/${EMPLOYEE_API.ROOT}/${employeeId}`
+        `/${EMPLOYEE_API.ROOT}/${employeeId}`,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
 
       const result: IApi<IEmployee> = response.data;

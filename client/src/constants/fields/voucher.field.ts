@@ -8,3 +8,6 @@ export const VOUCHER_FIELD: Partial<IVoucher> = {
   voucher_web: 'Nguồn sự kiện',
   ...baseField,
 };
+
+const { _id, updatedAt, ...VOUCHER_FIELD_DEF } = VOUCHER_FIELD;
+export { VOUCHER_FIELD_DEF };

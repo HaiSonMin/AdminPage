@@ -4,9 +4,8 @@ import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { getQueries, randomKey } from '@/utils';
 import { useCallback, useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
 import { EQuery } from '@/enums';
-import { useQueriesString, useSetParams } from '@/hooks';
+import { useQueriesString, useActionParams } from '@/hooks';
 const PaginationV1Style = styled.div`
   display: flex;
   gap: 1rem;
@@ -71,7 +70,7 @@ export const PaginationV1 = ({ totalItems = 10 }: IProps) => {
   const queryString = useQueriesString();
   const query = getQueries(queryString);
 
-  const { setParams } = useSetParams();
+  const { setParams } = useActionParams();
   const [totalPages, setTotalPages] = useState<number>(() =>
     Math.ceil(totalItems / 10)
   );

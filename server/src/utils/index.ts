@@ -72,6 +72,11 @@ export const filterBy = (filter: string = ''): { [key: string]: string } =>
       .map((elFilter) => [elFilter.split('-')[0], elFilter.split('-')[1]])
   );
 
+export const selectFields = (fields: string) => {
+  if (!fields) return '';
+  return fields.split(',').map((field) => field.trim());
+};
+
 export const convertOperatorObject = (
   fields: string[] = [],
   numericFilters = ''

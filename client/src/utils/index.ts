@@ -1,5 +1,6 @@
+import { LOCAL_STORE_KEYS } from '@/constants/values';
 import { useQueriesString } from '@/hooks';
-import { IError, IQuery } from '@/interfaces/common';
+import { IDataLocalUser, IError, IQuery } from '@/interfaces/common';
 import { format } from 'date-fns';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,7 +22,12 @@ export const formatCurrencyVND = (value: number) =>
     currency: 'VND',
   }).format(value);
 
-export const convertToStringToken = (token: string) => `Bearer ${token}`;
+export const getUserLocalStore = () => {
+  const dataStore = JSON.parse(
+    `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
+  ) as IDataLocalUser;
+  return `Bearer ${dataStore?.AT_TOKEN}`;
+};
 
 export const validateEmail = (email: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -58,10 +64,10 @@ export const getQueries = (queryString: Partial<IQuery>): Partial<IQuery> => {
   const sort: string | undefined = queryString.sort;
   const page: number = Number(queryString.page) || 1;
   const limit: number = queryString.limit || 10;
-  const search: string | undefined = queryString.search;
+  const keySearch: string | undefined = queryString.keySearch;
   const filters: string | undefined = queryString.filters;
   const numericFilters: string | undefined = queryString.numericFilters;
-  return { sort, page, limit, search, filters, numericFilters };
+  return { sort, page, limit, keySearch, filters, numericFilters };
 };
 
 export * from './http';

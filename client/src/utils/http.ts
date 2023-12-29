@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { AUTH_API } from '@/constants/paths-apis';
-import { LOCAL_STORE_KEYS } from '@/constants/values';
-import { IError } from '@/interfaces/common';
-import { IDataLocalUser } from '@/interfaces/common/IDataLocalUser.interface';
 import axios, {
-  AxiosInstance,
   AxiosError,
+  AxiosInstance,
   AxiosResponse,
   AxiosRequestConfig,
 } from 'axios';
+import { IError } from '@/interfaces/common';
 import { StatusCodes } from 'http-status-codes';
+import { AUTH_API } from '@/constants/paths-apis';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
+import { IDataLocalUser } from '@/interfaces/common/IDataLocalUser.interface';
 
 const dataStore = JSON.parse(
   `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
@@ -26,7 +26,7 @@ class Http {
     this.handlerSuccessResponse = this.handlerSuccessResponse.bind(this);
     this.handlerErrorResponse = this.handlerErrorResponse.bind(this);
 
-    this.baseURl = import.meta.env.VITE_API_URL || 'http://localhost:9000/api';
+    this.baseURl = `${import.meta.env.VITE_URL_SERVER}/api`;
     this.instancePrivate = axios.create({
       baseURL: this.baseURl,
       withCredentials: true,

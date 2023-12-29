@@ -22,7 +22,7 @@ export default class WebService {
   }
 
   static async searchWebs(query: IQuery): Promise<IResultGetMany<IWeb>> {
-    const { totalWebs, webs } = await WebRepository.getAll(query);
+    const { totalWebs, webs } = await WebRepository.search(query);
     return { items: webs, totalItems: totalWebs };
   }
 

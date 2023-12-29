@@ -1,6 +1,6 @@
 import { sortBy, skipPage } from '../utils';
 import { customerModel } from '../models';
-import { IQuery, IResultGetMany } from '../interface';
+import { IQuery } from '../interface';
 import {
   ICustomer,
   ICustomerAddVoucherDto,
@@ -20,32 +20,26 @@ export class CustomerRepository {
         .limit(limit)
         .skip(skipPage({ page, limit }))
         .sort(sortBy(sort))
+        .select([])
         .lean()
         .exec(),
     ]);
     return { totalCustomers, customers };
   }
 
-  static async search({ limit, page, sort, search }: IQuery) {
-    const regSearch = new RegExp(search + '', 'i');
-
+  static async search({ limit, page, keySearch }: IQuery) {
     const [totalCustomers, customers] = await Promise.all([
       customerModel.countDocuments({
-        $or: [
-          { customer_fullName: { $regex: regSearch } },
-          { customer_phoneNumber: { $regex: regSearch } },
-        ],
+        $text: { $search: keySearch },
       }),
       customerModel
-        .find({
-          $or: [
-            { customer_fullName: { $regex: regSearch } },
-            { customer_phoneNumber: { $regex: regSearch } },
-          ],
-        })
+        .find(
+          { $text: { $search: keySearch } },
+          { score: { $meta: 'textScore' } }
+        )
         .limit(limit)
         .skip(skipPage({ page, limit }))
-        .sort(sortBy(sort))
+        .sort({ score: { $meta: 'textScore' } })
         .lean()
         .exec(),
     ]);

@@ -1,43 +1,42 @@
-import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import qs from 'qs';
-import { Table } from 'antd';
-import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import type { FilterValue, SorterResult } from 'antd/es/table/interface';
-import { ToolBar } from '@/layouts/admin/toolbar';
-import { FeatureCreateEmployee } from './feature/FeatureCreateEmployee';
-import { SpinnerPage } from '@/components/loadings';
-import { TableV1 } from '@/components/tables';
 import {
   useEmployeeApiDelete,
   useEmployeeApiGetAll,
   useEmployeeApiSearch,
-  useEmployeeApiUpdate,
 } from '@/apis-use';
+import { useEffect, useState } from 'react';
+import { ToolBar } from '@/layouts/admin/toolbar';
+import { FeatureCreateEmployee } from './feature/FeatureCreateEmployee';
+import { SpinnerPage } from '@/components/loadings';
+import { TableV1 } from '@/components/tables';
 import { useQueriesString } from '@/hooks/useQueriesString';
 import { formatDate, getQueries } from '@/utils';
 import { IEmployee } from '@/interfaces/models';
-import { IDataTable, IResultGetMany } from '@/interfaces/common';
+import { IItemDrag, IResultGetMany } from '@/interfaces/common';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 import { FeatureUpdateEmployee } from './feature/FeatureUpdateEmployee';
-import { EMPLOYEE_FIELD } from '@/constants/fields';
+import { EMPLOYEE_FIELD, EMPLOYEE_FIELD_DEF } from '@/constants/fields';
+import { IBodyTable, IHeaderTable } from '@/interfaces/common/table';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
 
 export default function VoucherPage() {
   const queryString = useQueriesString();
   const query = getQueries(queryString);
   const [idItemChose, setIdItemChose] = useState<string>('');
-  const [headersName, setHeadersName] = useState<string[]>([]);
-  const [dataBody, setDataBody] = useState<Array<IDataTable>>([]);
+  const [dataBody, setDataBody] = useState<Array<IBodyTable>>([]);
 
   const [isDisplayDelete, setIsDisplayDelete] = useState<boolean>(false);
   const [isDisplayUpdate, setIsDisplayUpdate] = useState<boolean>(false);
 
   const { isDeletingEmployee, deleteEmployee } = useEmployeeApiDelete();
 
+  const [headersTable, setHeadersTable] = useState<IItemDrag[]>([]);
+  const [fieldHiddenTest, setFieldHiddenTest] = useState<IItemDrag[]>([]);
+  const [fieldDisplayTest, setFieldDisplayTest] = useState<IItemDrag[]>([]);
+
   let metadata: IResultGetMany<IEmployee> | undefined;
   let isGetting: boolean = false;
 
-  if (!query.search) {
+  if (!query.keySearch) {
     const { isGettingEmployees, metadata: employees } =
       useEmployeeApiGetAll(query);
     metadata = employees;
@@ -68,40 +67,86 @@ export default function VoucherPage() {
 
   const isLoading: boolean = isGetting || isDeletingEmployee;
 
+  const handleAddFieldDisplay = (indexHidden: number) => {
+    // Pop one item when click these
+    setFieldHiddenTest((pre) =>
+      pre.filter((item) => item.fieldKey !== pre[indexHidden].fieldKey)
+    );
+    setFieldDisplayTest((pre) => [...pre, fieldHiddenTest[indexHidden]]);
+  };
+
+  const handleAddFieldHidden = (indexDisplay: number) => {
+    // Pop one item when click these
+    if (fieldDisplayTest.length > 1) {
+      setFieldDisplayTest((pre) =>
+        pre.filter((item) => item.fieldKey !== pre[indexDisplay].fieldKey)
+      );
+      setFieldHiddenTest((pre) => [...pre, fieldDisplayTest[indexDisplay]]);
+    }
+  };
+
   useEffect(() => {
     if (metadata?.items) {
-      const columnDisplay = Object.keys(EMPLOYEE_FIELD);
+      const columnsKey = Object.keys(EMPLOYEE_FIELD);
+      let columnsDisplay: string[];
 
-      const headerDisplay = {};
-      columnDisplay.forEach((column) => {
-        if (EMPLOYEE_FIELD[column])
-          headerDisplay[column] = EMPLOYEE_FIELD[column];
-      });
-
-      setHeadersName(Object.values(headerDisplay));
-
-      const data: IDataTable[] = [];
-      for (let i = 0; i < metadata.items.length; i++) {
-        const dataTable: string[] = Object.keys(headerDisplay).map(
-          (headerKey) => {
-            if (headerKey === 'createdAt' || headerKey === 'updatedAt') {
-              return formatDate(metadata?.items[i][headerKey] as Date);
-            } else {
-              return metadata?.items[i][headerKey];
-            }
-          }
-        );
-        const itemData: IDataTable = {
-          id: metadata.items[i]._id,
-          dataTable: dataTable,
-        };
-        console.log('itemData:::');
-        data.push(itemData);
+      if (localStorage.getItem(LOCAL_STORE_KEYS.DISPLAY_EMPLOYEE_FIELDS)) {
+        const abc = JSON.parse(
+          `${localStorage.getItem(LOCAL_STORE_KEYS.DISPLAY_EMPLOYEE_FIELDS)}`
+        ) as IItemDrag[];
+        columnsDisplay = abc.map((item) => item.fieldKey);
+      } else {
+        columnsDisplay = Object.keys(EMPLOYEE_FIELD_DEF);
       }
 
-      setDataBody(data);
+      if (!headersTable.length) {
+        const headerDisplay: IItemDrag[] = [];
+        const fieldHidden: IItemDrag[] = [];
+        const fieldDisplay: IItemDrag[] = [];
+        columnsKey.forEach((columnKey) => {
+          if (columnsDisplay.includes(columnKey)) {
+            headerDisplay.push({
+              fieldKey: columnKey,
+              fieldName: EMPLOYEE_FIELD[columnKey],
+            });
+            fieldDisplay.push({
+              fieldKey: columnKey,
+              fieldName: EMPLOYEE_FIELD[columnKey],
+            });
+          } else {
+            fieldHidden.push({
+              fieldKey: columnKey,
+              fieldName: EMPLOYEE_FIELD[columnKey],
+            });
+          }
+        });
+        setFieldHiddenTest(fieldHidden);
+        setFieldDisplayTest(fieldDisplay);
+        setHeadersTable(() => headerDisplay);
+      } else {
+        const data: IBodyTable[] = [];
+        for (let i = 0; i < metadata.items.length; i++) {
+          const dataTable: string[] = headersTable.map((header) => {
+            if (
+              header.fieldKey === 'createdAt' ||
+              header.fieldKey === 'updatedAt'
+            ) {
+              return formatDate(metadata?.items[i][header.fieldKey] as Date);
+            } else {
+              return metadata?.items[i][header.fieldKey];
+            }
+          });
+          const itemData: IBodyTable = {
+            id: metadata.items[i]._id,
+            dataTable: dataTable,
+          };
+          data.push(itemData);
+        }
+
+        setDataBody(data);
+      }
     }
-  }, [isGetting, metadata?.items]);
+  }, [isGetting, headersTable, metadata?.items]);
 
   return (
     <>
@@ -110,16 +155,22 @@ export default function VoucherPage() {
         <FeatureCreateEmployee />
       </ToolBar>
       <TableV1
+        tableName={LOCAL_STORE_KEYS.DISPLAY_EMPLOYEE_FIELDS}
+        fieldHidden={fieldHiddenTest}
+        fieldDisplay={fieldDisplayTest}
+        setHeadersTable={setHeadersTable}
+        setFieldHidden={setFieldHiddenTest}
+        setFieldDisplay={setFieldDisplayTest}
+        handleAddFieldHidden={handleAddFieldHidden}
+        handleAddFieldDisplay={handleAddFieldDisplay}
         totalItems={metadata?.totalItems}
         actionDelete={actionDelete}
         actionUpdate={actionUpdate}
-        // actionSeeDetail={() => {}}
-        actionSearch={() => (abf: string) => {}}
         dataBody={dataBody}
-        headersName={headersName}
-        templateColumns={`min-content  ${headersName
-          .map((_) => '20rem')
-          .join(' ')} minmax(10rem, 1fr)`}
+        headersTable={headersTable}
+        templateColumns={`min-content  ${Object.values(headersTable)
+          .map((_) => 'minmax(10rem, 30rem)')
+          .join(' ')} 10rem`}
       />
       <PopupDelete
         close={closePopupDelete}

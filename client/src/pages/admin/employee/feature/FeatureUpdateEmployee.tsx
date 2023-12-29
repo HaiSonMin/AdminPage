@@ -33,8 +33,6 @@ export function FeatureUpdateEmployee({ id, isDisplay, close }: IProps) {
   const [selectRole, setSelectRole] = useState<string>('');
   const [selectGender, setSelectGender] = useState<string>('');
 
-  console.log('employee::::', employee);
-
   const {
     handleSubmit,
     formState: { errors },

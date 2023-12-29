@@ -50,9 +50,7 @@ export const InputOtp = ({ otpValues, setOtpValues }: IProps) => {
     }
   };
 
-  const handlePaste = () => {
-    console.log('Paste right there');
-  };
+  const handlePaste = () => {};
 
   useEffect(() => {
     // Cleanup inputRefs.current when the component unmounts

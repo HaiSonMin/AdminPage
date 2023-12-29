@@ -1,16 +1,13 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Overlay } from '../Overlay';
-import { ButtonText } from '@/components/buttons';
-import { HeadingSM } from '@/components/heading';
-import { TfiClose } from 'react-icons/tfi';
 import { PopupStyle } from '../common';
-import {
-  DraggableColumn,
-  DraggableColumnV2,
-} from '@/components/draggable-column';
+import { TfiClose } from 'react-icons/tfi';
+import { IItemDrag } from '@/interfaces/common';
+import { HeadingSM } from '@/components/heading';
+import { ButtonText } from '@/components/buttons';
 import { TbArrowsExchange2 } from 'react-icons/tb';
-import { randomId } from '@mantine/hooks';
-
+import { DraggableColumn } from '@/components/draggable-column';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 const Header = styled.div`
   width: 100%;
   display: flex;
@@ -49,6 +46,12 @@ const BoxToggleFields = styled.div`
   margin-top: 1rem;
 `;
 
+const BoxToggleField = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
 const BoxIconToggle = styled.div`
   display: flex;
   align-items: center;
@@ -59,116 +62,89 @@ const BoxIconToggle = styled.div`
   }
 `;
 
+const Heading = styled(HeadingSM)`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  svg {
+    margin-top: 2px;
+  }
+`;
+
 interface IProp {
+  tableName: string;
   isDisplay: boolean;
   title?: string;
   close: () => void;
-  onConfirm: () => void;
+  fieldHidden: IItemDrag[];
+  fieldDisplay: IItemDrag[];
+  setFieldHidden: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
+  setFieldDisplay: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
+  onConfirm: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
+  handleAddFieldHidden: (numberDisplay: number) => void;
+  handleAddFieldDisplay: (numberHidden: number) => void;
 }
 
 export function PopupFieldsTable({
+  tableName,
   isDisplay,
   title,
-  onConfirm,
   close,
+  onConfirm,
+  fieldHidden,
+  fieldDisplay,
+  setFieldHidden,
+  setFieldDisplay,
+  handleAddFieldHidden,
+  handleAddFieldDisplay,
 }: IProp) {
+  const handleConfirm = () => {
+    onConfirm(fieldDisplay);
+    localStorage.setItem(tableName, JSON.stringify(fieldDisplay));
+    close();
+  };
+
   return (
     <>
       <Overlay $isDisplay={isDisplay} onClick={close} />
       <PopupStyle $isDisplay={isDisplay} $width={65}>
         <Header>
-          <HeadingSM>{title}</HeadingSM>
+          <Heading>{title}</Heading>
           <BtnClose onClick={close} />
         </Header>
         <BoxToggleFields>
-          <DraggableColumnV2 items={items1} />
+          <BoxToggleField>
+            <Heading>
+              Cột ẩn <FaRegEye />
+            </Heading>
+            <DraggableColumn
+              handleToggleField={handleAddFieldDisplay}
+              items={fieldHidden}
+              setItems={setFieldHidden}
+            />
+          </BoxToggleField>
           <BoxIconToggle>
             <TbArrowsExchange2 />
           </BoxIconToggle>
-          <DraggableColumnV2 items={items2} />
+          <BoxToggleField>
+            <Heading>
+              Cột đang hiển thị <FaRegEyeSlash />
+            </Heading>
+            <DraggableColumn
+              handleToggleField={handleAddFieldHidden}
+              items={fieldDisplay}
+              setItems={setFieldDisplay}
+            />
+          </BoxToggleField>
         </BoxToggleFields>
         <BtnBoxAction>
-          <ButtonText onClick={onConfirm}>Xác nhận</ButtonText>
+          <ButtonText onClick={handleConfirm} $isPrimarySolid>
+            Xác nhận
+          </ButtonText>
           <ButtonText onClick={close}>Cancel</ButtonText>
         </BtnBoxAction>
       </PopupStyle>
     </>
   );
 }
-
-const items1 = [
-  {
-    id: randomId(),
-    name: 'Mã khách hàng',
-  },
-  {
-    id: randomId(),
-    name: 'Tên khách hàng',
-  },
-  {
-    id: randomId(),
-    name: 'Tao nè',
-  },
-  {
-    id: randomId(),
-    name: 'Họ và tên',
-  },
-  {
-    id: randomId(),
-    name: 'Số điện thoại',
-  },
-  {
-    id: randomId(),
-    name: 'Nguồn sự kiện',
-  },
-  {
-    id: randomId(),
-    name: 'Mã giảm giá',
-  },
-  {
-    id: randomId(),
-    name: 'Ngày tạo',
-  },
-  {
-    id: randomId(),
-    name: 'Ngày cập nhật',
-  },
-];
-const items2 = [
-  {
-    id: randomId(),
-    name: 'Mã khách hàng',
-  },
-  {
-    id: randomId(),
-    name: 'Tên khách hàng',
-  },
-  {
-    id: randomId(),
-    name: 'Tao nè',
-  },
-  {
-    id: randomId(),
-    name: 'Họ và tên',
-  },
-  {
-    id: randomId(),
-    name: 'Số điện thoại',
-  },
-  {
-    id: randomId(),
-    name: 'Nguồn sự kiện',
-  },
-  {
-    id: randomId(),
-    name: 'Mã giảm giá',
-  },
-  {
-    id: randomId(),
-    name: 'Ngày tạo',
-  },
-  {
-    id: randomId(),
-    name: 'Ngày cập nhật',
-  },
-];

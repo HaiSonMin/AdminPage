@@ -2,7 +2,7 @@ import { randomKey } from '@/utils';
 import styled, { css } from 'styled-components';
 import { BiEditAlt } from 'react-icons/bi';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { IDataTable } from '@/interfaces/common';
+import { IBodyTable } from '@/interfaces/common/table/ITable.interface';
 import { Checkbox } from '@/components/inputs/checkboxs';
 import IconEmpty from '@/assets/images/image-icon/empty.webp';
 const TableBodyStyle = styled.div<{ $isEmpty: boolean }>`
@@ -98,7 +98,7 @@ const BoxImg = styled.div`
 
 interface IProps {
   templateColumns: string;
-  dataBody: Array<IDataTable>;
+  dataBody: Array<IBodyTable>;
   // actionSeeDetail: (id?: string) => void;
   actionDelete: (id?: string) => void;
   actionUpdate: (id?: string) => void;

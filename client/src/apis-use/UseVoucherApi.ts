@@ -24,12 +24,10 @@ export const useVoucherApiCreate = (): IVoucherResultApiCreate => {
   } = useMutation({
     mutationFn: VoucherApi.create,
     onSuccess: (data: IApi<IVoucher>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['vouchers'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });
@@ -76,7 +74,6 @@ export const useVoucherApiGetAll = (
   if (data?.metadata?.totalItems)
     totalPages = Math.ceil(data?.metadata?.totalItems / 10);
 
-  console.log('currentPage, totalPages:::', { currentPage, totalPages });
   // Get Data Next Page
   if (currentPage < totalPages)
     queryClient.prefetchQuery({
@@ -147,12 +144,10 @@ export const useVoucherApiUpdate = (): IVoucherResultApiUpdate => {
   } = useMutation({
     mutationFn: VoucherApi.update,
     onSuccess: (data: IApi<IVoucher>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['vouchers'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });
@@ -176,12 +171,10 @@ export const useVoucherApiDelete = (): IVoucherResultApiDelete => {
   } = useMutation({
     mutationFn: VoucherApi.delete,
     onSuccess: (data: IApi<IVoucher>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['vouchers'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });

@@ -1,7 +1,7 @@
 import { EQuery } from '@/enums';
 import { useSearchParams } from 'react-router-dom';
 
-export function useSetParams() {
+export function useActionParams() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const setParams = (name: EQuery, value: string) => {
@@ -9,5 +9,14 @@ export function useSetParams() {
     setSearchParams(searchParams);
   };
 
-  return { setParams };
+  const getParams = (name: EQuery) => {
+    return searchParams.get(name);
+  };
+
+  const deleteParams = (name: EQuery) => {
+    searchParams.delete(name);
+    setSearchParams(searchParams);
+  };
+
+  return { getParams, setParams, deleteParams };
 }

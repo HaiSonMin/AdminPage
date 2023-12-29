@@ -1,4 +1,4 @@
 export interface IItemDrag {
-  id: string;
-  name: string;
+  fieldKey: string;
+  fieldName: string;
 }

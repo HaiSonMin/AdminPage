@@ -20,12 +20,10 @@ export const useWebApiCreate = (): IWebResultApiCreate => {
   } = useMutation({
     mutationFn: WebApi.create,
     onSuccess: (data: IApi<IWeb>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['webs'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });
@@ -66,11 +64,9 @@ export const useWebApiGetAll = (
 
   let totalPages: number = 1;
   const currentPage: number = query?.page || 1;
-  console.log('data?.metadata?.totalWebs:::', data?.metadata?.totalItems);
   if (data?.metadata?.totalItems)
     totalPages = Math.ceil(data?.metadata?.totalItems / 10);
 
-  console.log('currentPage, totalPages:::', { currentPage, totalPages });
   // Get Data Next Page
   if (currentPage < totalPages)
     queryClient.prefetchQuery({
@@ -105,11 +101,9 @@ export const useWebApiSearch = (
 
   let totalPages: number = 1;
   const currentPage: number = query?.page || 1;
-  console.log('data?.metadata?.totalWebs:::', data?.metadata?.totalItems);
   if (data?.metadata?.totalItems)
     totalPages = Math.ceil(data?.metadata?.totalItems / 10);
 
-  console.log('currentPage, totalPages:::', { currentPage, totalPages });
   // Get Data Next Page
   if (currentPage < totalPages)
     queryClient.prefetchQuery({
@@ -142,12 +136,10 @@ export const useWebApiUpdate = (): IWebResultApiUpdate => {
   } = useMutation({
     mutationFn: WebApi.update,
     onSuccess: (data: IApi<IWeb>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['webs'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });
@@ -171,12 +163,10 @@ export const useWebApiDelete = (): IWebResultApiDelete => {
   } = useMutation({
     mutationFn: WebApi.delete,
     onSuccess: (data: IApi<IWeb>) => {
-      console.log('data::::', data);
       toast.success(`${data?.message}`);
       queryClient.invalidateQueries({ queryKey: ['webs'] });
     },
     onError: (error: IError) => {
-      console.log('error::::', error);
       toast.error(error.message);
     },
   });

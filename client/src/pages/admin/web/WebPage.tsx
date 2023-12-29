@@ -1,37 +1,41 @@
-import styled from 'styled-components';
-import { formatDate, getQueries } from '@/utils';
+/* eslint-disable react-hooks/exhaustive-deps */
+import {
+  useWebApiDelete,
+  useWebApiSearch,
+  useWebApiGetAll,
+} from '@/apis-use/UseWebApi';
 import { IWeb } from '@/interfaces/models';
 import { useEffect, useState } from 'react';
 import { TableV1 } from '@/components/tables';
+import { WEB_FIELD, WEB_FIELD_DEF } from '@/constants/fields';
+import { formatDate, getQueries } from '@/utils';
 import { ToolBar } from '@/layouts/admin/toolbar';
 import { SpinnerPage } from '@/components/loadings';
-import { FeatureCreateWeb, FeatureUpdateWeb } from './feature';
-import {
-  useWebApiDelete,
-  useWebApiGetAll,
-  useWebApiSearch,
-  useWebApiUpdate,
-} from '@/apis-use/UseWebApi';
 import { useQueriesString } from '@/hooks/useQueriesString';
-import { IDataTable, IResultGetMany } from '@/interfaces/common';
+import { FeatureCreateWeb, FeatureUpdateWeb } from './feature';
+import { IItemDrag, IResultGetMany } from '@/interfaces/common';
+import { IBodyTable } from '@/interfaces/common/table';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
-import { WEB_FIELD } from '@/constants/fields';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
 
 export default function WebPage() {
   const queryString = useQueriesString();
   const query = getQueries(queryString);
-  const [headersName, setHeadersName] = useState<string[]>([]);
-  const [dataBody, setDataBody] = useState<Array<IDataTable>>([]);
+  const [headersTable, setHeadersTable] = useState<IItemDrag[]>([]);
+  const [dataBody, setDataBody] = useState<Array<IBodyTable>>([]);
   const [idItemChose, setIdItemChose] = useState<string>('');
-
   const [isDisplayDelete, setIsDisplayDelete] = useState<boolean>(false);
   const [isDisplayUpdate, setIsDisplayUpdate] = useState<boolean>(false);
+
   const { isDeletingWeb, deleteWeb } = useWebApiDelete();
 
-  let metadata: IResultGetMany<IWeb> | undefined;
-  let isGetting: boolean;
+  const [fieldHiddenTest, setFieldHiddenTest] = useState<IItemDrag[]>([]);
+  const [fieldDisplayTest, setFieldDisplayTest] = useState<IItemDrag[]>([]);
 
-  if (!query.search) {
+  let metadata: IResultGetMany<IWeb> | undefined;
+  let isGetting = false;
+
+  if (!query.keySearch) {
     const { isGettingWebs, metadata: webs } = useWebApiGetAll(query);
     metadata = webs;
     isGetting = isGettingWebs;
@@ -60,38 +64,86 @@ export default function WebPage() {
 
   const isLoading: boolean = isGetting || isDeletingWeb;
 
+  const handleAddFieldDisplay = (indexHidden: number) => {
+    // Pop one item when click these
+    setFieldHiddenTest((pre) =>
+      pre.filter((item) => item.fieldKey !== pre[indexHidden].fieldKey)
+    );
+    setFieldDisplayTest((pre) => [...pre, fieldHiddenTest[indexHidden]]);
+  };
+
+  const handleAddFieldHidden = (indexDisplay: number) => {
+    // Pop one item when click these
+    if (fieldDisplayTest.length > 1) {
+      setFieldDisplayTest((pre) =>
+        pre.filter((item) => item.fieldKey !== pre[indexDisplay].fieldKey)
+      );
+      setFieldHiddenTest((pre) => [...pre, fieldDisplayTest[indexDisplay]]);
+    }
+  };
+
   useEffect(() => {
     if (metadata?.items) {
-      const columnDisplay = Object.keys(WEB_FIELD);
+      const columnsKey = Object.keys(WEB_FIELD);
+      let columnsDisplay: string[];
 
-      const headerDisplay = {};
-      columnDisplay.forEach((column) => {
-        if (WEB_FIELD[column]) headerDisplay[column] = WEB_FIELD[column];
-      });
-
-      setHeadersName(Object.values(headerDisplay));
-      const data: IDataTable[] = [];
-
-      for (let i = 0; i < metadata.items.length; i++) {
-        const dataTable: string[] = Object.keys(headerDisplay).map(
-          (headerKey) => {
-            if (headerKey === 'createdAt' || headerKey === 'updatedAt') {
-              return formatDate(metadata?.items[i][headerKey] as Date);
-            } else {
-              return metadata?.items[i][headerKey];
-            }
-          }
-        );
-        const itemData: IDataTable = {
-          id: metadata.items[i]._id,
-          dataTable: dataTable,
-        };
-        data.push(itemData);
+      if (localStorage.getItem(LOCAL_STORE_KEYS.DISPLAY_WEB_FIELDS)) {
+        const abc = JSON.parse(
+          `${localStorage.getItem(LOCAL_STORE_KEYS.DISPLAY_WEB_FIELDS)}`
+        ) as IItemDrag[];
+        columnsDisplay = abc.map((item) => item.fieldKey);
+      } else {
+        columnsDisplay = Object.keys(WEB_FIELD_DEF);
       }
 
-      setDataBody(data);
+      if (!headersTable.length) {
+        const headerDisplay: IItemDrag[] = [];
+        const fieldHidden: IItemDrag[] = [];
+        const fieldDisplay: IItemDrag[] = [];
+        columnsKey.forEach((columnKey) => {
+          if (columnsDisplay.includes(columnKey)) {
+            headerDisplay.push({
+              fieldKey: columnKey,
+              fieldName: WEB_FIELD[columnKey],
+            });
+            fieldDisplay.push({
+              fieldKey: columnKey,
+              fieldName: WEB_FIELD[columnKey],
+            });
+          } else {
+            fieldHidden.push({
+              fieldKey: columnKey,
+              fieldName: WEB_FIELD[columnKey],
+            });
+          }
+        });
+        setFieldHiddenTest(fieldHidden);
+        setFieldDisplayTest(fieldDisplay);
+        setHeadersTable(() => headerDisplay);
+      } else {
+        const data: IBodyTable[] = [];
+        for (let i = 0; i < metadata.items.length; i++) {
+          const dataTable: string[] = headersTable.map((header) => {
+            if (
+              header.fieldKey === 'createdAt' ||
+              header.fieldKey === 'updatedAt'
+            ) {
+              return formatDate(metadata?.items[i][header.fieldKey] as Date);
+            } else {
+              return metadata?.items[i][header.fieldKey];
+            }
+          });
+          const itemData: IBodyTable = {
+            id: metadata.items[i]._id,
+            dataTable: dataTable,
+          };
+          data.push(itemData);
+        }
+
+        setDataBody(data);
+      }
     }
-  }, [isGetting, metadata?.items]);
+  }, [isLoading, headersTable, metadata?.items]);
 
   return (
     <>
@@ -100,16 +152,22 @@ export default function WebPage() {
         <FeatureCreateWeb />
       </ToolBar>
       <TableV1
+        tableName={LOCAL_STORE_KEYS.DISPLAY_WEB_FIELDS}
+        fieldHidden={fieldHiddenTest}
+        fieldDisplay={fieldDisplayTest}
+        setFieldHidden={setFieldHiddenTest}
+        setFieldDisplay={setFieldDisplayTest}
+        setHeadersTable={setHeadersTable}
+        handleAddFieldDisplay={handleAddFieldDisplay}
+        handleAddFieldHidden={handleAddFieldHidden}
         totalItems={metadata?.totalItems}
-        // actionSeeDetail={() => {}}
         actionUpdate={actionUpdate}
         actionDelete={actionDelete}
-        actionSearch={() => (abf: string) => {}}
+        headersTable={headersTable}
         dataBody={dataBody}
-        headersName={headersName}
-        templateColumns={`min-content  ${headersName
-          .map((_) => 'minmax(10rem, 1fr)')
-          .join(' ')} minmax(10rem, 1fr)`}
+        templateColumns={`min-content  ${Object.values(headersTable)
+          .map((_) => 'minmax(10rem, 30rem)')
+          .join(' ')} 10rem`}
       />
       <PopupDelete
         close={closePopupDelete}

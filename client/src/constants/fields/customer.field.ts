@@ -10,4 +10,6 @@ export const CUSTOMER_FIELD: Partial<ICustomer> = {
   ...baseField,
 };
 
-console.log('Object.keys(CUSTOMER_FIELD):::', Object.keys(CUSTOMER_FIELD));
+const { _id, updatedAt, customer_requirement, ...CUSTOMER_FIELD_DEF } =
+  CUSTOMER_FIELD;
+export { CUSTOMER_FIELD_DEF };

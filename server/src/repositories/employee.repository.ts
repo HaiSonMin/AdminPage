@@ -37,11 +37,18 @@ export class EmployeeRepository {
     return { totalEmployees, employees };
   }
 
-  static async search({ limit, page, search }: IQuery) {
+  static async search({ limit, page, keySearch }: IQuery) {
+    console.log(
+      'employeeModel.listIndexes():::',
+      await employeeModel.listIndexes()
+    );
     const [totalEmployees, employees] = await Promise.all([
-      employeeModel.countDocuments({ $text: { $search: search } }),
+      employeeModel.countDocuments({ $text: { $search: keySearch } }),
       employeeModel
-        .find({ $text: { $search: search } }, { score: { $meta: 'textScore' } })
+        .find(
+          { $text: { $search: keySearch } },
+          { score: { $meta: 'textScore' } }
+        )
         .limit(limit)
         .skip(skipPage({ limit, page }))
         .sort({ score: { $meta: 'textScore' } }) // Assuming you have a convertSortBy function
@@ -49,6 +56,8 @@ export class EmployeeRepository {
         .exec(),
     ]);
     return { totalEmployees, employees };
+
+    // ----------- Not using index -----------
     // const regex = new RegExp(search, 'i');
     // const [totalEmployees, employees] = await Promise.all([
     //   employeeModel.countDocuments({ employee_email: { $regex: regex } }),

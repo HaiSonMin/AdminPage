@@ -8,24 +8,32 @@ import {
   IResultGetMany,
 } from '@/interfaces/common';
 import { IWeb, IWebCreateDto, IWebUpdateDto } from '@/interfaces/models';
-import { convertToStringToken, httpPrivate } from '@/utils';
+import { getUserLocalStore, httpPrivate } from '@/utils';
 
 export class WebApi {
   static async create(webCreateDto: IWebCreateDto) {
     try {
-      const response = await httpPrivate.post(`/${WEB_API.ROOT}`, webCreateDto);
+      const response = await httpPrivate.post(
+        `/${WEB_API.ROOT}`,
+        webCreateDto,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
+      );
       const result: IApi<IWeb> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
+
       throw new Error(err.message);
     }
   }
 
   static async getById(webId: string) {
     try {
-      const response = await httpPrivate.get(`/${WEB_API.ROOT}/${webId}`);
+      const response = await httpPrivate.get(`/${WEB_API.ROOT}/${webId}`, {
+        headers: { Authorization: getUserLocalStore() },
+      });
 
       const result: IApi<IWeb> = response.data;
 
@@ -40,12 +48,13 @@ export class WebApi {
     try {
       const response = await httpPrivate.get(`/${WEB_API.ROOT}/search`, {
         params: query,
+        headers: { Authorization: getUserLocalStore() },
       });
       const result: IApi<IResultGetMany<IWeb>> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
+
       throw new Error(err.message);
     }
   }
@@ -54,12 +63,13 @@ export class WebApi {
     try {
       const response = await httpPrivate.get(`/${WEB_API.ROOT}`, {
         params: query,
+        headers: { Authorization: getUserLocalStore() },
       });
       const result: IApi<IResultGetMany<IWeb>> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
+
       throw new Error(err.message);
     }
   }
@@ -74,7 +84,10 @@ export class WebApi {
     try {
       const response = await httpPrivate.patch(
         `/${WEB_API.ROOT}/${webId}`,
-        webUpdateDto
+        webUpdateDto,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
       const result: IApi<IWeb> = response.data;
 
@@ -87,7 +100,9 @@ export class WebApi {
 
   static async delete(webId: string) {
     try {
-      const response = await httpPrivate.delete(`/${WEB_API.ROOT}/${webId}`);
+      const response = await httpPrivate.delete(`/${WEB_API.ROOT}/${webId}`, {
+        headers: { Authorization: getUserLocalStore() },
+      });
       const result: IApi<IWeb> = response.data;
 
       return result;

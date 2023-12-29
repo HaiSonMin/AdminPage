@@ -5,20 +5,22 @@ import {
   IVoucherCreateDto,
   IVoucherUpdateDto,
 } from '@/interfaces/models';
-import { httpPrivate } from '@/utils';
+import { getUserLocalStore, httpPrivate } from '@/utils';
 
 export class VoucherApi {
   static async create(voucherCreateDto: IVoucherCreateDto) {
     try {
       const response = await httpPrivate.post(
         `/${VOUCHER_API.ROOT}`,
-        voucherCreateDto
+        voucherCreateDto,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
       const result: IApi<IVoucher> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }
@@ -27,12 +29,12 @@ export class VoucherApi {
     try {
       const response = await httpPrivate.get(`/${VOUCHER_API.ROOT}/search`, {
         params: query,
+        headers: { Authorization: getUserLocalStore() },
       });
       const result: IApi<IResultGetMany<IVoucher>> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }
@@ -40,13 +42,15 @@ export class VoucherApi {
   static async getById(voucherId: string) {
     try {
       const response = await httpPrivate.get(
-        `/${VOUCHER_API.ROOT}/${voucherId}`
+        `/${VOUCHER_API.ROOT}/${voucherId}`,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
       const result: IApi<IVoucher> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }
@@ -55,12 +59,12 @@ export class VoucherApi {
     try {
       const response = await httpPrivate.get(`/${VOUCHER_API.ROOT}`, {
         params: query,
+        headers: { Authorization: getUserLocalStore() },
       });
       const result: IApi<IResultGetMany<IVoucher>> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }
@@ -75,13 +79,15 @@ export class VoucherApi {
     try {
       const response = await httpPrivate.patch(
         `/${VOUCHER_API.ROOT}/${voucherId}`,
-        voucherUpdateDto
+        voucherUpdateDto,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
       const result: IApi<IVoucher> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }
@@ -89,14 +95,16 @@ export class VoucherApi {
   static async delete(voucherId: string) {
     try {
       const response = await httpPrivate.delete(
-        `/${VOUCHER_API.ROOT}/${voucherId}`
+        `/${VOUCHER_API.ROOT}/${voucherId}`,
+        {
+          headers: { Authorization: getUserLocalStore() },
+        }
       );
 
       const result: IApi<IVoucher> = response.data;
       return result;
     } catch (error: unknown) {
       const err = error as IError;
-      console.log('err:::', err);
       throw new Error(err.message);
     }
   }

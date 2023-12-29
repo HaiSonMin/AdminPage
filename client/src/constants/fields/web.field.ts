@@ -6,3 +6,6 @@ export const WEB_FIELD: Partial<IWeb> = {
   web_url: 'Link sự kiện',
   ...baseField,
 };
+
+const { _id, updatedAt, ...WEB_FIELD_DEF } = WEB_FIELD;
+export { WEB_FIELD_DEF };

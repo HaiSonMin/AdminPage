@@ -56,7 +56,6 @@ export function FeatureCreateCustomer() {
       employee_gender: selectGender,
     };
 
-    console.log('dataCreate::::', dataCreate);
     createEmployee(dataCreate, {
       onSuccess: (res) => {
         onClose();

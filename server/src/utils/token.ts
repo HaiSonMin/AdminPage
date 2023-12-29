@@ -37,12 +37,10 @@ const createDoubleTokens = async ({
   // Check AT have valid
   JWT.verify(accessToken, publicKey, (err, decode) => {
     if (err) console.error(`Error verify:::${err}`);
-    else console.log(`accessToken decode success`);
   });
 
   JWT.verify(refreshToken, publicKey, (err, decode) => {
     if (err) console.error(`Error verify:::${err}`);
-    else console.log(`refreshToken decode success`);
   });
 
   return { accessToken, refreshToken };

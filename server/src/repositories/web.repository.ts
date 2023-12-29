@@ -23,18 +23,23 @@ export class WebRepository {
     return { totalWebs, webs };
   }
 
-  static async search({ limit, page, sort, search }: IQuery) {
+  static async search({ limit, page, sort, keySearch }: IQuery) {
+    console.log('keySearch;:::', keySearch);
     const [totalWebs, webs] = await Promise.all([
-      webModel.countDocuments({ $text: { $search: search } }),
+      webModel.countDocuments({ $text: { $search: keySearch } }),
       webModel
-        .find({ $text: { $search: search } }, { score: { $meta: 'textScore' } })
+        .find(
+          { $text: { $search: keySearch } },
+          { score: { $meta: 'textScore' } }
+        )
         .limit(limit)
         .skip(skipPage({ limit, page }))
         .sort({ score: { $meta: 'textScore' } }) // Assuming you have a convertSortBy function
         .lean()
         .exec(),
     ]);
-    return { totalWebs, webs };
+    const validWebs = Array.isArray(webs) ? webs : [];
+    return { totalWebs, webs: validWebs };
   }
 
   static async update(webId: string, payload: IWebDto) {

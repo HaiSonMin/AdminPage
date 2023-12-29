@@ -56,7 +56,6 @@ export const ResetPasswordLayout = () => {
   } = useForm<IResetPassword>();
 
   const onResetPassword = (dataForm: IResetPassword) => {
-    console.log('dataForm:::', dataForm);
     confirmResetPassword(dataForm, {
       onSuccess: () => {
         navigate(

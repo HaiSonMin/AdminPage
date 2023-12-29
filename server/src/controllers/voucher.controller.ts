@@ -29,6 +29,14 @@ export default class EmployeeController {
     }).send(res);
   }
 
+  static async searchVouchers(req: Request, res: Response) {
+    const query = req.query as IQuery | unknown;
+    new OK({
+      message: 'Tìm kiếm voucher thành công',
+      metadata: await VoucherService.searchVouchers(query as IQuery),
+    }).send(res);
+  }
+
   static async updateVoucher(req: Request, res: Response) {
     const { id } = req.params;
     const payload = req.body as IVoucherDto;

@@ -5,6 +5,10 @@ import {
   TbSortDescendingLetters,
 } from 'react-icons/tb';
 import { Checkbox } from '@/components/inputs/checkboxs';
+import { useActionParams } from '@/hooks';
+import { EQuery } from '@/enums';
+import { IHeaderTable } from '@/interfaces/common/table';
+import { IItemDrag } from '@/interfaces/common';
 
 const TableHeaderStyle = styled.div`
   display: block;
@@ -56,10 +60,27 @@ const TableDataHeaderFieldContent = styled.div`
 
 interface IProps {
   templateColumns: string;
-  headersName: Array<string>;
+  headersTable: IItemDrag[];
 }
 
-export const TableHeader = ({ templateColumns, headersName }: IProps) => {
+export const TableHeader = ({ templateColumns, headersTable }: IProps) => {
+  const { getParams, setParams } = useActionParams();
+  const actionSort = (fieldSort: string) => {
+    if (!getParams(EQuery.SORT)) {
+      setParams(EQuery.SORT, `${fieldSort}-asc`);
+    } else if (
+      getParams(EQuery.SORT) &&
+      getParams(EQuery.SORT)?.includes('asc')
+    ) {
+      setParams(EQuery.SORT, `${fieldSort}-desc`);
+    } else if (
+      getParams(EQuery.SORT) &&
+      getParams(EQuery.SORT)?.includes('desc')
+    ) {
+      setParams(EQuery.SORT, `${fieldSort}-asc`);
+    }
+  };
+
   return (
     <TableHeaderStyle>
       <TableRowHeader $templateColumns={templateColumns}>
@@ -67,10 +88,14 @@ export const TableHeader = ({ templateColumns, headersName }: IProps) => {
           <TableDataHeader>
             <Checkbox isChose={false} />
           </TableDataHeader>
-          {headersName.map((name) => (
-            <TableDataHeaderField>
+          {headersTable.map((headerTable) => (
+            <TableDataHeaderField
+              key={randomKey()}
+              onClick={() => actionSort(headerTable.fieldKey)}
+            >
               <TableDataHeaderFieldContent key={randomKey()}>
-                {name} <TbSortAscendingLetters className='icon' />
+                {headerTable.fieldName}
+                <TbSortAscendingLetters className='icon' />
               </TableDataHeaderFieldContent>
             </TableDataHeaderField>
           ))}

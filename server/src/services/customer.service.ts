@@ -13,12 +13,8 @@ export default class CustomerService {
   static async createCustomer(
     payload: ICustomerCreateDto
   ): Promise<ICustomer | null> {
-    try {
-      const newPayment = await customerModel.create(payload);
-      return newPayment;
-    } catch (error) {
-      throw new BadRequestError('Tạo người dùng thất bại, vui lòng thử lại');
-    }
+    const newCustomer = await customerModel.create(payload);
+    return newCustomer;
   }
 
   static async getCustomer(id: string) {

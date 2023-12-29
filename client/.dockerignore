@@ -1,0 +1,11 @@
+dist
+node_modules
+docker-compose*.yml
+
+.RData
+.Rhistory
+.git
+.gitignore
+manifest.json
+rsconnect/
+.Rproj.user

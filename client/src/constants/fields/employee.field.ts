@@ -8,5 +8,9 @@ export const EMPLOYEE_FIELD: Partial<IEmployee> = {
   employee_role: 'Phòng ban',
   employee_userName: 'Tên người dùng',
   employee_phoneNumber: 'Số điện thoại',
-  ...baseField
+  ...baseField,
 };
+
+const { _id, updatedAt, createdAt, employee_password, ...EMPLOYEE_FIELD_DEF } =
+  EMPLOYEE_FIELD;
+export { EMPLOYEE_FIELD_DEF };

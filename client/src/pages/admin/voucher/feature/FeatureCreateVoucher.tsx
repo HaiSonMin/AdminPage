@@ -35,8 +35,8 @@ export function FeatureCreateVoucher() {
     limit: getMaxItems(),
   });
 
-  const [selectType, setSelectType] = useState<string>('');
-  const [selectSource, setSelectSource] = useState<string>('');
+  const [selectType, setSelectType] = useState<string>(EVoucherType.FIX_AMOUNT);
+  const [selectSource, setSelectSource] = useState<string>();
 
   const {
     handleSubmit,
@@ -65,7 +65,6 @@ export function FeatureCreateVoucher() {
       voucher_web: selectSource,
     };
 
-    console.log('dataCreate::::', dataCreate);
     createVoucher(dataCreate, {
       onSuccess: (res) => {
         reset();
@@ -103,12 +102,13 @@ export function FeatureCreateVoucher() {
           />
           <InputSelectSingle
             options={[
-              { label: 'Đơn vị (vnđ)', value: EVoucherType.FIX_AMOUNT },
+              { label: 'Tiền mặt (vnđ)', value: EVoucherType.FIX_AMOUNT },
               { label: 'Phần trăm (%)', value: EVoucherType.PERCENTAGE },
             ]}
             onChange={onSelectType}
             placeholder='Chọn loại voucher'
             isRequired
+            defaultValue={EVoucherType.FIX_AMOUNT}
           />
           <InputAuth
             hasValue={!!watch('voucher_value')}
@@ -143,6 +143,7 @@ export function FeatureCreateVoucher() {
             onChange={onSelectSource}
             placeholder='Nguồn sự kiện'
             isLoading={isGettingWebs}
+            isRequired
           />
           <BoxBtnAction>
             <ButtonSubmit $isPrimarySolid>Tạo mới</ButtonSubmit>

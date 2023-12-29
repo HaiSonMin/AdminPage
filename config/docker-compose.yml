@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+  nginx:
+    build:
+      context: ../client
+      dockerfile: Dockerfile
+    container_name: client-container
+    restart: always
+    ports:
+      - "80:80"
+    env_file:
+      - ../client/.env
+    environment:
+      - VITE_URL_SERVER=http://bma.nikolaxflem.com:9000
+    depends_on:
+      - admin-app
+
+  admin-app:
+    build:
+      context: ../server
+      dockerfile: Dockerfile
+    container_name: server-container
+    restart: always
+    ports:
+      - 9000:9000
+    env_file:
+      - ../server/.env
+    # Overwrite .env
+    environment:
+      - DB_HOST=mongodb
+      - DB_USER=haison
+      - DB_PASSWORD=bokute22102000
+      - DB_NAME=sicnew-db
+      - MONGODB_DOCKER_PORT=27017
+      - URL_CLIENT=http://bma.nikolaxflem.com
+    depends_on:
+      - mongodb
+    stdin_open: true
+    tty: true
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-container
+    restart: always
+    env_file: ../server/.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=haison
+      - MONGO_INITDB_ROOT_PASSWORD=bokute22102000
+    expose:
+      - 27017
+    ports:
+      - 27018:27017
+
+volumes:
+  mongo-db:
+
+

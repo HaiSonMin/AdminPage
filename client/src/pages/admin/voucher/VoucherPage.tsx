@@ -1,36 +1,40 @@
-import { useEffect, useState } from 'react';
-import { ToolBar } from '@/layouts/admin/toolbar';
-import { FeatureCreateVoucher, FeatureUpdateVoucher } from './feature';
-import { TableV1 } from '@/components/tables';
 import {
   useVoucherApiDelete,
   useVoucherApiGetAll,
   useVoucherApiSearch,
-  useVoucherApiUpdate,
 } from '@/apis-use';
-import { useQueriesString } from '@/hooks/useQueriesString';
-import { formatCurrencyVND, formatDate, getQueries } from '@/utils';
-import { IVoucher } from '@/interfaces/models';
-import { SpinnerPage } from '@/components/loadings';
-import { IDataTable, IResultGetMany } from '@/interfaces/common';
-import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 import { EVoucherType } from '@/enums';
-import { VOUCHER_FIELD } from '@/constants/fields';
+import { useEffect, useState } from 'react';
+import { TableV1 } from '@/components/tables';
+import { IVoucher } from '@/interfaces/models';
+import { ToolBar } from '@/layouts/admin/toolbar';
+import { SpinnerPage } from '@/components/loadings';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
+import { useQueriesString } from '@/hooks/useQueriesString';
+import { IItemDrag, IResultGetMany } from '@/interfaces/common';
+import { formatCurrencyVND, formatDate, getQueries } from '@/utils';
+import { IBodyTable, IHeaderTable } from '@/interfaces/common/table';
+import { VOUCHER_FIELD, VOUCHER_FIELD_DEF } from '@/constants/fields';
+import { FeatureCreateVoucher, FeatureUpdateVoucher } from './feature';
+import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 
 export default function VoucherPage() {
   const queryString = useQueriesString();
   const query = getQueries(queryString);
-  const [headersName, setHeadersName] = useState<string[]>([]);
-  const [dataBody, setDataBody] = useState<Array<IDataTable>>([]);
+  const [dataBody, setDataBody] = useState<Array<IBodyTable>>([]);
   const [idItemChose, setIdItemChose] = useState<string>('');
   const [isDisplayDelete, setIsDisplayDelete] = useState<boolean>(false);
   const [isDisplayUpdate, setIsDisplayUpdate] = useState<boolean>(false);
+
+  const [headersTable, setHeadersTable] = useState<IItemDrag[]>([]);
+  const [fieldHiddenTest, setFieldHiddenTest] = useState<IItemDrag[]>([]);
+  const [fieldDisplayTest, setFieldDisplayTest] = useState<IItemDrag[]>([]);
 
   const { isDeletingVoucher, deleteVoucher } = useVoucherApiDelete();
   let metadata: IResultGetMany<IVoucher> | undefined;
   let isGetting: boolean = false;
 
-  if (!query.search) {
+  if (!query.keySearch) {
     const { isGettingVouchers, metadata: vouchers } =
       useVoucherApiGetAll(query);
     metadata = vouchers;
@@ -61,65 +65,115 @@ export default function VoucherPage() {
 
   const isLoading: boolean = isGetting || isDeletingVoucher;
 
+  const handleAddFieldDisplay = (indexHidden: number) => {
+    // Pop one item when click these
+    setFieldHiddenTest((pre) =>
+      pre.filter((item) => item.fieldKey !== pre[indexHidden].fieldKey)
+    );
+    setFieldDisplayTest((pre) => [...pre, fieldHiddenTest[indexHidden]]);
+  };
+
+  const handleAddFieldHidden = (indexDisplay: number) => {
+    // Pop one item when click these
+    if (fieldDisplayTest.length > 1) {
+      setFieldDisplayTest((pre) =>
+        pre.filter((item) => item.fieldKey !== pre[indexDisplay].fieldKey)
+      );
+      setFieldHiddenTest((pre) => [...pre, fieldDisplayTest[indexDisplay]]);
+    }
+  };
+
   useEffect(() => {
     if (metadata?.items) {
-      const columnDisplay = Object.keys(VOUCHER_FIELD);
+      const columnsKey = Object.keys(VOUCHER_FIELD);
+      let columnsDisplay: string[];
+      if (localStorage.getItem(LOCAL_STORE_KEYS.DISPLAY_VOUCHER_FIELDS)) {
+        const abc = JSON.parse(
+          `${localStorage.getItem(LOCAL_STORE_KEYS.DISPLAY_VOUCHER_FIELDS)}`
+        ) as IItemDrag[];
+        columnsDisplay = abc.map((item) => item.fieldKey);
+      } else {
+        columnsDisplay = Object.keys(VOUCHER_FIELD_DEF);
+      }
 
-      // headerDisplay = {
-      //   voucher_name: '',
-      //   voucher_type: '',
-      //   voucher_value: '',
-      //   voucher_web: '',
-      //   createdAt: '',
-      //   updatedAt: '',
-      // };
-      const headerDisplay = {};
-      columnDisplay.forEach((column) => {
-        if (VOUCHER_FIELD[column])
-          headerDisplay[column] = VOUCHER_FIELD[column];
-      });
-
-      setHeadersName(Object.values(headerDisplay));
-
-      const data: IDataTable[] = [];
-      for (let i = 0; i < metadata.items.length; i++) {
-        const dataTable: string[] = Object.keys(headerDisplay).map(
-          (headerKey) => {
-            if (metadata?.items[i][headerKey] === EVoucherType.FIX_AMOUNT) {
+      if (!headersTable.length) {
+        const headerDisplay: IItemDrag[] = [];
+        const fieldHidden: IItemDrag[] = [];
+        const fieldDisplay: IItemDrag[] = [];
+        columnsKey.forEach((columnKey) => {
+          if (columnsDisplay.includes(columnKey)) {
+            headerDisplay.push({
+              fieldKey: columnKey,
+              fieldName: VOUCHER_FIELD[columnKey],
+            });
+            fieldDisplay.push({
+              fieldKey: columnKey,
+              fieldName: VOUCHER_FIELD[columnKey],
+            });
+          } else {
+            fieldHidden.push({
+              fieldKey: columnKey,
+              fieldName: VOUCHER_FIELD[columnKey],
+            });
+          }
+        });
+        setFieldHiddenTest(fieldHidden);
+        setFieldDisplayTest(fieldDisplay);
+        setHeadersTable(() => headerDisplay);
+      } else {
+        const data: IBodyTable[] = [];
+        for (let i = 0; i < metadata.items.length; i++) {
+          const dataTable: string[] = headersTable.map((header) => {
+            if (
+              metadata?.items[i][header.fieldKey] === EVoucherType.FIX_AMOUNT
+            ) {
               return 'vnđ';
             }
-            if (metadata?.items[i][headerKey] === EVoucherType.PERCENTAGE) {
+            if (
+              metadata?.items[i][header.fieldKey] === EVoucherType.PERCENTAGE
+            ) {
               return '%';
             }
             if (
-              headerKey === 'voucher_value' &&
+              header.fieldKey === 'voucher_value' &&
               metadata?.items[i]['voucher_type'] === EVoucherType.FIX_AMOUNT
             ) {
-              return formatCurrencyVND(parseInt(metadata?.items[i][headerKey]));
+              return formatCurrencyVND(
+                parseInt(metadata?.items[i][header.fieldKey])
+              );
             }
             if (
-              headerKey === 'voucher_value' &&
+              header.fieldKey === 'voucher_value' &&
               metadata?.items[i]['voucher_type'] === EVoucherType.PERCENTAGE
             ) {
-              return `${metadata?.items[i][headerKey]}%`;
+              return `${metadata?.items[i][header.fieldKey]}%`;
             }
-            if (headerKey === 'createdAt' || headerKey === 'updatedAt') {
-              return formatDate(metadata?.items[i][headerKey] as Date);
+            if (
+              header.fieldKey === 'voucher_web' &&
+              metadata?.items[i][header.fieldKey]?.web_name
+            ) {
+              return `${metadata?.items[i][header.fieldKey]['web_name']}`;
+            }
+            if (
+              header.fieldKey === 'createdAt' ||
+              header.fieldKey === 'updatedAt'
+            ) {
+              return formatDate(metadata?.items[i][header.fieldKey] as Date);
             } else {
-              return metadata?.items[i][headerKey];
+              return metadata?.items[i][header.fieldKey];
             }
-          }
-        );
-        const itemData: IDataTable = {
-          id: metadata?.items[i]._id,
-          dataTable: dataTable,
-        };
-        data.push(itemData);
-      }
+          });
+          const itemData: IBodyTable = {
+            id: metadata?.items[i]._id,
+            dataTable: dataTable,
+          };
+          data.push(itemData);
+        }
 
-      setDataBody(data);
+        setDataBody(data);
+      }
     }
-  }, [isGetting, metadata?.items]);
+  }, [isGetting, headersTable, metadata?.items]);
 
   return (
     <>
@@ -128,16 +182,22 @@ export default function VoucherPage() {
         <FeatureCreateVoucher />
       </ToolBar>
       <TableV1
+        tableName={LOCAL_STORE_KEYS.DISPLAY_VOUCHER_FIELDS}
+        fieldHidden={fieldHiddenTest}
+        fieldDisplay={fieldDisplayTest}
+        setFieldHidden={setFieldHiddenTest}
+        setFieldDisplay={setFieldDisplayTest}
+        setHeadersTable={setHeadersTable}
+        handleAddFieldHidden={handleAddFieldHidden}
+        handleAddFieldDisplay={handleAddFieldDisplay}
         totalItems={metadata?.totalItems}
         actionDelete={actionDelete}
         actionUpdate={actionUpdate}
-        // actionSeeDetail={() => {}}
-        actionSearch={() => (abf: string) => {}}
         dataBody={dataBody}
-        headersName={headersName}
-        templateColumns={`min-content  ${headersName
-          .map((_) => 'minmax(10rem, 1fr)')
-          .join(' ')} minmax(10rem, 1fr)`}
+        headersTable={headersTable}
+        templateColumns={`min-content  ${Object.values(headersTable)
+          .map((_) => 'minmax(10rem, 30rem)')
+          .join(' ')} 10rem`}
       />
       <PopupDelete
         close={closePopupDelete}

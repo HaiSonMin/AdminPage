@@ -1,8 +1,9 @@
-export interface IHeaderType {
-  name: string;
-  sort?: () => void;
+export interface IBodyTable {
+  id?: string;
+  dataTable?: Array<string>;
 }
 
-export interface IBodyType {
-  name: string;
+export interface IHeaderTable {
+  headerKey: string;
+  headerName: string;
 }

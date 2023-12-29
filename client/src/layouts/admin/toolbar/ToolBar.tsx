@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { TbFileExport } from 'react-icons/tb';
 import { BsPatchQuestion } from 'react-icons/bs';
+import { exportExcel } from '@/helpers';
 const ToolBarStyle = styled.div`
   display: flex;
   align-items: center;
@@ -52,7 +53,15 @@ export function ToolBar({ children }: IProps) {
     <ToolBarStyle>
       <BoxAction>{children}</BoxAction>
       <BoxMoreAction>
-        <div className='item-action'>
+        <div
+          className='item-action'
+          onClick={() =>
+            exportExcel({
+              data: data,
+              fileName: '',
+            })
+          }
+        >
           <TbFileExport />
           <span>Xuất file</span>
         </div>
@@ -64,3 +73,9 @@ export function ToolBar({ children }: IProps) {
     </ToolBarStyle>
   );
 }
+
+const data = [
+  { name: 'John', age: 25, city: 'New York' },
+  { name: 'Alice', age: 30, city: 'San Francisco' },
+  { name: 'Bob', age: 22, city: 'Los Angeles' },
+];

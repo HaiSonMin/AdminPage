@@ -1,4 +1,4 @@
-import { filterBy, skipPage, sortBy } from '../utils';
+import { filterBy, selectFields, skipPage, sortBy } from '../utils';
 import { IQuery } from '../interface';
 import { IVoucherDto } from '../interface/model/voucher';
 import { voucherModel } from '../models';
@@ -7,8 +7,8 @@ export class VoucherRepository {
   static async getById(voucherId: string) {
     return await voucherModel.findById(voucherId).exec();
   }
-  static async getAll({ limit, page, sort, filters }: IQuery) {
-    const [totalVoucher, vouchers] = await Promise.all([
+  static async getAll({ limit, page, sort, filters, fields }: IQuery) {
+    const [totalVouchers, vouchers] = await Promise.all([
       voucherModel.countDocuments({ $or: [filterBy(filters)] }),
       voucherModel
         .find({ $or: [filterBy(filters)] })
@@ -16,23 +16,27 @@ export class VoucherRepository {
         .skip(skipPage({ limit, page }))
         .sort(sortBy(sort))
         .lean()
+        .select(selectFields(fields))
+        .populate([{ path: 'voucher_web', select: ['web_name', 'web_url'] }])
         .exec(),
     ]);
-    return { totalVoucher, vouchers };
+    return { totalVouchers, vouchers };
   }
 
-  static async search({ limit, page, search }: IQuery) {
-    const [totalWebs, webs] = await Promise.all([
-      voucherModel.countDocuments({ $text: { $search: search } }),
+  static async search({ limit, page, keySearch }: IQuery) {
+    const regSearch = new RegExp(keySearch + '', 'i');
+
+    const [totalVouchers, vouchers] = await Promise.all([
+      voucherModel.countDocuments({ voucher_name: { $regex: regSearch } }),
       voucherModel
-        .find({ $text: { $search: search } }, { score: { $meta: 'textScore' } })
+        .find({ voucher_name: { $regex: regSearch } })
         .limit(limit)
         .skip(skipPage({ limit, page }))
-        .sort({ score: { $meta: 'textScore' } }) // Assuming you have a convertSortBy function
+        .populate([{ path: 'voucher_web', select: ['web_name', 'web_url'] }])
         .lean()
         .exec(),
     ]);
-    return { totalWebs, webs };
+    return { totalVouchers, vouchers };
   }
 
   static async update(voucherId: string, payload: IVoucherDto) {

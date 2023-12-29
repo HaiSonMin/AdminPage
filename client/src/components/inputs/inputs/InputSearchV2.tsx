@@ -74,7 +74,7 @@ export function InputSearchV2({ actionSearch }: IProps) {
   return (
     <InputSearchStyle>
       <input
-        placeholder='Tìm kiếm mọi người'
+        placeholder='Tìm kiếm'
         onChange={handleChangeSearch}
         value={searchValue}
       />
