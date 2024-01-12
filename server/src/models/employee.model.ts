@@ -1,10 +1,10 @@
 import bcrypt from 'bcrypt';
-import { EGender, ERole } from '../enum';
+import { EGender, ERole } from '@/enum';
 import { Schema, model } from 'mongoose';
-import { EmployeeRepository } from '../repositories';
-import { IEmployee } from '../interface/model/employee';
-import { MODALS_NAME, VALUE_CONSTANT } from '../constant';
-import { generateRandomNumber, generatorUsername, latinizeStr } from '../utils';
+import { EmployeeRepository } from '@/repositories';
+import { IEmployee } from '@/interface/model/employee';
+import { MODALS_NAME, VALUE_CONSTANT } from '@/constant';
+import { generateRandomNumber, generatorUsername, latinizeStr } from '@/utils';
 
 const EmployeeSchema = new Schema<IEmployee>(
   {

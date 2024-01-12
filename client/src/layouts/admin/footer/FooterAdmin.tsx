@@ -1,26 +1,49 @@
+import { getStateCollapsedSide } from '@/slices/layoutSlice';
 import { Layout } from 'antd';
-import { CSSProperties } from 'styled-components';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import styled, { CSSProperties } from 'styled-components';
 const { Footer } = Layout;
 
 const footerStyle: CSSProperties = {
   position: 'fixed',
-  height: '6rem',
   bottom: 0,
-  width: '100%',
-  display: 'flex',
+  width: 'calc(100% - 80px)',
   marginTop: '2px',
-  alignItems: 'center',
-  justifyContent: 'center',
   backgroundColor: '#fff',
   color: 'var(--color-text-secondary)',
-  fontSize: 'var(--font-size-12)',
+  padding: '1rem 2rem',
 };
 
+const ContainerFooter = styled.div`
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-12);
+`;
+
 export const FooterAdmin = () => {
+  const isCollapsedSide = useSelector(getStateCollapsedSide);
+
+  const footerStyle: CSSProperties = {
+    position: 'fixed',
+    bottom: 0,
+    width: `calc(100% - ${isCollapsedSide ? '80px' : '22rem'})`,
+    marginTop: '2px',
+    backgroundColor: '#fff',
+    color: 'var(--color-text-secondary)',
+    padding: '1rem 2rem',
+    transition: 'all 0.3s',
+  };
+
   return (
     <Footer style={footerStyle}>
-      Công ty Sicnew. Địa chỉ văn phòng: 126 Nguyễn Trãi, Quận 5, Thành phố Hồ
-      Chí Minh, Việt Nam. Điện thoại: 034.529.9087
+      <ContainerFooter>
+        <span>Công ty TNHH Công Nghệ Rồng Biển</span>
+        <span>Phiên bản 1.0</span>
+      </ContainerFooter>
     </Footer>
   );
 };

@@ -32,6 +32,7 @@ class Http {
       withCredentials: true,
       timeout: 10000, // 10 giây sẽ timeout
       headers: {
+        'x-api-key': import.meta.env.VITE_X_API_KEY,
         'Content-Type': 'application/json',
         Authorization: convertToStringToken(dataStore?.AT_TOKEN),
       },
@@ -66,10 +67,11 @@ class Http {
     // AT Expired
     const preRequest = error?.config as AxiosRequestConfig<any>;
 
-    if (errRes.status === StatusCodes.UNAUTHORIZED) {
+    if (errRes.statusCode === StatusCodes.UNAUTHORIZED) {
       const res = await this.instancePrivate.post(
         `/${AUTH_API.ROOT}/${AUTH_API.FEATURE.REFRESH_TOKEN}`
       );
+
       const result = res.data;
       const dataStore: IDataLocalUser = {
         AT_TOKEN: result.metadata.newAccessToken,
@@ -93,7 +95,7 @@ class Http {
     }
 
     // RT Expired
-    if (errRes.status === StatusCodes.FORBIDDEN) {
+    if (errRes.statusCode === StatusCodes.FORBIDDEN) {
       localStorage.removeItem(LOCAL_STORE_KEYS.DATA_USER);
       setTimeout(() => {
         window.location.reload();

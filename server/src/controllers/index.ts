@@ -1,13 +1,6 @@
-import WebController from './web.controller';
-import AuthController from './auth.controller';
-import VoucherController from './voucher.controller';
-import EmployeeController from './employee.controller';
-import CustomerController from './customer.controller';
-
-export {
-  AuthController,
-  WebController,
-  VoucherController,
-  CustomerController,
-  EmployeeController,
-};
+export * from './scripts';
+export * from './web.controller';
+export * from './auth.controller';
+export * from './voucher.controller';
+export * from './employee.controller';
+export * from './customer.controller';

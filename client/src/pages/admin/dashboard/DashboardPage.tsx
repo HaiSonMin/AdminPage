@@ -1,3 +1,5 @@
+import { LayoutUpdate } from '@/layouts/update';
+
 export default function DashboardPage() {
-  return <div>Dashboard</div>;
+  return <LayoutUpdate />;
 }

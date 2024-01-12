@@ -32,7 +32,7 @@ class CustomSuccessApi {
   }
 
   public send(res: Response) {
-    res.status(this.statusCode).json(this);
+    return res.status(this.statusCode).json(this);
   }
 }
 

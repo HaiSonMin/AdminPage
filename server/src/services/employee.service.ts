@@ -1,8 +1,8 @@
-import { IQuery, IResultGetMany } from '../interface';
-import { EmployeeRepository } from '../repositories';
-import { BadRequestError, NotFoundError } from '../core/error.response';
-import { employeeModel } from '../models';
-import { IEmployee, IEmployeeDto } from '../interface/model/employee';
+import { IQuery, IResultGetMany } from '@/interface';
+import { EmployeeRepository } from '@/repositories';
+import { BadRequestError, NotFoundError } from '@/core/error.response';
+import { employeeModel } from '@/models';
+import { IEmployee, IEmployeeDto } from '@/interface/model/employee';
 
 export default class EmployeeService {
   static async createEmployee(employeeCreateDto: IEmployeeDto) {

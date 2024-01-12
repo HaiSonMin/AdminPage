@@ -4,6 +4,8 @@ import { HiOutlineLogout } from 'react-icons/hi';
 import { useAuthApiLogout } from '@/apis-use';
 import { SpinnerPage } from '@/components/loadings';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
+import { useState } from 'react';
+import { PopupChangePass } from '../../popup-change-pass/PopupChangePass';
 
 const PopupUserFooterStyle = styled.div`
   margin: 0 1.2rem;
@@ -39,27 +41,39 @@ const PopupUserFooterStyle = styled.div`
 
 export const PopupUserFooter = () => {
   const { isLogout, logout } = useAuthApiLogout();
+  const [isDisplayChangingPass, setIsDisplayChangingPass] =
+    useState<boolean>(false);
+
+  const onClosePass = () => setIsDisplayChangingPass(false);
+  const onDisplayPopup = () => setIsDisplayChangingPass(true);
 
   const handleLogout = () => {
     logout(null, {
       onSuccess: () => {
-        localStorage.removeItem(LOCAL_STORE_KEYS.DATA_USER);
         window.location.reload();
       },
     });
   };
 
   return (
-    <PopupUserFooterStyle>
-      {isLogout && <SpinnerPage />}
-      <div className='action'>
-        <IoKeyOutline />
-        Đổi mật khẩu
-      </div>
-      <div className='action' onClick={handleLogout}>
-        <HiOutlineLogout />
-        Đăng xuất
-      </div>
-    </PopupUserFooterStyle>
+    <>
+      <PopupUserFooterStyle>
+        {isLogout && <SpinnerPage />}
+        <div className='action' onClick={onDisplayPopup}>
+          <IoKeyOutline />
+          Đổi mật khẩu
+        </div>
+        <div className='action' onClick={handleLogout}>
+          <HiOutlineLogout />
+          Đăng xuất
+        </div>
+      </PopupUserFooterStyle>
+      <PopupChangePass
+        onChangePass={() => {}}
+        close={onClosePass}
+        isDisplay={isDisplayChangingPass}
+        title='Đổi mật khẩu đăng nhập'
+      />
+    </>
   );
 };

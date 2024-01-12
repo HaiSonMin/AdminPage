@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { randomId } from '@mantine/hooks';
 import { FormBasic } from '@/components/forms';
-import { InputAuth, InputSelectSingle } from '@/components/inputs';
+import { InputInfo, InputSelectSingle } from '@/components/inputs';
 import { ButtonSubmit, ButtonText } from '@/components/buttons';
 import { IVoucherUpdateDto, IWebUpdateDto } from '@/interfaces/models';
 import { PopupForm } from '@/components/popups/popup-form';
@@ -100,7 +100,7 @@ export function FeatureUpdateVoucher({ id, isDisplay, close }: IProps) {
           typeAction='update'
         >
           <FormBasic onSubmit={handleSubmit(onSubmit)}>
-            <InputAuth
+            <InputInfo
               hasValue={!!watch('voucher_name')}
               label='Tên voucher'
               register={register('voucher_name', {
@@ -124,7 +124,7 @@ export function FeatureUpdateVoucher({ id, isDisplay, close }: IProps) {
               isRequired
               defaultValue={`${voucher?.voucher_type}`}
             />
-            <InputAuth
+            <InputInfo
               hasValue={!!watch('voucher_value')}
               label='Giá trị voucher'
               register={register('voucher_value', {

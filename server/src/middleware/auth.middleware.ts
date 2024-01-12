@@ -1,12 +1,34 @@
 import { Request, Response, NextFunction } from 'express';
 import JWT from 'jsonwebtoken';
-import { ForbiddenError, UnauthenticatedError } from '../core/error.response';
+import {
+  BadRequestError,
+  ForbiddenError,
+  UnauthenticatedError,
+} from '../core/error.response';
 import { TokenRepository, EmployeeRepository } from '../repositories';
 import { deleteTokenCookie } from '../utils';
 import { VALUE_CONSTANT } from '../constant';
 import { ERole } from '../enum';
+import { ITokenVerify } from '../interface';
+import { env } from 'process';
 
-const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
+export const checkApiKey = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey !== env['X-API-KEY']) {
+    throw new BadRequestError('Not ok');
+  }
+  next();
+};
+
+export const checkAuth = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const accessToken = req.headers.authorization;
   if (!accessToken) throw new UnauthenticatedError('Invalid credential AT');
 
@@ -18,10 +40,10 @@ const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
   if (!tokenStore) throw new UnauthenticatedError('Vui lòng đăng nhập lại');
   // Verify AT
   try {
-    const payload: any = JWT.verify(
+    const payload: ITokenVerify = JWT.verify(
       accessToken.split(' ')[1].trim(),
       tokenStore.token_publicKey
-    );
+    ) as ITokenVerify;
     req.app.locals.employee = payload;
   } catch (error) {
     throw new UnauthenticatedError('AT hết hạn, refresh lại token mau lên');
@@ -39,7 +61,7 @@ const checkAuth = async (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-const checkAuthIsAdmin = async (
+export const checkAuthIsAdmin = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -82,5 +104,3 @@ const checkAuthIsAdmin = async (
 
   next();
 };
-
-export { checkAuth, checkAuthIsAdmin };

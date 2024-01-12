@@ -1,7 +1,7 @@
-import { filterBy, selectFields, skipPage, sortBy } from '../utils';
-import { IQuery } from '../interface';
-import { IVoucherDto } from '../interface/model/voucher';
-import { voucherModel } from '../models';
+import { filterBy, selectFields, skipPage, sortBy } from '@/utils';
+import { IQuery } from '@/interface';
+import { IVoucherDto } from '@/interface/model/voucher';
+import { voucherModel } from '@/models';
 
 export class VoucherRepository {
   static async getById(voucherId: string) {

@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { IoSettingsOutline } from 'react-icons/io5';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
+import { useEffect, useState } from 'react';
+import { IDataLocalUser } from '@/interfaces/common';
 
 const LeftInfoStyle = styled.div`
   font-size: var(--font-size-16);
@@ -24,7 +27,15 @@ const IconSetting = styled(IoSettingsOutline)`
 export const LeftInfo = () => {
   return (
     <LeftInfoStyle>
-      <span>{'Nguyễn Lâm Hải Sơn'.toUpperCase()}</span>
+      <span>
+        {`${
+          (
+            JSON.parse(
+              `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
+            ) as IDataLocalUser
+          ).employee_fullName
+        }`.toUpperCase()}
+      </span>
       <IconSetting />
     </LeftInfoStyle>
   );

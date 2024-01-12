@@ -9,8 +9,10 @@ import {
   IAuthResultApiConfirmResetPassword,
   IAuthResultApiCreateSessionResetPassword,
   IAuthResultApiRefreshAT,
+  IAuthResultApiChangePass,
 } from '@/interfaces/result-apis/auth';
 import { IError } from '@/interfaces/common';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
 
 export const useAuthApiLogin = (): IAuthResultApiLogin => {
   const {
@@ -44,8 +46,8 @@ export const useAuthApiLogout = (): IAuthResultApiLogout => {
     isPending: isLogout,
   } = useMutation({
     mutationFn: AuthApi.logout,
-    onSuccess: (data) => {
-      toast.success(`${data?.message}`);
+    onSuccess: () => {
+      localStorage.removeItem(LOCAL_STORE_KEYS.DATA_USER);
     },
     onError: (error: IError) => {
       toast.error(error.message);
@@ -171,6 +173,31 @@ export const useAuthApiRefreshToken = (): IAuthResultApiRefreshAT => {
   return {
     refreshAT: mutate,
     isRefreshAT,
+    message: data?.message,
+    metadata: data?.metadata,
+    statusCode: data?.statusCode,
+    reasonStatusCode: data?.reasonStatusCode,
+  };
+};
+
+export const useAuthApiChangePassword = (): IAuthResultApiChangePass => {
+  const {
+    data,
+    mutate,
+    isPending: isChangePass,
+  } = useMutation({
+    mutationFn: AuthApi.changePassword,
+    // onSuccess: (data) => {
+    //   toast.success(`${data?.message}`);
+    // },
+    onError: (error: IError) => {
+      toast.error(error.message);
+    },
+  });
+
+  return {
+    changePassword: mutate,
+    isChangePass,
     message: data?.message,
     metadata: data?.metadata,
     statusCode: data?.statusCode,

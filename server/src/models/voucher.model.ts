@@ -1,8 +1,8 @@
-import { EVoucherType } from '../enum';
+import { EVoucherType } from '@/enum';
 import { model, Schema } from 'mongoose';
-import { MODALS_NAME } from '../constant';
-import { IVoucher } from '../interface/model/voucher';
-import { BadRequestError } from '../core/error.response';
+import { MODALS_NAME } from '@/constant';
+import { IVoucher } from '@/interface/model/voucher';
+import { BadRequestError } from '@/core/error.response';
 
 const VoucherSchema = new Schema<IVoucher>(
   {

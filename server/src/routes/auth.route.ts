@@ -1,6 +1,7 @@
 import express from 'express';
-import { AuthController } from '../controllers';
-import { AUTH_API } from '../constant';
+import { AuthController } from '@/controllers';
+import { AUTH_API } from '@/constant';
+import { checkAuth } from '@/middleware/auth.middleware';
 
 const router = express.Router();
 
@@ -18,4 +19,8 @@ router
   .route(AUTH_API.FEATURE.REFRESH_TOKEN)
   .post(AuthController.refreshAccessToken);
 
-export default router;
+router
+  .route(AUTH_API.FEATURE.CHANGE_PASSWORD)
+  .post(checkAuth, AuthController.changePassword);
+
+export { router };

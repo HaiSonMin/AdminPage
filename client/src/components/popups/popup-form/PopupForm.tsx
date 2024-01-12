@@ -1,5 +1,5 @@
 import { HeadingSM } from '@/components/heading';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Overlay } from '../Overlay';
 import { PopupStyle } from '../common';
 import { TfiClose } from 'react-icons/tfi';

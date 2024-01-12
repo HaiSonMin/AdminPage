@@ -3,5 +3,13 @@ import tokenModel from './token.model';
 import voucherModel from './voucher.model';
 import employeeModel from './employee.model';
 import customerModel from './customer.model';
+import mailModel from './mail.model';
 
-export { webModel, tokenModel, employeeModel, customerModel, voucherModel };
+export {
+  webModel,
+  mailModel,
+  tokenModel,
+  employeeModel,
+  customerModel,
+  voucherModel,
+};

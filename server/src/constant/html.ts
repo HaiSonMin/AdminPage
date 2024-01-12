@@ -1,4 +1,4 @@
-const SUBJECT = "Sicnew Company";
+const SUBJECT = "Sea Dragon Company";
 
 const htmlResetPassword = (OTPCode: string) => {  
   return `

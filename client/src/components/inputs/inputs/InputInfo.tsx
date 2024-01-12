@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components';
 
 const InputContainer = styled.div`
   position: relative;
-  margin-bottom: 1.2rem;
   width: 100%;
 `;
 
@@ -34,11 +33,11 @@ const Label = styled.label<{ $focused: boolean; $hasValue: boolean }>`
     props.$focused || props.$hasValue
       ? css`
           left: 0.5rem;
-          top: 0;
+          top: 0.4rem;
         `
       : css`
           left: 1.2rem;
-          top: 1.8rem;
+          top: 2rem;
         `};
   font-size: ${(props) =>
     props.$focused || props.$hasValue ? '1.2rem' : '1.4rem'};
@@ -68,7 +67,7 @@ const ShowPasswordButton = styled.button<{ $showPassword: boolean }>`
 const ErrorInput = styled.p`
   margin-top: 5px;
   color: var(--color-danger);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   text-align: left;
 `;
@@ -81,10 +80,11 @@ interface IProps {
   hasValue: boolean;
   children?: React.ReactNode;
   error?: string;
+  autoFocus?: boolean;
   isRequired: boolean;
 }
 
-export function InputAuth({
+export function InputInfo({
   type,
   id = randomKey(),
   label,
@@ -92,6 +92,7 @@ export function InputAuth({
   children,
   register,
   hasValue,
+  autoFocus,
   isRequired,
 }: IProps) {
   const [focused, setFocused] = useState(false);
@@ -112,6 +113,7 @@ export function InputAuth({
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         autoComplete='true'
+        autoFocus={autoFocus || false}
       />
       <Label htmlFor={id} $focused={focused} $hasValue={hasValue}>
         {label} {isRequired && <span className='required'>(*)</span>}

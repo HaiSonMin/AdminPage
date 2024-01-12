@@ -1,9 +1,9 @@
-import { voucherModel } from '../models';
-import { IQuery, IResultGetMany } from '../interface';
-import { VoucherRepository } from '../repositories';
-import { BadRequestError, NotFoundError } from '../core/error.response';
-import { IVoucher, IVoucherDto } from '../interface/model/voucher';
-import { WebService } from '.';
+import { voucherModel } from '@/models';
+import { IQuery, IResultGetMany } from '@/interface';
+import { VoucherRepository } from '@/repositories';
+import { BadRequestError, NotFoundError } from '@/core/error.response';
+import { IVoucher, IVoucherDto } from '@/interface/model/voucher';
+import { WebService } from './';
 
 export default class VoucherService {
   static async createVoucher(payload: IVoucherDto) {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { randomId } from '@mantine/hooks';
 import { FormBasic } from '@/components/forms';
-import { InputAuth } from '@/components/inputs';
+import { InputInfo } from '@/components/inputs';
 import { ButtonSubmit, ButtonText } from '@/components/buttons';
 import { IWebCreateDto } from '@/interfaces/models';
 import { useWebApiCreate } from '@/apis-use/UseWebApi';
@@ -60,7 +60,7 @@ export function FeatureCreateWeb() {
         typeAction='create'
       >
         <FormBasic onSubmit={handleSubmit(onSubmit)}>
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('web_name')}
             label='Tên web'
             register={register('web_name', {
@@ -71,7 +71,7 @@ export function FeatureCreateWeb() {
             id={randomId()}
             isRequired
           />
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('web_url')}
             label='Đường dẫn web'
             register={register('web_url', {

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { IoAddSharp } from 'react-icons/io5';
-import { InputAuth, InputSelectSingle } from '@/components/inputs';
+import { InputInfo, InputSelectSingle } from '@/components/inputs';
 import { randomId } from '@mantine/hooks';
 import { validateEmail, validatePhoneNumber } from '@/utils';
 import { ButtonSubmit, ButtonText } from '@/components/buttons';
@@ -77,7 +77,7 @@ export function FeatureCreateCustomer() {
         typeAction='create'
       >
         <FormBasic onSubmit={handleSubmit(onSubmit)}>
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('employee_fullName')}
             label='Họ và Tên'
             register={register('employee_fullName', {
@@ -88,7 +88,7 @@ export function FeatureCreateCustomer() {
             id={randomId()}
             isRequired
           />
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('employee_email')}
             label='Email nhân viên'
             register={register('employee_email', {
@@ -102,7 +102,7 @@ export function FeatureCreateCustomer() {
             id={randomId()}
             isRequired
           />
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('employee_phoneNumber')}
             label='Số điện thoại'
             register={register('employee_phoneNumber', {
@@ -117,7 +117,7 @@ export function FeatureCreateCustomer() {
             id={randomId()}
             isRequired
           />
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('employee_password')}
             label='Mật khẩu'
             register={register('employee_password', {
@@ -128,7 +128,7 @@ export function FeatureCreateCustomer() {
             id={randomId()}
             isRequired
           />
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('employee_confirmPassword')}
             label='Xác nhận lại mật khẩu'
             register={register('employee_confirmPassword', {

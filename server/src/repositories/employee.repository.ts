@@ -1,7 +1,7 @@
-import { sortBy, skipPage, filterBy } from '../utils';
-import { employeeModel } from '../models';
-import { IEmployeeDto } from '../interface/model/employee';
-import { IQuery } from '../interface';
+import { sortBy, skipPage, filterBy } from '@/utils';
+import { employeeModel } from '@/models';
+import { IEmployeeDto } from '@/interface/model/employee';
+import { IQuery } from '@/interface';
 
 export class EmployeeRepository {
   static async getById(employeeId: string) {

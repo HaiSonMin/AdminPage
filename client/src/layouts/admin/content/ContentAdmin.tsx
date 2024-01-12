@@ -4,9 +4,10 @@ import { Layout } from 'antd';
 const { Content } = Layout;
 
 const contentStyle: CSSProperties = {
-  color: 'var(--color-text)',
+  height: '80vh',
   paddingTop: '1.5rem',
   paddingBottom: '8rem',
+  color: 'var(--color-text)',
 };
 
 const ContentAdminStyle = styled.div`

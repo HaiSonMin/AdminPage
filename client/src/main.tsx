@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
       <ToasterDisplay />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ReactQueryDevtools initialIsOpen={false} buttonPosition='bottom-left'/>
       <Provider store={store}>
         <BrowserRouter>
           <App />

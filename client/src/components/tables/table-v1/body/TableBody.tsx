@@ -5,6 +5,8 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import { IBodyTable } from '@/interfaces/common/table/ITable.interface';
 import { Checkbox } from '@/components/inputs/checkboxs';
 import IconEmpty from '@/assets/images/image-icon/empty.webp';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
+import { IDataLocalUser } from '@/interfaces/common';
 const TableBodyStyle = styled.div<{ $isEmpty: boolean }>`
   ${(props) =>
     props.$isEmpty &&
@@ -19,9 +21,10 @@ const TableBodyStyle = styled.div<{ $isEmpty: boolean }>`
   max-width: 100%;
 `;
 
-const TableRowBody = styled.div<{ $templateColumns: string }>`
+const TableRowBody = styled.div<{ $numberColumn: number }>`
   display: grid;
-  grid-template-columns: ${(props) => props.$templateColumns};
+  grid-template-columns: min-content ${(props) =>
+      `repeat(${props.$numberColumn}, minmax(10rem, 40rem))`} 10rem;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-200);
@@ -97,7 +100,7 @@ const BoxImg = styled.div`
 `;
 
 interface IProps {
-  templateColumns: string;
+  numberColumn: number;
   dataBody: Array<IBodyTable>;
   // actionSeeDetail: (id?: string) => void;
   actionDelete: (id?: string) => void;
@@ -105,7 +108,7 @@ interface IProps {
 }
 
 export const TableBody = ({
-  templateColumns,
+  numberColumn,
   dataBody,
   // actionSeeDetail,
   actionDelete,
@@ -115,31 +118,37 @@ export const TableBody = ({
     <TableBodyStyle $isEmpty={!dataBody.length}>
       {dataBody.length ? (
         dataBody.map((item) => (
-          <TableRowBody key={randomKey()} $templateColumns={templateColumns}>
+          <TableRowBody key={randomKey()} $numberColumn={numberColumn}>
             <TableDataBody>
               <Checkbox isChose={true} />
             </TableDataBody>
             {item?.dataTable?.map((value) => (
               <TableDataBody key={randomKey()}>{value}</TableDataBody>
             ))}
-            <TableDataBody>
-              <div className='action'>
-                {/* <FaRegEye
+            {(
+              JSON.parse(
+                `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
+              ) as IDataLocalUser
+            ).employee_fullName === 'administrator' && (
+              <TableDataBody>
+                <div className='action'>
+                  {/* <FaRegEye
                 className='icon icon-detail'
                 onClick={() => actionSeeDetail(item?.id)}
               /> */}
-                <BiEditAlt
-                  className='icon icon-edit'
-                  onClick={() => actionUpdate(item?.id)}
-                />
-                <RiDeleteBinLine
-                  className='icon icon-delete'
-                  onClick={() => {
-                    actionDelete(item?.id);
-                  }}
-                />
-              </div>
-            </TableDataBody>
+                  <BiEditAlt
+                    className='icon icon-edit'
+                    onClick={() => actionUpdate(item?.id)}
+                  />
+                  <RiDeleteBinLine
+                    className='icon icon-delete'
+                    onClick={() => {
+                      actionDelete(item?.id);
+                    }}
+                  />
+                </div>
+              </TableDataBody>
+            )}
           </TableRowBody>
         ))
       ) : (

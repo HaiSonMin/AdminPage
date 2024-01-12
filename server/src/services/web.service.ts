@@ -1,8 +1,8 @@
-import { webModel } from '../models';
-import { WebRepository } from '../repositories';
-import { IQuery, IResultGetMany } from '../interface';
-import { BadRequestError, NotFoundError } from '../core/error.response';
-import { IWeb, IWebDto } from '../interface/model/web';
+import { webModel } from '@/models';
+import { WebRepository } from '@/repositories';
+import { IQuery, IResultGetMany } from '@/interface';
+import { BadRequestError, NotFoundError } from '@/core/error.response';
+import { IWeb, IWebDto } from '@/interface/model/web';
 
 export default class WebService {
   static async createWeb(payload: IWebDto) {

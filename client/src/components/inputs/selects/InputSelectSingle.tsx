@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const InputSelectSingleStyle = styled(Select)`
   width: 100%;
   font-size: var(--font-size-14);
-  margin: 1rem 0 1.2rem;
+  margin-top: 1.5rem;
 
   .ant-select {
     border-color: red;

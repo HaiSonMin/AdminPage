@@ -2,7 +2,7 @@ const lodash = require('lodash');
 import { Response } from 'express';
 import otpGenerator from 'otp-generator';
 import JWT from 'jsonwebtoken';
-import { ITokenVerify } from '../interface';
+import { ITokenVerify } from '@/interface';
 import { SortOrder } from 'mongoose';
 
 export const verifyToken = (token: string, key: string): ITokenVerify | null =>

@@ -1,14 +1,15 @@
-import { CustomerService } from '../services';
+import { CustomerService } from '@/services';
 import { Request, Response } from 'express';
-import { CREATED, OK } from '../core/success.response';
-import { IQuery } from '../interface';
+import { CREATED, OK } from '@/core/success.response';
+import { IQuery } from '@/interface';
 import {
   ICustomerCreateDto,
   ICustomerAddVoucherDto,
   ICustomerUpdateDto,
+  ICustomer,
 } from '../interface/model/customer';
 
-export default class CustomerController {
+export class CustomerController {
   static async createCustomer(req: Request, res: Response) {
     const payload = req.body as ICustomerCreateDto;
     new CREATED({
@@ -53,11 +54,32 @@ export default class CustomerController {
     }).send(res);
   }
 
+  static async updateCustomerByPhone(req: Request, res: Response) {
+    const payload = req.body as ICustomerUpdateDto | unknown;
+    new OK({
+      message: 'Cập nhật khách hàng thành công',
+      metadata: await CustomerService.updateCustomerByPhone(
+        payload as ICustomerUpdateDto
+      ),
+    }).send(res);
+  }
+
   static async addVoucher(req: Request, res: Response) {
     const addVoucherData = req.body as ICustomerAddVoucherDto;
     new OK({
       message: 'Nhận voucher thành công',
       metadata: await CustomerService.addVoucher(addVoucherData),
+    }).send(res);
+  }
+
+  static async deleteCustomer(req: Request, res: Response) {
+    const { customer_phoneNumber } = req.body as Pick<
+      ICustomer,
+      'customer_phoneNumber'
+    >;
+    new OK({
+      message: 'Xóa khách hàng thành công',
+      metadata: await CustomerService.deleteByPhone(customer_phoneNumber),
     }).send(res);
   }
 }

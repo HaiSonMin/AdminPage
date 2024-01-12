@@ -1,10 +1,10 @@
-import { IQuery } from '../interface';
-import { VoucherService } from '../services';
+import { IQuery } from '@/interface';
+import { VoucherService } from '@/services';
 import { Request, Response } from 'express';
-import { CREATED, OK } from '../core/success.response';
-import { IVoucherDto } from '../interface/model/voucher';
+import { CREATED, OK } from '@/core/success.response';
+import { IVoucherDto } from '@/interface/model/voucher';
 
-export default class EmployeeController {
+export class VoucherController {
   static async createVoucher(req: Request, res: Response) {
     const payload = req.body;
     new CREATED({

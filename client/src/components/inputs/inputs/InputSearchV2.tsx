@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 import { IoIosSearch } from 'react-icons/io';
 import { MdOutlineCancel } from 'react-icons/md';
 import { useState } from 'react';
+import { useActionParams } from '@/hooks';
+import { EQuery } from '@/enums';
 const InputSearchStyle = styled.div`
   position: relative;
   width: 100%;
@@ -52,18 +54,34 @@ const IconRemove = styled(MdOutlineCancel)`
 `;
 
 interface IProps {
-  actionSearch: (keySearch: string) => void;
+  actionSearch?: (keySearch: string) => void;
 }
 
 export function InputSearchV2({ actionSearch }: IProps) {
+  const { deleteParams, setParams } = useActionParams();
   const [searchValue, setSearchValue] = useState<string>('');
+
+  const actionSearchV2 = (keySearch: string) => {
+    if (!keySearch) {
+      deleteParams(EQuery.KEY_SEARCH);
+    } else {
+      setParams(EQuery.KEY_SEARCH, keySearch);
+    }
+  };
 
   const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
+  const handleEnterSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key.toLocaleLowerCase() === 'enter') {
+      actionSearchV2(searchValue);
+      setSearchValue('');
+    }
+  };
+
   const handleSearch = () => {
-    actionSearch(searchValue);
+    actionSearchV2(searchValue);
     setSearchValue('');
   };
 
@@ -76,6 +94,7 @@ export function InputSearchV2({ actionSearch }: IProps) {
       <input
         placeholder='Tìm kiếm'
         onChange={handleChangeSearch}
+        onKeyDown={handleEnterSearch}
         value={searchValue}
       />
       <IConSearch onClick={handleSearch} />

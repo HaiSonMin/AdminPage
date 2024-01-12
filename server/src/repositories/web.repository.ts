@@ -1,7 +1,7 @@
-import { IQuery, IResultGetMany } from '../interface';
-import { IWeb, IWebDto } from '../interface/model/web';
-import { webModel } from '../models';
-import { skipPage, sortBy } from '../utils';
+import { IQuery, IResultGetMany } from '@/interface';
+import { IWeb, IWebDto } from '@/interface/model/web';
+import { webModel } from '@/models';
+import { skipPage, sortBy } from '@/utils';
 
 export class WebRepository {
   static async getById(webId: string) {
@@ -24,7 +24,6 @@ export class WebRepository {
   }
 
   static async search({ limit, page, sort, keySearch }: IQuery) {
-    console.log('keySearch;:::', keySearch);
     const [totalWebs, webs] = await Promise.all([
       webModel.countDocuments({ $text: { $search: keySearch } }),
       webModel

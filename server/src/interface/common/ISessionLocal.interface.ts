@@ -1,4 +1,4 @@
-import { ESession } from "src/enum/ESession.enum";
+import { ESession } from '@/enum/ESession.enum';
 
 export interface ISessionLocal {
   sessionOTP: string; // Mã OTP

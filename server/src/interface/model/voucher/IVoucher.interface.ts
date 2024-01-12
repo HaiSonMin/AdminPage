@@ -1,4 +1,4 @@
-import { IBaseModel } from 'src/interface/common';
+import { IBaseModel } from '@/interface/common';
 
 export interface IVoucher extends IBaseModel {
   voucher_name: string;

@@ -5,28 +5,33 @@ import {
   saveTokenCookie,
   deleteTokenCookie,
   getMiliSecondFormSecond,
-} from '../utils';
+} from '@/utils';
 import {
   NotFoundError,
   BadRequestError,
   UnavailableError,
   ForbiddenError,
-} from '../core/error.response';
+} from '@/core/error.response';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
-import { sendMail } from '../helper';
-import { tokenModel } from '../models';
+import { sendMail } from '@/helper';
+import { tokenModel } from '@/models';
 import { Request, Response } from 'express';
-import { VALUE_CONSTANT } from '../constant';
-import { ESession } from '../enum/ESession.enum';
-import { htmlResetPassword } from '../constant/html';
-import { IEmployee, IEmployeeDto } from '../interface/model/employee';
-import { TokenRepository, EmployeeRepository } from '../repositories';
-import { createDoubleKeys, createDoubleTokens } from '../utils/token';
-import { IAuthLogin, ISessionLocal, ITokenVerify } from '../interface';
-
+import { VALUE_CONSTANT } from '@/constant';
+import { ESession } from '@/enum/ESession.enum';
+import { htmlResetPassword } from '@/constant/html';
+import { IEmployee, IEmployeeDto } from '@/interface/model/employee';
+import { TokenRepository, EmployeeRepository } from '@/repositories';
+import { createDoubleKeys, createDoubleTokens } from '@/utils/token';
+import {
+  IAuthChangePass,
+  IAuthLogin,
+  ISessionLocal,
+  ITokenVerify,
+} from '@/interface';
 export default class AuthService {
   static async login(dataLogin: IAuthLogin, res: Response) {
+    console.log('dataLogin::::', dataLogin);
     const { employee_userName, employee_password } = dataLogin;
     let employee;
     if (employee_userName) {
@@ -103,11 +108,11 @@ export default class AuthService {
 
   static async logout(req: Request, res: Response) {
     const refreshToken = req.cookies[VALUE_CONSTANT.RT_NAME];
-    if (!refreshToken) throw new BadRequestError('Chưa có phiên đăng nhập');
+    if (!refreshToken) throw new ForbiddenError('Vui lòng đăng nhập lại');
     deleteTokenCookie(VALUE_CONSTANT.RT_NAME, res);
     // Delete RT in Db
     const keyDeleted = await TokenRepository.deleteByRefreshToken(refreshToken);
-    if (!keyDeleted) throw new BadRequestError('Delete RT Error');
+    if (!keyDeleted) throw new ForbiddenError('Vui lòng đăng nhập lại');
     return;
   }
 
@@ -285,6 +290,38 @@ export default class AuthService {
       employee: payload,
       newAccessToken: newAT,
     };
+  }
+
+  static async changePassword(req: Request, dataChangePass: IAuthChangePass) {
+    const { employeeEmail } = req.app.locals.employee as ITokenVerify;
+    const employee = await EmployeeRepository.getByEmail(`${employeeEmail}`);
+    if (!employee) {
+      throw new NotFoundError('Người dùng không tồn tại');
+    }
+    const isMatchingPassword = await bcrypt.compare(
+      dataChangePass.employee_oldPassword,
+      employee.employee_password
+    );
+
+    if (!isMatchingPassword) {
+      throw new BadRequestError('Mật khẩu củ không đúng');
+    }
+    if (
+      dataChangePass.employee_password !==
+      dataChangePass.employee_confirmPassword
+    ) {
+      throw new BadRequestError('Xác nhận mật khẩu không đúng');
+    }
+
+    const newPasswordEncode = await bcrypt.hash(
+      dataChangePass.employee_password,
+      VALUE_CONSTANT.SALT_PASSWORD
+    );
+
+    await employee.updateOne({
+      $set: { employee_password: newPasswordEncode },
+    });
+    return;
   }
 }
 

@@ -4,4 +4,5 @@ export const MODALS_NAME = {
   CUSTOMER: 'Customer',
   VOUCHER: 'Voucher',
   TOKEN: 'Token',
+  MAIL: 'Mail',
 };

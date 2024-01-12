@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
-import { MODALS_NAME } from '../constant';
-import { ICustomer } from '../interface/model/customer';
+import { MODALS_NAME } from '@/constant';
+import { ICustomer } from '@/interface/model/customer';
 
 const CustomerSchema = new Schema<ICustomer>(
   {
@@ -20,14 +20,14 @@ const CustomerSchema = new Schema<ICustomer>(
     // Yêu cầu về dịch vụ
     customer_requirement: {
       type: String,
-      // required: [true, 'Vui lòng bổ sung yêu cầu cho nhân viên tư vấn'],
     },
     customer_voucher: {
       type: String,
       default: null,
     },
     customer_source: {
-      type: String,
+      type: Schema.ObjectId,
+      ref: MODALS_NAME.WEB,
     },
   },
   { timestamps: true }

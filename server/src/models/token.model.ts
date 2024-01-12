@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { MODALS_NAME } from '../constant';
+import { MODALS_NAME } from '@/constant';
 const TokenSchema = new Schema(
   {
     token_employee: {
@@ -9,7 +9,7 @@ const TokenSchema = new Schema(
     },
     token_privateKey: {
       type: String,
-      required: true, 
+      required: true,
     },
     token_publicKey: {
       type: String,

@@ -1,6 +1,6 @@
-import { employeeModel } from '../models';
+import { employeeModel } from '@/models';
 import { env } from 'process';
-import { infoAdmin } from '../constant';
+import { infoAdmin } from '@/constant';
 
 export const generateAdmin = async () => {
   //   ADMIN_USERNAME;

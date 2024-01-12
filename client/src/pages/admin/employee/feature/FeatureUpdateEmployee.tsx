@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { randomId } from '@mantine/hooks';
 import { FormBasic } from '@/components/forms';
-import { InputAuth, InputSelectSingle } from '@/components/inputs';
+import { InputInfo, InputSelectSingle } from '@/components/inputs';
 import { ButtonSubmit, ButtonText } from '@/components/buttons';
 import { IEmployeeUpdateDto } from '@/interfaces/models';
 import { PopupForm } from '@/components/popups/popup-form';
@@ -91,7 +91,7 @@ export function FeatureUpdateEmployee({ id, isDisplay, close }: IProps) {
           typeAction='update'
         >
           <FormBasic onSubmit={handleSubmit(onSubmit)}>
-            <InputAuth
+            <InputInfo
               hasValue={!!watch('employee_fullName')}
               label='Họ và Tên'
               register={register('employee_fullName', {
@@ -105,7 +105,7 @@ export function FeatureUpdateEmployee({ id, isDisplay, close }: IProps) {
               id={randomId()}
               isRequired
             />
-            <InputAuth
+            <InputInfo
               hasValue={!!watch('employee_email')}
               label='Email nhân viên'
               register={register('employee_email', {
@@ -120,7 +120,7 @@ export function FeatureUpdateEmployee({ id, isDisplay, close }: IProps) {
               id={randomId()}
               isRequired
             />
-            <InputAuth
+            <InputInfo
               hasValue={!!watch('employee_phoneNumber')}
               label='Số điện thoại'
               register={register('employee_phoneNumber', {

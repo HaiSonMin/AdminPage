@@ -166,7 +166,8 @@ const GlobalStyles = createGlobalStyle`
 *::after {
   box-sizing: border-box;
   padding: 0;
-  margin: 0;
+  margin: 0;  
+  line-height: 1;
   /* Creating animations for dark mode */
 }
 

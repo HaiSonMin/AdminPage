@@ -1,5 +1,5 @@
 import { useAuthApiConfirmOTP, useAuthApiGenerateOTP } from '@/apis-use';
-import { ButtonText } from '@/components/buttons';
+import { ButtonSubmit, ButtonText } from '@/components/buttons';
 import { Heading3XL } from '@/components/heading';
 import { InputOtp } from '@/components/inputs';
 import { PATH_AUTH, PATH_ROOT_ADMIN } from '@/constants/paths';
@@ -121,7 +121,7 @@ export const ConfirmLayout = () => {
       <From onSubmit={handleSubmit(onSubmit)}>
         <InputOtp otpValues={otpValues} setOtpValues={setOtpValues} />
         <RefreshOtp onClick={onRefreshOtp}>Gửi lại mã</RefreshOtp>
-        <ButtonText>Xác nhận</ButtonText>
+        <ButtonSubmit>Xác nhận</ButtonSubmit>
       </From>
     </ConfirmLayoutStyle>
   );

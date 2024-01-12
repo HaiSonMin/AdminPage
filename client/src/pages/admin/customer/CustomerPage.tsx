@@ -28,8 +28,8 @@ export default function CustomerPage() {
   const { isDeletingCustomer, deleteCustomer } = useCustomerApiDelete();
 
   const [headersTable, setHeadersTable] = useState<IItemDrag[]>([]);
-  const [fieldHiddenTest, setFieldHiddenTest] = useState<IItemDrag[]>([]);
-  const [fieldDisplayTest, setFieldDisplayTest] = useState<IItemDrag[]>([]);
+  const [fieldHidden, setFieldHidden] = useState<IItemDrag[]>([]);
+  const [fieldDisplay, setFieldDisplay] = useState<IItemDrag[]>([]);
 
   let metadata: IResultGetMany<ICustomer> | undefined;
   let isGetting: boolean = false;
@@ -61,19 +61,19 @@ export default function CustomerPage() {
 
   const handleAddFieldDisplay = (indexHidden: number) => {
     // Pop one item when click these
-    setFieldHiddenTest((pre) =>
+    setFieldHidden((pre) =>
       pre.filter((item) => item.fieldKey !== pre[indexHidden].fieldKey)
     );
-    setFieldDisplayTest((pre) => [...pre, fieldHiddenTest[indexHidden]]);
+    setFieldDisplay((pre) => [...pre, fieldHidden[indexHidden]]);
   };
 
   const handleAddFieldHidden = (indexDisplay: number) => {
     // Pop one item when click these
-    if (fieldDisplayTest.length > 1) {
-      setFieldDisplayTest((pre) =>
+    if (fieldDisplay.length > 1) {
+      setFieldDisplay((pre) =>
         pre.filter((item) => item.fieldKey !== pre[indexDisplay].fieldKey)
       );
-      setFieldHiddenTest((pre) => [...pre, fieldDisplayTest[indexDisplay]]);
+      setFieldHidden((pre) => [...pre, fieldDisplay[indexDisplay]]);
     }
   };
 
@@ -116,8 +116,8 @@ export default function CustomerPage() {
             });
           }
         });
-        setFieldHiddenTest(fieldHidden);
-        setFieldDisplayTest(fieldDisplay);
+        setFieldHidden(fieldHidden);
+        setFieldDisplay(fieldDisplay);
         setHeadersTable(() => headerDisplay);
       } else {
         const data: IBodyTable[] = [];
@@ -129,6 +129,12 @@ export default function CustomerPage() {
               metadata?.items[i][header.fieldKey]
             ) {
               return formatDate(metadata?.items[i][header.fieldKey] as Date);
+            }
+            if (
+              header.fieldKey === 'customer_source' &&
+              metadata?.items[i][header.fieldKey]?.web_name
+            ) {
+              return `${metadata?.items[i][header.fieldKey]['web_name']}`;
             } else {
               return metadata?.items[i][header.fieldKey];
             }
@@ -153,11 +159,11 @@ export default function CustomerPage() {
       </ToolBar>
       <TableV1
         tableName={LOCAL_STORE_KEYS.DISPLAY_CUSTOMER_FIELDS}
-        fieldHidden={fieldHiddenTest}
-        fieldDisplay={fieldDisplayTest}
+        fieldHidden={fieldHidden}
+        fieldDisplay={fieldDisplay}
         setHeadersTable={setHeadersTable}
-        setFieldHidden={setFieldHiddenTest}
-        setFieldDisplay={setFieldDisplayTest}
+        setFieldHidden={setFieldHidden}
+        setFieldDisplay={setFieldDisplay}
         handleAddFieldDisplay={handleAddFieldDisplay}
         handleAddFieldHidden={handleAddFieldHidden}
         totalItems={metadata?.totalItems}
@@ -165,9 +171,7 @@ export default function CustomerPage() {
         actionUpdate={() => {}}
         dataBody={dataBody}
         headersTable={headersTable}
-        templateColumns={`min-content  ${Object.values(headersTable)
-          .map((_) => 'minmax(10rem, 30rem)')
-          .join(' ')} 10rem`}
+        numberColumn={headersTable.length}
       />
       <PopupDelete
         close={closePopup}

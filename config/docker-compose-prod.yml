@@ -1,0 +1,61 @@
+version: "3.8"
+services:
+  client-sys:
+    build:
+      context: ../client
+      dockerfile: Dockerfile
+    container_name: client-container
+    restart: always
+    ports:
+      - "3010:80"
+    env_file:
+      - ../client/.env
+    environment:
+      - VITE_URL_SERVER=https://bma.sicnew.com
+    depends_on:
+      - server-sys
+
+  server-sys:
+    build:
+      context: ../server
+      dockerfile: Dockerfile
+    container_name: server-container
+    restart: always
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
+    env_file:
+      - ../server/.env
+    environment:
+      - DB_HOST=mongodb
+      - URL_CLIENT=https://bma.sicnew.com
+      - DB_NAME=seadragondb
+      - DB_USER=haison
+      - DB_PASSWORD=haison
+      - MONGODB_DOCKER_PORT=27017
+    depends_on:
+      - mongodb
+    stdin_open: true
+    tty: true
+
+  mongodb:
+    image: mongo
+    container_name: mongodb-container
+    restart: always
+    env_file: ../server/.env
+    environment:
+      - MONGO_INITDB_DATABASE=seadragondb
+      - MONGO_INITDB_ROOT_USERNAME=haison
+      - MONGO_INITDB_ROOT_PASSWORD=haison
+    volumes:
+      - ./mongodb/data:/data/db
+    expose:
+      - 27017
+    ports:
+      - 27018:27017
+
+volumes:
+  mongo-db:
+
+

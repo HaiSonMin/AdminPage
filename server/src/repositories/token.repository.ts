@@ -1,4 +1,4 @@
-import { tokenModel } from '../models';
+import { tokenModel } from '@/models';
 
 export class TokenRepository {
   static async getRefreshTokenUsing(refreshToken: string) {

@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
-import { MODALS_NAME } from '../constant';
-import { IWeb } from '../interface/model/web';
+import { MODALS_NAME } from '@/constant';
+import { IWeb } from '@/interface/model/web';
 
 const WebSchema = new Schema<IWeb>(
   {
@@ -17,6 +17,6 @@ const WebSchema = new Schema<IWeb>(
   { timestamps: true }
 );
 
-WebSchema.index({ web_name: 'text' });
+WebSchema.index({ web_name: 'text', web_url: 'text' });
 
 export default model(MODALS_NAME.WEB, WebSchema);

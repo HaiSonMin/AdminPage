@@ -20,7 +20,7 @@ export const PopupStyle = styled.div<{ $isDisplay: boolean; $width?: number }>`
   display: ${(props) => (props.$isDisplay ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
-  padding: 2rem 2rem 1rem;
+  padding: 2rem;
   border-radius: var(--border-radius-md);
   background-color: #fff;
   box-shadow: var(--shadow-around);

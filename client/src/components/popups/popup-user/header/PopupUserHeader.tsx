@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { PiSuitcaseSimpleBold } from 'react-icons/pi';
 import { MdMyLocation } from 'react-icons/md';
+import { IDataLocalUser } from '@/interfaces/common';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
+import IconTemp from '@/assets/images/image-logo/logo_seadragon_w127-h127.webp';
+
 const PopupUserHeaderStyle = styled.div`
   padding: 3rem 2rem 2.4rem;
   display: flex;
@@ -64,14 +68,17 @@ export const PopupUserHeader = () => {
   return (
     <PopupUserHeaderStyle>
       <Avatar to={''}>
-        <img
-          src='https://klain.1office.vn/f/p/TDI0OHg4d045SHpkUkF0d2REV0NRQ1pCZlJnWFhlMlJrODd4TFhkb2JTVFphRDFpL3llNFg4WFI4dytibExGNUFSY1RuKzNIVC9KL0wzR2RwRFZvUkRsV3ZjOXFuWUgwUVk0NTlqN0dWWmZUTjI4TA/836792671656fe89761e31906404218.06.12.2023.small.png'
-          alt='Avatar user'
-        />
+        <img src={`${IconTemp}`} alt='Avatar user' />
       </Avatar>
       <Info>
         <HeadingSM className='info-heading' $isBold={true}>
-          NGUYỄN LÂM HẢI SƠN
+          {`${
+            (
+              JSON.parse(
+                `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
+              ) as IDataLocalUser
+            ).employee_fullName
+          }`.toUpperCase()}
         </HeadingSM>
         <p className='info-part'>
           <PiSuitcaseSimpleBold /> R&D

@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  nginx:
+  client-sys:
     build:
       context: ../client
       dockerfile: Dockerfile
@@ -11,41 +11,45 @@ services:
     env_file:
       - ../client/.env
     environment:
-      - VITE_URL_SERVER=http://bma.nikolaxflem.com:9000
+      - VITE_URL_SERVER=http://localhost
     depends_on:
-      - admin-app
+      - server-sys
 
-  admin-app:
+  server-sys:
     build:
       context: ../server
       dockerfile: Dockerfile
     container_name: server-container
     restart: always
+    expose:
+      - 9000
     ports:
       - 9000:9000
     env_file:
       - ../server/.env
-    # Overwrite .env
     environment:
       - DB_HOST=mongodb
+      - URL_CLIENT=http://localhost
+      - DB_NAME=seadragondb
       - DB_USER=haison
-      - DB_PASSWORD=bokute22102000
-      - DB_NAME=sicnew-db
+      - DB_PASSWORD=haison
       - MONGODB_DOCKER_PORT=27017
-      - URL_CLIENT=http://bma.nikolaxflem.com
     depends_on:
       - mongodb
     stdin_open: true
     tty: true
 
   mongodb:
-    image: mongo:latest
+    image: mongo
     container_name: mongodb-container
     restart: always
     env_file: ../server/.env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=haison
-      - MONGO_INITDB_ROOT_PASSWORD=bokute22102000
+      - MONGO_INITDB_DATABASE="seadragondb"
+      - MONGO_INITDB_ROOT_USERNAME="haison"
+      - MONGO_INITDB_ROOT_PASSWORD="haison"
+    volumes:
+      - ./mongodb/data:/data/db
     expose:
       - 27017
     ports:

@@ -7,7 +7,7 @@ export const ButtonSubmit = styled.button<{
 }>`
   display: inline-block;
   min-width: 10rem;
-  padding: 8px 2.4rem;
+  padding: 1.2rem 2.4rem;
   font-size: var(--font-size-14);
   font-weight: 500;
   transition: all 0.3s;

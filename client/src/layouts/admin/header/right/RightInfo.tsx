@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { User } from './user';
+import { UserFeature } from './user-feature';
 import { TbCategory } from 'react-icons/tb';
 import { TbHome } from 'react-icons/tb';
 import { Icon } from './Icon';
@@ -31,7 +31,7 @@ export const RightInfo = () => {
         <MessageIcon />
         <NotificationIcon />
       </BoxIcon>
-      <User />
+      <UserFeature />
     </RightInfoStyle>
   );
 };

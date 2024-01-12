@@ -1,4 +1,9 @@
-import { IConfirmOtp, ILogin, IResetPassword } from '@/interfaces/auth';
+import {
+  IChangePassword,
+  IConfirmOtp,
+  ILogin,
+  IResetPassword,
+} from '@/interfaces/auth';
 import { IApi, IError } from '@/interfaces/common';
 import { IEmployee } from '@/interfaces/models';
 import { UseMutateFunction } from '@tanstack/react-query';
@@ -32,18 +37,18 @@ export interface IAuthResultApiCreateSessionResetPassword extends IApi<any> {
 }
 
 export interface IAuthResultApiGenerateOtp extends IApi<any> {
-  generateOtp: UseMutateFunction<IApi<any>, IError, any, unknown>;
+  generateOtp: UseMutateFunction<IApi<string>, IError, any, unknown>;
   isGenerateOtp: boolean;
 }
 
 export interface IAuthResultApiConfirmOtp extends IApi<any> {
-  confirmOtp: UseMutateFunction<IApi<any>, IError, IConfirmOtp, unknown>;
+  confirmOtp: UseMutateFunction<IApi<string>, IError, IConfirmOtp, unknown>;
   isConfirmOtp: boolean;
 }
 
 export interface IAuthResultApiConfirmResetPassword extends IApi<any> {
   confirmResetPassword: UseMutateFunction<
-    IApi<any>,
+    IApi<string>,
     IError,
     IResetPassword,
     unknown
@@ -52,6 +57,16 @@ export interface IAuthResultApiConfirmResetPassword extends IApi<any> {
 }
 
 export interface IAuthResultApiRefreshAT extends IApi<any> {
-  refreshAT: UseMutateFunction<IApi<any>, IError, void, unknown>;
+  refreshAT: UseMutateFunction<IApi<string>, IError, void, unknown>;
   isRefreshAT: boolean;
+}
+
+export interface IAuthResultApiChangePass extends IApi<any> {
+  changePassword: UseMutateFunction<
+    IApi<any>,
+    IError,
+    IChangePassword,
+    unknown
+  >;
+  isChangePass: boolean;
 }

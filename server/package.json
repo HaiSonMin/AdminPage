@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "node build/src/server.js",
+    "start": "node -r ts-node/register -r tsconfig-paths/register build/src/server.js",
     "dev": "nodemon src/server.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@elastic/elasticsearch": "^8.10.0",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^20.8.2",
     "axios": "^1.5.1",
     "bcrypt": "^5.1.1",
@@ -33,6 +34,8 @@
     "multer-storage-cloudinary": "^4.0.0",
     "nodemailer": "^6.9.5",
     "otp-generator": "^4.0.1",
+    "puppeteer": "^21.7.0",
+    "user-agents": "^1.1.79",
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
@@ -52,6 +55,7 @@
     "@types/node-telegram-bot-api": "^0.61.8",
     "@types/nodemailer": "^6.4.10",
     "@types/otp-generator": "^4.0.0",
+    "@types/user-agents": "^1.0.4",
     "@types/uuid": "^9.0.4",
     "@typescript-eslint/eslint-plugin": "^6.7.0",
     "@typescript-eslint/parser": "^6.7.0",

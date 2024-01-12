@@ -1,4 +1,4 @@
-import { IEmployee } from '../model/employee';
+import { IEmployee } from '@/interface/model/employee';
 
 export interface IAuthLogin
   extends Pick<

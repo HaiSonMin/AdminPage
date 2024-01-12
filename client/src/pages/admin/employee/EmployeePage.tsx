@@ -30,8 +30,8 @@ export default function VoucherPage() {
   const { isDeletingEmployee, deleteEmployee } = useEmployeeApiDelete();
 
   const [headersTable, setHeadersTable] = useState<IItemDrag[]>([]);
-  const [fieldHiddenTest, setFieldHiddenTest] = useState<IItemDrag[]>([]);
-  const [fieldDisplayTest, setFieldDisplayTest] = useState<IItemDrag[]>([]);
+  const [fieldHidden, setFieldHidden] = useState<IItemDrag[]>([]);
+  const [fieldDisplay, setFieldDisplay] = useState<IItemDrag[]>([]);
 
   let metadata: IResultGetMany<IEmployee> | undefined;
   let isGetting: boolean = false;
@@ -69,19 +69,19 @@ export default function VoucherPage() {
 
   const handleAddFieldDisplay = (indexHidden: number) => {
     // Pop one item when click these
-    setFieldHiddenTest((pre) =>
+    setFieldHidden((pre) =>
       pre.filter((item) => item.fieldKey !== pre[indexHidden].fieldKey)
     );
-    setFieldDisplayTest((pre) => [...pre, fieldHiddenTest[indexHidden]]);
+    setFieldDisplay((pre) => [...pre, fieldHidden[indexHidden]]);
   };
 
   const handleAddFieldHidden = (indexDisplay: number) => {
     // Pop one item when click these
-    if (fieldDisplayTest.length > 1) {
-      setFieldDisplayTest((pre) =>
+    if (fieldDisplay.length > 1) {
+      setFieldDisplay((pre) =>
         pre.filter((item) => item.fieldKey !== pre[indexDisplay].fieldKey)
       );
-      setFieldHiddenTest((pre) => [...pre, fieldDisplayTest[indexDisplay]]);
+      setFieldHidden((pre) => [...pre, fieldDisplay[indexDisplay]]);
     }
   };
 
@@ -120,8 +120,8 @@ export default function VoucherPage() {
             });
           }
         });
-        setFieldHiddenTest(fieldHidden);
-        setFieldDisplayTest(fieldDisplay);
+        setFieldHidden(fieldHidden);
+        setFieldDisplay(fieldDisplay);
         setHeadersTable(() => headerDisplay);
       } else {
         const data: IBodyTable[] = [];
@@ -156,11 +156,11 @@ export default function VoucherPage() {
       </ToolBar>
       <TableV1
         tableName={LOCAL_STORE_KEYS.DISPLAY_EMPLOYEE_FIELDS}
-        fieldHidden={fieldHiddenTest}
-        fieldDisplay={fieldDisplayTest}
+        fieldHidden={fieldHidden}
+        fieldDisplay={fieldDisplay}
         setHeadersTable={setHeadersTable}
-        setFieldHidden={setFieldHiddenTest}
-        setFieldDisplay={setFieldDisplayTest}
+        setFieldHidden={setFieldHidden}
+        setFieldDisplay={setFieldDisplay}
         handleAddFieldHidden={handleAddFieldHidden}
         handleAddFieldDisplay={handleAddFieldDisplay}
         totalItems={metadata?.totalItems}
@@ -168,9 +168,7 @@ export default function VoucherPage() {
         actionUpdate={actionUpdate}
         dataBody={dataBody}
         headersTable={headersTable}
-        templateColumns={`min-content  ${Object.values(headersTable)
-          .map((_) => 'minmax(10rem, 30rem)')
-          .join(' ')} 10rem`}
+        numberColumn={headersTable.length}
       />
       <PopupDelete
         close={closePopupDelete}

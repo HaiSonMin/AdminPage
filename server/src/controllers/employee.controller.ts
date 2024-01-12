@@ -1,10 +1,10 @@
-import { EmployeeService } from '../services';
+import { EmployeeService } from '@/services';
 import { Request, Response } from 'express';
-import { CREATED, OK } from '../core/success.response';
-import { IQuery } from '../interface';
-import { IEmployeeDto } from '../interface/model/employee';
+import { CREATED, OK } from '@/core/success.response';
+import { IQuery } from '@/interface';
+import { IEmployeeDto } from '@/interface/model/employee';
 
-export default class EmployeeController {
+export class EmployeeController {
   static async createEmployee(req: Request, res: Response) {
     const employee = req.body as IEmployeeDto | unknown;
     new CREATED({

@@ -7,8 +7,8 @@ import {
 import { Checkbox } from '@/components/inputs/checkboxs';
 import { useActionParams } from '@/hooks';
 import { EQuery } from '@/enums';
-import { IHeaderTable } from '@/interfaces/common/table';
-import { IItemDrag } from '@/interfaces/common';
+import { IDataLocalUser, IItemDrag } from '@/interfaces/common';
+import { LOCAL_STORE_KEYS } from '@/constants/values';
 
 const TableHeaderStyle = styled.div`
   display: block;
@@ -17,9 +17,12 @@ const TableHeaderStyle = styled.div`
   min-width: fit-content;
 `;
 
-const TableRowHeader = styled.div<{ $templateColumns: string }>`
+const TableRowHeader = styled.div<{
+  $numberColumn: number;
+}>`
   display: grid;
-  grid-template-columns: ${(props) => props.$templateColumns};
+  grid-template-columns: min-content ${(props) =>
+      `repeat(${props.$numberColumn},minmax(10rem, 40rem))`} 10rem;
 `;
 
 const TableDataHeaderCss = css`
@@ -59,11 +62,11 @@ const TableDataHeaderFieldContent = styled.div`
 `;
 
 interface IProps {
-  templateColumns: string;
+  numberColumn: number;
   headersTable: IItemDrag[];
 }
 
-export const TableHeader = ({ templateColumns, headersTable }: IProps) => {
+export const TableHeader = ({ numberColumn, headersTable }: IProps) => {
   const { getParams, setParams } = useActionParams();
   const actionSort = (fieldSort: string) => {
     if (!getParams(EQuery.SORT)) {
@@ -83,7 +86,7 @@ export const TableHeader = ({ templateColumns, headersTable }: IProps) => {
 
   return (
     <TableHeaderStyle>
-      <TableRowHeader $templateColumns={templateColumns}>
+      <TableRowHeader $numberColumn={numberColumn}>
         <>
           <TableDataHeader>
             <Checkbox isChose={false} />
@@ -99,7 +102,13 @@ export const TableHeader = ({ templateColumns, headersTable }: IProps) => {
               </TableDataHeaderFieldContent>
             </TableDataHeaderField>
           ))}
-          <TableDataHeader>Hành động</TableDataHeader>
+          {(
+            JSON.parse(
+              `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
+            ) as IDataLocalUser
+          ).employee_fullName === 'administrator' && (
+            <TableDataHeader>Hành động</TableDataHeader>
+          )}
         </>
       </TableRowHeader>
     </TableHeaderStyle>

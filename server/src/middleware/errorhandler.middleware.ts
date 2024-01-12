@@ -47,7 +47,7 @@ const errorHandlerMiddleware = function (
   // });
 
   return res.status(customError.statusCode).json({
-    status: customError.statusCode,
+    statusCode: customError.statusCode,
     error: customError.reasonStatusCode,
     message: customError.message,
   });

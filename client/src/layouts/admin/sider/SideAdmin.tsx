@@ -14,6 +14,12 @@ import { LOCAL_STORE_KEYS } from '@/constants/values';
 import styled, { CSSProperties } from 'styled-components';
 import { PATH_ADMIN, PATH_ROOT_ADMIN } from '@/constants/paths';
 import IconCom from '@/assets/images/image-logo/logo_seadragon_w127-h127.webp';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {
+  actionCollapsedSide,
+  getStateCollapsedSide,
+} from '@/slices/layoutSlice';
 const { Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -112,23 +118,22 @@ const MenuList = styled(Menu)`
 `;
 
 export const SiderAdmin = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [dataStore] = useLocalStorage({ key: LOCAL_STORE_KEYS.DATA_USER });
+  const dispatch = useDispatch();
+  const isCollapsedSide = useSelector(getStateCollapsedSide);
+  const setIsCollapsed = () => {
+    dispatch(actionCollapsedSide({ isCollapsedSide: !isCollapsedSide }));
+  };
 
   return (
     <Sider
-      collapsed={isCollapsed}
-      onCollapse={(value) => setIsCollapsed(value)}
+      collapsed={isCollapsedSide}
       trigger={true}
       style={sideStyle}
       width={'22rem'}
     >
-      <BoxTop $isCollapsed={isCollapsed}>
-        <ButtonIcon
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          icon={<FaListUl />}
-        />
-        {!isCollapsed && (
+      <BoxTop $isCollapsed={isCollapsedSide}>
+        <ButtonIcon onClick={setIsCollapsed} icon={<FaListUl />} />
+        {!isCollapsedSide && (
           <Link to={'/admin'}>
             <Icon src={IconCom} alt='Logo company' />
           </Link>

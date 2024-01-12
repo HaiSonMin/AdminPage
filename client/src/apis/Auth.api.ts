@@ -1,6 +1,11 @@
 import { AUTH_API } from '@/constants/paths-apis';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
-import { IConfirmOtp, ILogin, IResetPassword } from '@/interfaces/auth';
+import {
+  IChangePassword,
+  IConfirmOtp,
+  ILogin,
+  IResetPassword,
+} from '@/interfaces/auth';
 import { IApi, IError } from '@/interfaces/common';
 import { IDataLocalUser } from '@/interfaces/common/IDataLocalUser.interface';
 import { IEmployee } from '@/interfaces/models';
@@ -98,14 +103,23 @@ export class AuthApi {
   }
 
   static async refreshToken() {
-    // const dataStore: IDataLocalUser = JSON.parse(
-    //   `${localStorage.getItem(LOCAL_STORE_KEYS.DATA_USER)}`
-    // );
     try {
       const response = await httpPrivate.post(
         `${AUTH_API.ROOT}/${AUTH_API.FEATURE.REFRESH_TOKEN}`
-        // undefined,
-        // { headers: { Authorization: convertToStringToken(dataStore.AT_TOKEN) } }
+      );
+      const result: IApi<string> = response.data;
+      return result;
+    } catch (error: unknown) {
+      const err = error as IError;
+      throw new Error(err.message);
+    }
+  }
+
+  static async changePassword(dataChangePass: IChangePassword) {
+    try {
+      const response = await httpPrivate.post(
+        `${AUTH_API.ROOT}/${AUTH_API.FEATURE.CHANGE_PASSWORD}`,
+        dataChangePass
       );
       const result: IApi<string> = response.data;
       return result;

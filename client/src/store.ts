@@ -1,6 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { layoutSlice } from './slices';
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    layout: layoutSlice,
+  },
 });
 
 export default store;

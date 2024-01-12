@@ -1,13 +1,13 @@
-import { customerModel } from '../models';
-import { BadRequestError, NotFoundError } from '../core/error.response';
+import { customerModel } from '@/models';
+import { BadRequestError, NotFoundError } from '@/core/error.response';
 import {
   ICustomer,
   ICustomerAddVoucherDto,
   ICustomerCreateDto,
   ICustomerUpdateDto,
-} from '../interface/model/customer';
-import { CustomerRepository } from '../repositories';
-import { IQuery, IResultGetMany } from '../interface';
+} from '@/interface/model/customer';
+import { CustomerRepository } from '@/repositories';
+import { IQuery, IResultGetMany } from '@/interface';
 
 export default class CustomerService {
   static async createCustomer(
@@ -51,6 +51,14 @@ export default class CustomerService {
     return customerUpdated;
   }
 
+  static async updateCustomerByPhone(payload: ICustomerUpdateDto) {
+    const customerUpdated = await CustomerRepository.updateByPhone(
+      `${payload.customer_phoneNumber}`,
+      payload
+    );
+    return customerUpdated;
+  }
+
   static async addVoucher({
     customer_phoneNumber,
     customer_voucher,
@@ -70,5 +78,16 @@ export default class CustomerService {
     if (!customerAddedVoucher)
       throw new BadRequestError('Lấy voucher thất bại');
     return customerAddedVoucher;
+  }
+
+  static async deleteByPhone(customerPhone: string) {
+    const customerDeleted = await CustomerRepository.deleteByPhone(
+      customerPhone
+    );
+
+    if (!customerDeleted) {
+      throw new BadRequestError('Xóa thất bại');
+    }
+    return;
   }
 }

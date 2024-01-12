@@ -21,10 +21,10 @@ const Overflow = styled.div`
 `;
 
 interface IProps {
+  numberColumn: number;
   tableName: string;
   totalItems?: number;
   dataBody: Array<IBodyTable>;
-  templateColumns: string;
   headersTable: IItemDrag[];
   fieldHidden: IItemDrag[];
   fieldDisplay: IItemDrag[];
@@ -39,11 +39,11 @@ interface IProps {
 }
 
 export function TableV1({
+  numberColumn,
   tableName,
   dataBody,
   totalItems,
   headersTable,
-  templateColumns,
   fieldHidden,
   fieldDisplay,
   setFieldHidden,
@@ -69,15 +69,12 @@ export function TableV1({
         handleAddFieldDisplay={handleAddFieldDisplay}
       />
       <Overflow>
-        <TableHeader
-          headersTable={headersTable}
-          templateColumns={templateColumns}
-        />
+        <TableHeader numberColumn={numberColumn} headersTable={headersTable} />
         <TableBody
+          numberColumn={numberColumn}
           actionDelete={actionDelete}
           actionUpdate={actionUpdate}
           dataBody={dataBody}
-          templateColumns={templateColumns}
         />
       </Overflow>
       <TableFooter totalItems={totalItems} />

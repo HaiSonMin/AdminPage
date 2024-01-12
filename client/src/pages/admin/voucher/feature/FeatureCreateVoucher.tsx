@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { ButtonSubmit, ButtonText } from '@/components/buttons';
 import { useVoucherApiCreate } from '@/apis-use';
 import { IVoucherCreateDto } from '@/interfaces/models/voucher';
-import { InputAuth, InputSelectSingle } from '@/components/inputs';
+import { InputInfo, InputSelectSingle } from '@/components/inputs';
 import { randomId } from '@mantine/hooks';
 import { EVoucherType } from '@/enums';
 import { useWebApiGetAll } from '@/apis-use/UseWebApi';
@@ -86,7 +86,7 @@ export function FeatureCreateVoucher() {
         typeAction='create'
       >
         <FormBasic onSubmit={handleSubmit(onSubmit)}>
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('voucher_name')}
             label='Tên voucher'
             register={register('voucher_name', {
@@ -110,7 +110,7 @@ export function FeatureCreateVoucher() {
             isRequired
             defaultValue={EVoucherType.FIX_AMOUNT}
           />
-          <InputAuth
+          <InputInfo
             hasValue={!!watch('voucher_value')}
             label='Giá trị voucher'
             register={register('voucher_value', {

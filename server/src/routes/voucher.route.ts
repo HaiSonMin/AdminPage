@@ -1,6 +1,6 @@
 import express from 'express';
-import { VoucherController } from '../controllers';
-import { checkAuth } from '../middleware/auth.middleware';
+import { VoucherController } from '@/controllers';
+import { checkAuth } from '@/middleware/auth.middleware';
 
 const router = express.Router();
 
@@ -12,4 +12,4 @@ router.route('/:id').get(VoucherController.getVoucherById);
 router.route('/:id').patch(VoucherController.updateVoucher);
 router.route('/:id').delete(VoucherController.deleteVoucher);
 
-export default router;
+export { router };

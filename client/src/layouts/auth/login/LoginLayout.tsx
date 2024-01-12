@@ -1,6 +1,6 @@
 import { ButtonSubmit, ButtonText } from '@/components/buttons';
 import { FormBasic } from '@/components/forms';
-import { InputAuth } from '@/components/inputs';
+import { InputInfo } from '@/components/inputs';
 import { ILogin } from '@/interfaces/auth';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
@@ -30,6 +30,7 @@ const ImageStyle = styled.div<{ $width?: string; $height?: string }>`
   overflow: hidden;
   width: 28rem;
   height: 28rem;
+  margin-bottom: 1rem;
   img {
     width: 100%;
     height: 100%;
@@ -107,7 +108,7 @@ export const LoginLayout = () => {
         <img src={LogoWeb} alt='Logo Web' />
       </ImageStyle>
       <FormBasic onSubmit={handleSubmit(onLogin)}>
-        <InputAuth
+        <InputInfo
           label='Tên người dùng/email'
           register={register('employee_userName', {
             required: { message: 'Vui lòng nhập tên người dùng', value: true },
@@ -117,7 +118,7 @@ export const LoginLayout = () => {
           error={errors.employee_userName?.message}
           isRequired
         />
-        <InputAuth
+        <InputInfo
           label='Mật khẩu'
           register={register('employee_password', {
             required: { message: 'Vui lòng nhập mật khẩu', value: true },

@@ -1,8 +1,8 @@
 import { useAuthApiConfirmResetPassword } from '@/apis-use';
-import { ButtonSubmit, ButtonText } from '@/components/buttons';
+import { ButtonSubmit } from '@/components/buttons';
 import { FormBasic } from '@/components/forms';
 import { Heading3XL } from '@/components/heading';
-import { InputAuth } from '@/components/inputs';
+import { InputInfo } from '@/components/inputs';
 import { PATH_AUTH, PATH_ROOT_ADMIN } from '@/constants/paths';
 import { IResetPassword } from '@/interfaces/auth';
 import { useForm } from 'react-hook-form';
@@ -79,17 +79,17 @@ export const ResetPasswordLayout = () => {
         <Heading3XL $isBold>Đổi mật khẩu</Heading3XL>
       </HeadingBox>
       <FormResetPassword onSubmit={handleSubmit(onResetPassword)}>
-        <InputAuth
+        <InputInfo
           label='Mật khẩu mới'
           register={register('employee_password', {
             required: { message: 'Vui lòng nhập tên người dùng', value: true },
           })}
-          type='text'
+          type='password'
           hasValue={!!watch('employee_password')}
           error={errors.employee_password?.message}
           isRequired
         />
-        <InputAuth
+        <InputInfo
           label='Mật khẩu'
           register={register('employee_confirmPassword', {
             required: { message: 'Vui lòng nhập mật khẩu', value: true },

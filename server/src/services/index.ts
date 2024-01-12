@@ -1,13 +1,15 @@
 import AuthService from './auth.service';
+import VoucherService from './voucher.service';
 import CustomerService from './customer.service';
 import EmployeeService from './employee.service';
-import VoucherService from './voucher.service';
 import WebService from './web.service';
 
+export * from './scripts';
+
 export {
+  WebService,
   AuthService,
   CustomerService,
-  EmployeeService,
   VoucherService,
-  WebService,
+  EmployeeService,
 };

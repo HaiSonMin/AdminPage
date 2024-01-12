@@ -1,4 +1,4 @@
-import { IBaseModel } from '../../common';
+import { IBaseModel } from '@/interface/common';
 
 export interface IEmployee extends IBaseModel {
   employee_userName: string;

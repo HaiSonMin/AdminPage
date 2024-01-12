@@ -1,10 +1,10 @@
-import { IQuery } from '../interface';
-import { WebService } from '../services';
+import { IQuery } from '@/interface';
+import { WebService } from '@/services';
 import { Request, Response } from 'express';
-import { IWebDto } from '../interface/model/web';
-import { CREATED, OK } from '../core/success.response';
+import { IWebDto } from '@/interface/model/web';
+import { CREATED, OK } from '@/core/success.response';
 
-export default class WebController {
+export class WebController {
   static async createWeb(req: Request, res: Response) {
     const payload = req.body;
     new CREATED({
