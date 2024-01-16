@@ -6,7 +6,11 @@ import { IWeb, IWebDto } from '@/interface/model/web';
 
 export default class WebService {
   static async createWeb(payload: IWebDto) {
-    const newWeb = await webModel.create(payload);
+    const newWeb = await webModel.findOneAndUpdate(
+      { web_name: payload.web_name },
+      payload,
+      { new: true, upsert: true }
+    );
     return newWeb;
   }
 

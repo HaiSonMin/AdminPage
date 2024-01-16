@@ -37,7 +37,7 @@ export const checkAuth = async (
 
   const tokenStore = await TokenRepository.getRefreshTokenUsing(refreshToken);
 
-  if (!tokenStore) throw new UnauthenticatedError('Vui lòng đăng nhập lại');
+  if (!tokenStore) throw new ForbiddenError('Vui lòng đăng nhập lại');
   // Verify AT
   try {
     const payload: ITokenVerify = JWT.verify(

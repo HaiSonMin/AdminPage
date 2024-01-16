@@ -7,7 +7,12 @@ const MailSchema = new Schema<IMail>(
   {
     mail_address: {
       type: String,
+      unique: true,
       required: [true, 'Vui lòng bổ sung địa chỉ email'],
+      match: [
+        /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/,
+        'Email không đúng định dạng',
+      ],
     },
     mail_description: {
       type: String,

@@ -1,4 +1,4 @@
-import { delay } from '@/helper';
+import { delay } from '@/utils';
 import puppeteer, { Page } from 'puppeteer';
 import fs from 'fs';
 interface IMailAccount {

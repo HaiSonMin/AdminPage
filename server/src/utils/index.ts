@@ -121,3 +121,9 @@ export const skipPage = ({
   page: number;
   limit: number;
 }): number => (+page - 1) * +limit;
+
+export function delay(time: number) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, time);
+  });
+}

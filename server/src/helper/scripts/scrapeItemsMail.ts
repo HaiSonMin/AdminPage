@@ -1,6 +1,6 @@
 import { IMail } from '@/interface/model/mail';
 import { Page } from 'puppeteer';
-import { delay } from '../delay';
+import { delay } from '@/utils';
 
 export async function scrapeItemsMail(page: Page) {
   let indexLastItem = 0;

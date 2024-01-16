@@ -1,9 +1,10 @@
-import { delay } from '@/helper';
+import { delay } from '@/utils';
 import { scrapeItemsMail } from '@/helper/scripts';
 import {
   createAccountScript,
   scratchMailAccountScript,
 } from '@/hooks/scripts/mail';
+import { mailModel } from '@/models';
 import puppeteer from 'puppeteer';
 
 export default class MailScriptService {
@@ -47,8 +48,24 @@ export default class MailScriptService {
     await delay(1000);
 
     const itemsEmails = await scrapeItemsMail(page);
-    console.log('itemsEmails:::', itemsEmails);
-    console.log('itemsEmails.length:::', itemsEmails.length);
+
+    if (itemsEmails.length > 0) {
+      const itemsEmailsCreated = await Promise.all(
+        itemsEmails.map(async (itemEmail) => {
+          const newItem = await mailModel.findOneAndUpdate(
+            {
+              mail_address: itemEmail.mail_address,
+            },
+            itemEmail,
+            { new: true, upsert: true }
+          );
+          return newItem;
+        })
+      );
+
+      console.log('itemsEmailsCreated:::', itemsEmailsCreated);
+    }
+
     // await scratchMailAccountScript();
   }
 }

@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { delay } from '@/helper';
+import { delay } from '@/utils';
 
 export async function createAccountScript() {
   const browser = await puppeteer.launch({

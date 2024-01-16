@@ -28,8 +28,10 @@ app.use(
     origin: [
       `${env.URL_CLIENT}`,
       'http://localhost:3006',
+      'https://rungcayhailoc.bacsinguyentuananh.com',
       'https://www.rungcayhailoc.bacsinguyentuananh.com',
       'https://rungcayhailoc.nikolaxflem.com',
+      'https://www.rungcayhailoc.nikolaxflem.com',
       'https://bma.nikolaxflem.com',
       'https://www.bma.nikolaxflem.com',
       'https://bma.sicnew.com',
