@@ -13,11 +13,7 @@ const TableFooterStyle = styled.div`
 
 const PageDisplay = styled.div``;
 
-interface IProps {
-  totalItems?: number;
-}
-
-export const TableFooter = ({ totalItems }: IProps) => {
+export const TableFooter = () => {
   const onChangeNumberItemsPerPage = (value: string) => {};
 
   return (
@@ -33,7 +29,7 @@ export const TableFooter = ({ totalItems }: IProps) => {
           defaultValue='10'
         />
       </PageDisplay>
-      <PaginationV1 totalItems={totalItems} />
+      <PaginationV1 />
     </TableFooterStyle>
   );
 };

@@ -20,17 +20,23 @@ export const PopupStyle = styled.div<{ $isDisplay: boolean; $width?: number }>`
   display: ${(props) => (props.$isDisplay ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 1.5rem 2rem 1rem;
   border-radius: var(--border-radius-md);
   background-color: #fff;
   box-shadow: var(--shadow-around);
   min-height: fit-content;
-  min-width: ${(props) => props.$width}rem;
+  ${(props) =>
+    !props.$width
+      ? css`
+          min-width: max-content;
+        `
+      : css`
+          width: ${props.$width}rem;
+        `}
   z-index: 100;
   animation: alternate ease-in-out ${move} 0.3s;
 `;
 
 PopupStyle.defaultProps = {
   $isDisplay: false,
-  $width: 20,
 };

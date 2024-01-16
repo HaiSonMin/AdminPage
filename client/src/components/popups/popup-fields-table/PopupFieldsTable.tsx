@@ -8,6 +8,14 @@ import { ButtonText } from '@/components/buttons';
 import { TbArrowsExchange2 } from 'react-icons/tb';
 import { DraggableColumn } from '@/components/draggable-column';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import {
+  actionSetFieldsHidden,
+  actionSetFieldsDisplay,
+  getStateFieldsHidden,
+  getStateFieldsDisplay,
+} from '@/slices/itemSlice';
+import { useDispatch } from 'react-redux';
 const Header = styled.div`
   width: 100%;
   display: flex;
@@ -32,7 +40,7 @@ const BtnClose = styled(TfiClose)`
 const BtnBoxAction = styled.div`
   width: 100%;
   margin-top: 1.5rem;
-  padding: 1rem 0;
+  padding-top: 1rem;
   gap: 1rem;
   display: flex;
   justify-content: flex-end;
@@ -77,13 +85,6 @@ interface IProp {
   isDisplay: boolean;
   title?: string;
   close: () => void;
-  fieldHidden: IItemDrag[];
-  fieldDisplay: IItemDrag[];
-  setFieldHidden: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
-  setFieldDisplay: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
-  onConfirm: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
-  handleAddFieldHidden: (numberDisplay: number) => void;
-  handleAddFieldDisplay: (numberHidden: number) => void;
 }
 
 export function PopupFieldsTable({
@@ -91,18 +92,45 @@ export function PopupFieldsTable({
   isDisplay,
   title,
   close,
-  onConfirm,
-  fieldHidden,
-  fieldDisplay,
-  setFieldHidden,
-  setFieldDisplay,
-  handleAddFieldHidden,
-  handleAddFieldDisplay,
 }: IProp) {
+  const dispatch = useDispatch();
+  const fieldsHidden = useSelector(getStateFieldsHidden);
+  const fieldsDisplay = useSelector(getStateFieldsDisplay);
+
   const handleConfirm = () => {
-    onConfirm(fieldDisplay);
-    localStorage.setItem(tableName, JSON.stringify(fieldDisplay));
+    dispatch(actionSetFieldsDisplay({ fieldsDisplay }));
+    localStorage.setItem(tableName, JSON.stringify(fieldsDisplay));
     close();
+  };
+
+  const actionSetItemsFieldsHidden = (fieldsHidden: IItemDrag[]) => {
+    dispatch(actionSetFieldsHidden({ fieldsHidden }));
+  };
+
+  const actionSetItemsFieldsDisplay = (fieldsDisplay: IItemDrag[]) => {
+    dispatch(actionSetFieldsDisplay({ fieldsDisplay }));
+  };
+
+  const handleAddFieldDisplay = (indexHidden: number) => {
+    // Pop one item when click these
+    const lastItemHidden = fieldsHidden.filter(
+      (item) => item.fieldKey !== fieldsHidden[indexHidden].fieldKey
+    );
+    dispatch(actionSetFieldsHidden({ fieldsHidden: lastItemHidden }));
+
+    const lastItemDisplay = [...fieldsDisplay, fieldsHidden[indexHidden]];
+    dispatch(actionSetFieldsDisplay({ fieldsDisplay: lastItemDisplay }));
+  };
+
+  const handleAddFieldHidden = (indexDisplay: number) => {
+    // Pop one item when click these
+    const lastItemDisplay = fieldsDisplay.filter(
+      (item) => item.fieldKey !== fieldsDisplay[indexDisplay].fieldKey
+    );
+    dispatch(actionSetFieldsDisplay({ fieldsDisplay: lastItemDisplay }));
+
+    const lastItemHidden = [...fieldsHidden, fieldsDisplay[indexDisplay]];
+    dispatch(actionSetFieldsHidden({ fieldsHidden: lastItemHidden }));
   };
 
   return (
@@ -120,8 +148,8 @@ export function PopupFieldsTable({
             </Heading>
             <DraggableColumn
               handleToggleField={handleAddFieldDisplay}
-              items={fieldHidden}
-              setItems={setFieldHidden}
+              items={fieldsHidden}
+              setItems={actionSetItemsFieldsHidden}
             />
           </BoxToggleField>
           <BoxIconToggle>
@@ -133,8 +161,8 @@ export function PopupFieldsTable({
             </Heading>
             <DraggableColumn
               handleToggleField={handleAddFieldHidden}
-              items={fieldDisplay}
-              setItems={setFieldDisplay}
+              items={fieldsDisplay}
+              setItems={actionSetItemsFieldsDisplay}
             />
           </BoxToggleField>
         </BoxToggleFields>

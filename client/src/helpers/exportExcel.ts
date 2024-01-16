@@ -1,33 +1,15 @@
 import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
 
-export const exportExcel = ({
-  data,
-  fileName,
-  sheetName,
-}: {
-  data: any;
-  fileName: string;
-  sheetName?: string;
-}) => {
-  // Create a new workbook
-  const workbook = XLSX.utils.book_new();
+export const exportExcel = ({ csvData, fileName }) => {
+  const fileType =
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 
-  // Convert the data to a worksheet
-    const worksheet = XLSX.utils.json_to_sheet(data);
-  // Convert the data to a worksheet
-//   const worksheet = XLSX.utils.json_to_sheet(data, {
-//     header: Object.keys(data[0]), // Specify header columns
-//     skipHeader: true, // Skip default header row
-//   });
+  const fileExtension = '.xlsx';
 
-  // Add the worksheet to the workbook
-  XLSX.utils.book_append_sheet(
-    workbook,
-    worksheet,
-    sheetName || 'Sheet1',
-    true
-  );
-
-  // Save the workbook to a file
-  XLSX.writeFile(workbook, `${fileName || 'exported_data'}.xlsx`);
+  const ws = XLSX.utils.json_to_sheet(csvData);
+  const wb = { Sheets: { data: ws }, SheetNames: ['data'] };
+  const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+  const data = new Blob([excelBuffer], { type: fileType });
+  FileSaver.saveAs(data, fileName + fileExtension);
 };

@@ -3,6 +3,13 @@ import {
   useEmployeeApiGetAll,
   useEmployeeApiSearch,
 } from '@/apis-use';
+import {
+  actionResetAllStateTable,
+  actionSetFieldsDisplay,
+  actionSetFieldsHidden,
+  actionSetItemsTable,
+  getStateFieldsDisplay,
+} from '@/slices/itemSlice';
 import { useEffect, useState } from 'react';
 import { ToolBar } from '@/layouts/admin/toolbar';
 import { FeatureCreateEmployee } from './feature/FeatureCreateEmployee';
@@ -15,23 +22,24 @@ import { IItemDrag, IResultGetMany } from '@/interfaces/common';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 import { FeatureUpdateEmployee } from './feature/FeatureUpdateEmployee';
 import { EMPLOYEE_FIELD, EMPLOYEE_FIELD_DEF } from '@/constants/fields';
-import { IBodyTable, IHeaderTable } from '@/interfaces/common/table';
+import { IBodyTable, IDataBody } from '@/interfaces/common/table';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function VoucherPage() {
+  const dispatch = useDispatch();
+
   const queryString = useQueriesString();
   const query = getQueries(queryString);
   const [idItemChose, setIdItemChose] = useState<string>('');
-  const [dataBody, setDataBody] = useState<Array<IBodyTable>>([]);
 
   const [isDisplayDelete, setIsDisplayDelete] = useState<boolean>(false);
   const [isDisplayUpdate, setIsDisplayUpdate] = useState<boolean>(false);
 
   const { isDeletingEmployee, deleteEmployee } = useEmployeeApiDelete();
 
-  const [headersTable, setHeadersTable] = useState<IItemDrag[]>([]);
-  const [fieldHidden, setFieldHidden] = useState<IItemDrag[]>([]);
-  const [fieldDisplay, setFieldDisplay] = useState<IItemDrag[]>([]);
+  const fieldsDisplay = useSelector(getStateFieldsDisplay);
 
   let metadata: IResultGetMany<IEmployee> | undefined;
   let isGetting: boolean = false;
@@ -67,24 +75,6 @@ export default function VoucherPage() {
 
   const isLoading: boolean = isGetting || isDeletingEmployee;
 
-  const handleAddFieldDisplay = (indexHidden: number) => {
-    // Pop one item when click these
-    setFieldHidden((pre) =>
-      pre.filter((item) => item.fieldKey !== pre[indexHidden].fieldKey)
-    );
-    setFieldDisplay((pre) => [...pre, fieldHidden[indexHidden]]);
-  };
-
-  const handleAddFieldHidden = (indexDisplay: number) => {
-    // Pop one item when click these
-    if (fieldDisplay.length > 1) {
-      setFieldDisplay((pre) =>
-        pre.filter((item) => item.fieldKey !== pre[indexDisplay].fieldKey)
-      );
-      setFieldHidden((pre) => [...pre, fieldDisplay[indexDisplay]]);
-    }
-  };
-
   useEffect(() => {
     if (metadata?.items) {
       const columnsKey = Object.keys(EMPLOYEE_FIELD);
@@ -99,76 +89,76 @@ export default function VoucherPage() {
         columnsDisplay = Object.keys(EMPLOYEE_FIELD_DEF);
       }
 
-      if (!headersTable.length) {
-        const headerDisplay: IItemDrag[] = [];
-        const fieldHidden: IItemDrag[] = [];
-        const fieldDisplay: IItemDrag[] = [];
+      if (
+        !fieldsDisplay.length ||
+        !columnsKey.includes(fieldsDisplay[0].fieldKey)
+      ) {
+        dispatch(actionResetAllStateTable());
+
+        const fieldsDisplayTmp: IItemDrag[] = [];
+        const fieldsHiddenTmp: IItemDrag[] = [];
         columnsKey.forEach((columnKey) => {
           if (columnsDisplay.includes(columnKey)) {
-            headerDisplay.push({
-              fieldKey: columnKey,
-              fieldName: EMPLOYEE_FIELD[columnKey],
-            });
-            fieldDisplay.push({
+            fieldsDisplayTmp.push({
               fieldKey: columnKey,
               fieldName: EMPLOYEE_FIELD[columnKey],
             });
           } else {
-            fieldHidden.push({
+            fieldsHiddenTmp.push({
               fieldKey: columnKey,
               fieldName: EMPLOYEE_FIELD[columnKey],
             });
           }
         });
-        setFieldHidden(fieldHidden);
-        setFieldDisplay(fieldDisplay);
-        setHeadersTable(() => headerDisplay);
+        dispatch(actionSetFieldsDisplay({ fieldsDisplay: fieldsDisplayTmp }));
+        dispatch(actionSetFieldsHidden({ fieldsHidden: fieldsHiddenTmp }));
       } else {
-        const data: IBodyTable[] = [];
+        const dataBody: IBodyTable[] = [];
         for (let i = 0; i < metadata.items.length; i++) {
-          const dataTable: string[] = headersTable.map((header) => {
-            if (
-              header.fieldKey === 'createdAt' ||
-              header.fieldKey === 'updatedAt'
-            ) {
-              return formatDate(metadata?.items[i][header.fieldKey] as Date);
-            } else {
-              return metadata?.items[i][header.fieldKey];
+          const dataTable: IDataBody[] = fieldsDisplay.map(
+            (header): IDataBody => {
+              if (
+                header.fieldKey === 'createdAt' ||
+                header.fieldKey === 'updatedAt'
+              ) {
+                return {
+                  columnKey: header.fieldKey,
+                  columnName: EMPLOYEE_FIELD[header.fieldKey] as string,
+                  columnVal: formatDate(
+                    metadata?.items[i][header.fieldKey] as Date
+                  ),
+                };
+              } else {
+                return {
+                  columnKey: header.fieldKey,
+                  columnName: EMPLOYEE_FIELD[header.fieldKey] as string,
+                  columnVal: metadata?.items[i][header.fieldKey],
+                };
+              }
             }
-          });
+          );
           const itemData: IBodyTable = {
             id: metadata.items[i]._id,
             dataTable: dataTable,
           };
-          data.push(itemData);
+          dataBody.push(itemData);
         }
 
-        setDataBody(data);
+        dispatch(actionSetItemsTable({ itemsTable: dataBody }));
       }
     }
-  }, [isGetting, headersTable, metadata?.items]);
+  }, [isGetting, fieldsDisplay, metadata?.items, dispatch]);
 
   return (
     <>
       {isLoading && <SpinnerPage />}
-      <ToolBar>
+      <ToolBar objFields={EMPLOYEE_FIELD as any}>
         <FeatureCreateEmployee />
       </ToolBar>
       <TableV1
         tableName={LOCAL_STORE_KEYS.DISPLAY_EMPLOYEE_FIELDS}
-        fieldHidden={fieldHidden}
-        fieldDisplay={fieldDisplay}
-        setHeadersTable={setHeadersTable}
-        setFieldHidden={setFieldHidden}
-        setFieldDisplay={setFieldDisplay}
-        handleAddFieldHidden={handleAddFieldHidden}
-        handleAddFieldDisplay={handleAddFieldDisplay}
-        totalItems={metadata?.totalItems}
         actionDelete={actionDelete}
         actionUpdate={actionUpdate}
-        dataBody={dataBody}
-        headersTable={headersTable}
-        numberColumn={headersTable.length}
       />
       <PopupDelete
         close={closePopupDelete}

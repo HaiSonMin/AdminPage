@@ -1,9 +1,10 @@
 export interface IBodyTable {
   id?: string;
-  dataTable?: Array<string>;
+  dataTable?: Array<IDataBody>;
 }
 
-export interface IHeaderTable {
-  headerKey: string;
-  headerName: string;
+export interface IDataBody {
+  columnKey: string;
+  columnName: string;
+  columnVal: string;
 }

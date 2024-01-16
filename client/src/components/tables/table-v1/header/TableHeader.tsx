@@ -7,8 +7,17 @@ import {
 import { Checkbox } from '@/components/inputs/checkboxs';
 import { useActionParams } from '@/hooks';
 import { EQuery } from '@/enums';
-import { IDataLocalUser, IItemDrag } from '@/interfaces/common';
+import { IDataLocalUser } from '@/interfaces/common';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
+import { useSelector } from 'react-redux';
+import {
+  actionSetToggleIsSelectedAll,
+  getStateFieldsDisplay,
+  getStateIsSelectedAllRows,
+  getStateItemsTable,
+} from '@/slices/itemSlice';
+import { useDispatch } from 'react-redux';
+import { IBodyTable } from '@/interfaces/common/table';
 
 const TableHeaderStyle = styled.div`
   display: block;
@@ -61,13 +70,21 @@ const TableDataHeaderFieldContent = styled.div`
   }
 `;
 
-interface IProps {
-  numberColumn: number;
-  headersTable: IItemDrag[];
-}
-
-export const TableHeader = ({ numberColumn, headersTable }: IProps) => {
+export const TableHeader = () => {
+  const dispatch = useDispatch();
   const { getParams, setParams } = useActionParams();
+  const fieldDisplay = useSelector(getStateFieldsDisplay);
+  const isSelectedAllRows = useSelector(getStateIsSelectedAllRows);
+  const itemsTable: IBodyTable[] = useSelector(getStateItemsTable);
+
+  const listIdsAllRows: string[] = itemsTable.map(
+    (item) => item.id
+  ) as string[];
+
+  const onClickSelectAll = (listIdsAllRows: string[]) => {
+    dispatch(actionSetToggleIsSelectedAll({ rowsSelected: listIdsAllRows }));
+  };
+
   const actionSort = (fieldSort: string) => {
     if (!getParams(EQuery.SORT)) {
       setParams(EQuery.SORT, `${fieldSort}-asc`);
@@ -86,12 +103,15 @@ export const TableHeader = ({ numberColumn, headersTable }: IProps) => {
 
   return (
     <TableHeaderStyle>
-      <TableRowHeader $numberColumn={numberColumn}>
+      <TableRowHeader $numberColumn={fieldDisplay.length}>
         <>
           <TableDataHeader>
-            <Checkbox isChose={false} />
+            <Checkbox
+              isChose={isSelectedAllRows}
+              onClick={() => onClickSelectAll(listIdsAllRows)}
+            />
           </TableDataHeader>
-          {headersTable.map((headerTable) => (
+          {fieldDisplay.map((headerTable) => (
             <TableDataHeaderField
               key={randomKey()}
               onClick={() => actionSort(headerTable.fieldKey)}

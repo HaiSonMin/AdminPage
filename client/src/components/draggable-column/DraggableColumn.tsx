@@ -124,7 +124,7 @@ const QuoteList = React.memo(function QuoteList({
 
 interface IProps {
   items: Array<IItemDrag>;
-  setItems: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
+  setItems: (items: IItemDrag[]) => void;
   handleToggleField: (index: number) => void;
 }
 

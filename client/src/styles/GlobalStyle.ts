@@ -75,6 +75,7 @@ const GlobalStyles = createGlobalStyle`
 
   --font-size-8: 0.8rem;
   --font-size-10: 1rem;
+  --font-size-11: 1.1rem;
   --font-size-12: 1.2rem;
   --font-size-13: 1.3rem;
   --font-size-14: 1.4rem;
@@ -167,7 +168,7 @@ const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   padding: 0;
   margin: 0;  
-  line-height: 1;
+  line-height: 1.4;
   /* Creating animations for dark mode */
 }
 

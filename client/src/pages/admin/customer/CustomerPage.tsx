@@ -1,9 +1,16 @@
-import { TableV1 } from '@/components/tables';
 import {
   useCustomerApiDelete,
   useCustomerApiGetAll,
   useCustomerApiSearch,
 } from '@/apis-use/UseCustomerApi';
+import {
+  actionResetAllStateTable,
+  actionSetFieldsDisplay,
+  actionSetFieldsHidden,
+  actionSetItemsTable,
+  getStateFieldsDisplay,
+} from '@/slices/itemSlice';
+import { TableV1 } from '@/components/tables';
 import { useQueriesString } from '@/hooks/useQueriesString';
 import { formatDate, getQueries } from '@/utils';
 import { SpinnerPage } from '@/components/loadings';
@@ -14,11 +21,14 @@ import { FeatureCreateCustomer } from './feature';
 import { IItemDrag, IResultGetMany } from '@/interfaces/common';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 import { CUSTOMER_FIELD, CUSTOMER_FIELD_DEF } from '@/constants/fields';
-import { IBodyTable, IHeaderTable } from '@/interfaces/common/table';
+import { IBodyTable, IDataBody } from '@/interfaces/common/table';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export default function CustomerPage() {
-  const [dataBody, setDataBody] = useState<Array<IBodyTable>>([]);
+  const dispatch = useDispatch();
+
   const queryString = useQueriesString();
   const query = getQueries(queryString);
 
@@ -27,9 +37,7 @@ export default function CustomerPage() {
 
   const { isDeletingCustomer, deleteCustomer } = useCustomerApiDelete();
 
-  const [headersTable, setHeadersTable] = useState<IItemDrag[]>([]);
-  const [fieldHidden, setFieldHidden] = useState<IItemDrag[]>([]);
-  const [fieldDisplay, setFieldDisplay] = useState<IItemDrag[]>([]);
+  const fieldsDisplay = useSelector(getStateFieldsDisplay);
 
   let metadata: IResultGetMany<ICustomer> | undefined;
   let isGetting: boolean = false;
@@ -59,24 +67,6 @@ export default function CustomerPage() {
 
   const isLoading: boolean = isGetting || isDeletingCustomer;
 
-  const handleAddFieldDisplay = (indexHidden: number) => {
-    // Pop one item when click these
-    setFieldHidden((pre) =>
-      pre.filter((item) => item.fieldKey !== pre[indexHidden].fieldKey)
-    );
-    setFieldDisplay((pre) => [...pre, fieldHidden[indexHidden]]);
-  };
-
-  const handleAddFieldHidden = (indexDisplay: number) => {
-    // Pop one item when click these
-    if (fieldDisplay.length > 1) {
-      setFieldDisplay((pre) =>
-        pre.filter((item) => item.fieldKey !== pre[indexDisplay].fieldKey)
-      );
-      setFieldHidden((pre) => [...pre, fieldDisplay[indexDisplay]]);
-    }
-  };
-
   useEffect(() => {
     if (metadata?.items) {
       const columnsKey = Object.keys(CUSTOMER_FIELD);
@@ -95,83 +85,89 @@ export default function CustomerPage() {
       //   customer_fullName:"Họ và tên"
       //   customer_phoneNumber:"Số điện thoại"
       // }
-      if (!headersTable.length) {
-        const headerDisplay: IItemDrag[] = [];
-        const fieldHidden: IItemDrag[] = [];
-        const fieldDisplay: IItemDrag[] = [];
+      if (
+        !fieldsDisplay.length ||
+        !columnsKey.includes(fieldsDisplay[0].fieldKey)
+      ) {
+        dispatch(actionResetAllStateTable());
+
+        const fieldsDisplayTmp: IItemDrag[] = [];
+        const fieldsHiddenTmp: IItemDrag[] = [];
         columnsKey.forEach((columnKey) => {
           if (columnsDisplay.includes(columnKey)) {
-            headerDisplay.push({
-              fieldKey: columnKey,
-              fieldName: CUSTOMER_FIELD[columnKey],
-            });
-            fieldDisplay.push({
+            fieldsDisplayTmp.push({
               fieldKey: columnKey,
               fieldName: CUSTOMER_FIELD[columnKey],
             });
           } else {
-            fieldHidden.push({
+            fieldsHiddenTmp.push({
               fieldKey: columnKey,
               fieldName: CUSTOMER_FIELD[columnKey],
             });
           }
         });
-        setFieldHidden(fieldHidden);
-        setFieldDisplay(fieldDisplay);
-        setHeadersTable(() => headerDisplay);
+        dispatch(actionSetFieldsDisplay({ fieldsDisplay: fieldsDisplayTmp }));
+        dispatch(actionSetFieldsHidden({ fieldsHidden: fieldsHiddenTmp }));
       } else {
-        const data: IBodyTable[] = [];
+        const dataBody: IBodyTable[] = [];
         for (let i = 0; i < metadata.items.length; i++) {
-          const dataTable: string[] = headersTable.map((header) => {
-            if (
-              (header.fieldKey === 'createdAt' ||
-                header.fieldKey === 'updatedAt') &&
-              metadata?.items[i][header.fieldKey]
-            ) {
-              return formatDate(metadata?.items[i][header.fieldKey] as Date);
+          const dataTable: IDataBody[] = fieldsDisplay.map(
+            (header): IDataBody => {
+              if (
+                (header.fieldKey === 'createdAt' ||
+                  header.fieldKey === 'updatedAt') &&
+                metadata?.items[i][header.fieldKey]
+              ) {
+                return {
+                  columnKey: header.fieldKey,
+                  columnName: CUSTOMER_FIELD[header.fieldKey] as string,
+                  columnVal: formatDate(
+                    metadata?.items[i][header.fieldKey] as Date
+                  ),
+                };
+              }
+              if (
+                header.fieldKey === 'customer_source' &&
+                metadata?.items[i][header.fieldKey]?.web_name
+              ) {
+                return {
+                  columnKey: header.fieldKey,
+                  columnName: CUSTOMER_FIELD[header.fieldKey] as string,
+                  columnVal: `${
+                    metadata?.items[i][header.fieldKey]['web_name']
+                  }`,
+                };
+              } else {
+                return {
+                  columnKey: header.fieldKey,
+                  columnName: CUSTOMER_FIELD[header.fieldKey] as string,
+                  columnVal: metadata?.items[i][header.fieldKey],
+                };
+              }
             }
-            if (
-              header.fieldKey === 'customer_source' &&
-              metadata?.items[i][header.fieldKey]?.web_name
-            ) {
-              return `${metadata?.items[i][header.fieldKey]['web_name']}`;
-            } else {
-              return metadata?.items[i][header.fieldKey];
-            }
-          });
+          );
           const itemData: IBodyTable = {
             id: metadata.items[i]._id,
             dataTable: dataTable,
           };
-          data.push(itemData);
+          dataBody.push(itemData);
         }
 
-        setDataBody(data);
+        dispatch(actionSetItemsTable({ itemsTable: dataBody }));
       }
     }
-  }, [isGetting, headersTable, metadata?.items]);
+  }, [isGetting, fieldsDisplay, metadata?.items, dispatch]);
 
   return (
     <>
       {isLoading && <SpinnerPage />}
-      <ToolBar>
+      <ToolBar objFields={CUSTOMER_FIELD as any}>
         <FeatureCreateCustomer />
       </ToolBar>
       <TableV1
         tableName={LOCAL_STORE_KEYS.DISPLAY_CUSTOMER_FIELDS}
-        fieldHidden={fieldHidden}
-        fieldDisplay={fieldDisplay}
-        setHeadersTable={setHeadersTable}
-        setFieldHidden={setFieldHidden}
-        setFieldDisplay={setFieldDisplay}
-        handleAddFieldDisplay={handleAddFieldDisplay}
-        handleAddFieldHidden={handleAddFieldHidden}
-        totalItems={metadata?.totalItems}
         actionDelete={actionDelete}
         actionUpdate={() => {}}
-        dataBody={dataBody}
-        headersTable={headersTable}
-        numberColumn={headersTable.length}
       />
       <PopupDelete
         close={closePopup}

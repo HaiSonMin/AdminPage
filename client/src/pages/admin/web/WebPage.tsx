@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {
   useWebApiDelete,
   useWebApiSearch,
@@ -14,24 +13,30 @@ import { SpinnerPage } from '@/components/loadings';
 import { useQueriesString } from '@/hooks/useQueriesString';
 import { FeatureCreateWeb, FeatureUpdateWeb } from './feature';
 import { IItemDrag, IResultGetMany } from '@/interfaces/common';
-import { IBodyTable } from '@/interfaces/common/table';
+import { IBodyTable, IDataBody } from '@/interfaces/common/table';
 import { PopupDelete } from '@/components/popups/popup-delete/PopupDelete';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
-
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import {
+  actionResetAllStateTable,
+  getStateFieldsDisplay,
+} from '@/slices/itemSlice';
+import {
+  actionSetItemsTable,
+  actionSetFieldsHidden,
+  actionSetFieldsDisplay,
+} from '@/slices/itemSlice';
 export default function WebPage() {
+  const dispatch = useDispatch();
   const queryString = useQueriesString();
   const query = getQueries(queryString);
-  const [headersTable, setHeadersTable] = useState<IItemDrag[]>([]);
-  const [dataBody, setDataBody] = useState<Array<IBodyTable>>([]);
   const [idItemChose, setIdItemChose] = useState<string>('');
   const [isDisplayDelete, setIsDisplayDelete] = useState<boolean>(false);
   const [isDisplayUpdate, setIsDisplayUpdate] = useState<boolean>(false);
-
   const { isDeletingWeb, deleteWeb } = useWebApiDelete();
 
-  const [fieldHidden, setFieldHidden] = useState<IItemDrag[]>([]);
-  const [fieldDisplay, setFieldDisplay] = useState<IItemDrag[]>([]);
-
+  const fieldsDisplay = useSelector(getStateFieldsDisplay);
   let metadata: IResultGetMany<IWeb> | undefined;
   let isGetting = false;
 
@@ -64,108 +69,99 @@ export default function WebPage() {
 
   const isLoading: boolean = isGetting || isDeletingWeb;
 
-  const handleAddFieldDisplay = (indexHidden: number) => {
-    // Pop one item when click these
-    setFieldHidden((pre) =>
-      pre.filter((item) => item.fieldKey !== pre[indexHidden].fieldKey)
-    );
-    setFieldDisplay((pre) => [...pre, fieldHidden[indexHidden]]);
-  };
-
-  const handleAddFieldHidden = (indexDisplay: number) => {
-    // Pop one item when click these
-    if (fieldDisplay.length > 1) {
-      setFieldDisplay((pre) =>
-        pre.filter((item) => item.fieldKey !== pre[indexDisplay].fieldKey)
-      );
-      setFieldHidden((pre) => [...pre, fieldDisplay[indexDisplay]]);
-    }
-  };
-
   useEffect(() => {
     if (metadata?.items) {
+      console.log('metadata.items:::', metadata.items);
+      // ['web_name', 'web_url'];
       const columnsKey = Object.keys(WEB_FIELD);
       let columnsDisplay: string[];
 
       if (localStorage.getItem(LOCAL_STORE_KEYS.DISPLAY_WEB_FIELDS)) {
-        const abc = JSON.parse(
+        // Column custom
+        const headerDisplay = JSON.parse(
           `${localStorage.getItem(LOCAL_STORE_KEYS.DISPLAY_WEB_FIELDS)}`
         ) as IItemDrag[];
-        columnsDisplay = abc.map((item) => item.fieldKey);
+        columnsDisplay = headerDisplay.map((item) => item.fieldKey);
       } else {
+        // Column Default
         columnsDisplay = Object.keys(WEB_FIELD_DEF);
       }
 
-      if (!headersTable.length) {
-        const headerDisplay: IItemDrag[] = [];
-        const fieldHidden: IItemDrag[] = [];
-        const fieldDisplay: IItemDrag[] = [];
+      // Set data field for header column
+      // Set header then set body
+      // Note: If columnsKey not include fieldsDisplay[0].fieldKey => reset header field
+      if (
+        !fieldsDisplay.length ||
+        !columnsKey.includes(fieldsDisplay[0].fieldKey)
+      ) {
+        dispatch(actionResetAllStateTable());
+
+        // Set data for header
+        const fieldsDisplayTmp: IItemDrag[] = [];
+        const fieldsHiddenTmp: IItemDrag[] = [];
         columnsKey.forEach((columnKey) => {
           if (columnsDisplay.includes(columnKey)) {
-            headerDisplay.push({
-              fieldKey: columnKey,
-              fieldName: WEB_FIELD[columnKey],
-            });
-            fieldDisplay.push({
+            fieldsDisplayTmp.push({
               fieldKey: columnKey,
               fieldName: WEB_FIELD[columnKey],
             });
           } else {
-            fieldHidden.push({
+            fieldsHiddenTmp.push({
               fieldKey: columnKey,
               fieldName: WEB_FIELD[columnKey],
             });
           }
         });
-        setFieldHidden(fieldHidden);
-        setFieldDisplay(fieldDisplay);
-        setHeadersTable(() => headerDisplay);
+        dispatch(actionSetFieldsDisplay({ fieldsDisplay: fieldsDisplayTmp }));
+        dispatch(actionSetFieldsHidden({ fieldsHidden: fieldsHiddenTmp }));
       } else {
-        const data: IBodyTable[] = [];
+        // Set data for body
+        const dataBody: IBodyTable[] = [];
         for (let i = 0; i < metadata.items.length; i++) {
-          const dataTable: string[] = headersTable.map((header) => {
-            if (
-              header.fieldKey === 'createdAt' ||
-              header.fieldKey === 'updatedAt'
-            ) {
-              return formatDate(metadata?.items[i][header.fieldKey] as Date);
-            } else {
-              return metadata?.items[i][header.fieldKey];
+          const dataTable: IDataBody[] = fieldsDisplay.map(
+            (header): IDataBody => {
+              if (
+                header.fieldKey === 'createdAt' ||
+                header.fieldKey === 'updatedAt'
+              ) {
+                return {
+                  columnKey: header.fieldKey,
+                  columnName: WEB_FIELD[header.fieldKey] as string,
+                  columnVal: formatDate(
+                    metadata?.items[i][header.fieldKey] as Date
+                  ),
+                };
+              } else {
+                return {
+                  columnKey: header.fieldKey,
+                  columnName: WEB_FIELD[header.fieldKey] as string,
+                  columnVal: metadata?.items[i][header.fieldKey],
+                };
+              }
             }
-          });
+          );
           const itemData: IBodyTable = {
             id: metadata.items[i]._id,
             dataTable: dataTable,
           };
-          data.push(itemData);
+          dataBody.push(itemData);
         }
 
-        setDataBody(data);
+        dispatch(actionSetItemsTable({ itemsTable: dataBody }));
       }
     }
-  }, [isLoading, headersTable, metadata?.items]);
+  }, [isLoading, dispatch, metadata?.items, fieldsDisplay]);
 
   return (
     <>
       {isLoading && <SpinnerPage />}
-      <ToolBar>
+      <ToolBar objFields={WEB_FIELD as any}>
         <FeatureCreateWeb />
       </ToolBar>
       <TableV1
         tableName={LOCAL_STORE_KEYS.DISPLAY_WEB_FIELDS}
-        fieldHidden={fieldHidden}
-        fieldDisplay={fieldDisplay}
-        setFieldHidden={setFieldHidden}
-        setFieldDisplay={setFieldDisplay}
-        setHeadersTable={setHeadersTable}
-        handleAddFieldDisplay={handleAddFieldDisplay}
-        handleAddFieldHidden={handleAddFieldHidden}
-        totalItems={metadata?.totalItems}
         actionUpdate={actionUpdate}
         actionDelete={actionDelete}
-        headersTable={headersTable}
-        numberColumn={headersTable.length}
-        dataBody={dataBody}
       />
       <PopupDelete
         close={closePopupDelete}

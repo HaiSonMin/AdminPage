@@ -7,6 +7,14 @@ import { Checkbox } from '@/components/inputs/checkboxs';
 import IconEmpty from '@/assets/images/image-icon/empty.webp';
 import { LOCAL_STORE_KEYS } from '@/constants/values';
 import { IDataLocalUser } from '@/interfaces/common';
+import {
+  actionToggleRowSelected,
+  getStateFieldsDisplay,
+  getStateItemsTable,
+  getStateRowsSelected,
+} from '@/slices/itemSlice';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 const TableBodyStyle = styled.div<{ $isEmpty: boolean }>`
   ${(props) =>
     props.$isEmpty &&
@@ -100,29 +108,32 @@ const BoxImg = styled.div`
 `;
 
 interface IProps {
-  numberColumn: number;
-  dataBody: Array<IBodyTable>;
-  // actionSeeDetail: (id?: string) => void;
   actionDelete: (id?: string) => void;
   actionUpdate: (id?: string) => void;
 }
 
-export const TableBody = ({
-  numberColumn,
-  dataBody,
-  // actionSeeDetail,
-  actionDelete,
-  actionUpdate,
-}: IProps) => {
+export const TableBody = ({ actionDelete, actionUpdate }: IProps) => {
+  const dispatch = useDispatch();
+  const fieldsDisplay = useSelector(getStateFieldsDisplay);
+  const itemsTable: Array<IBodyTable> = useSelector(getStateItemsTable);
+  const rowsSelected = useSelector(getStateRowsSelected); // ["id1","id2","id3"]
+
+  const onClickSelectRow = (id: string) => {
+    dispatch(actionToggleRowSelected(id));
+  };
+
   return (
-    <TableBodyStyle $isEmpty={!dataBody.length}>
-      {dataBody.length ? (
-        dataBody.map((item) => (
-          <TableRowBody key={randomKey()} $numberColumn={numberColumn}>
+    <TableBodyStyle $isEmpty={!itemsTable.length}>
+      {itemsTable.length ? (
+        itemsTable.map((item) => (
+          <TableRowBody key={randomKey()} $numberColumn={fieldsDisplay.length}>
             <TableDataBody>
-              <Checkbox isChose={true} />
+              <Checkbox
+                isChose={rowsSelected.includes(`${item.id}`)}
+                onClick={() => onClickSelectRow(`${item.id}`)}
+              />
             </TableDataBody>
-            {item?.dataTable?.map((value) => (
+            {item?.dataTable?.map(({ columnVal: value }) => (
               <TableDataBody key={randomKey()}>{value}</TableDataBody>
             ))}
             {(
@@ -132,10 +143,6 @@ export const TableBody = ({
             ).employee_fullName === 'administrator' && (
               <TableDataBody>
                 <div className='action'>
-                  {/* <FaRegEye
-                className='icon icon-detail'
-                onClick={() => actionSeeDetail(item?.id)}
-              /> */}
                   <BiEditAlt
                     className='icon icon-edit'
                     onClick={() => actionUpdate(item?.id)}

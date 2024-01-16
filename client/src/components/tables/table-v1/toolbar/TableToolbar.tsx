@@ -4,6 +4,8 @@ import { InputSearchV2 } from '@/components/inputs';
 import { useActionParams } from '@/hooks';
 import { EQuery } from '@/enums';
 import { IItemDrag } from '@/interfaces/common';
+import { useSelector } from 'react-redux';
+import { getStateItemsTable } from '@/slices/itemSlice';
 const TableToolbarStyle = styled.div`
   padding: 1rem 2rem;
   background-color: #fff;
@@ -32,30 +34,12 @@ const InfoDisplay = styled.p`
 
 interface IProps {
   tableName: string;
-  totalItems?: number;
-  numberDisplayOnPage: number;
-  fieldHidden: IItemDrag[];
-  fieldDisplay: IItemDrag[];
-  setFieldHidden: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
-  setFieldDisplay: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
-  setHeadersTable: React.Dispatch<React.SetStateAction<IItemDrag[]>>;
-  handleAddFieldHidden: (numberDisplay: number) => void;
-  handleAddFieldDisplay: (numberHidden: number) => void;
 }
 
-export function TableToolbar({
-  tableName,
-  totalItems,
-  numberDisplayOnPage,
-  fieldDisplay,
-  fieldHidden,
-  setFieldHidden,
-  setFieldDisplay,
-  setHeadersTable,
-  handleAddFieldHidden,
-  handleAddFieldDisplay,
-}: IProps) {
+export function TableToolbar({ tableName }: IProps) {
   const { deleteParams, setParams } = useActionParams();
+
+  const itemsTable = useSelector(getStateItemsTable);
 
   const actionSearch = (keySearch: string) => {
     if (!keySearch) {
@@ -68,20 +52,11 @@ export function TableToolbar({
   return (
     <TableToolbarStyle>
       <Left>
-        <SelectFieldsTable
-          tableName={tableName}
-          fieldDisplay={fieldDisplay}
-          fieldHidden={fieldHidden}
-          setFieldHidden={setFieldHidden}
-          setFieldDisplay={setFieldDisplay}
-          setHeadersTable={setHeadersTable}
-          handleAddFieldHidden={handleAddFieldHidden}
-          handleAddFieldDisplay={handleAddFieldDisplay}
-        />
+        <SelectFieldsTable tableName={tableName} />
       </Left>
       <Right>
         <InfoDisplay>
-          Hiển thị 1-{numberDisplayOnPage} trong số {totalItems} bản ghi
+          Hiển thị 1-{itemsTable.length} trong số {itemsTable.length} bản ghi
         </InfoDisplay>
         <InputSearchV2 actionSearch={actionSearch} />
       </Right>

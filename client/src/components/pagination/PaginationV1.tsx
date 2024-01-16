@@ -6,6 +6,8 @@ import { getQueries, randomKey } from '@/utils';
 import { useCallback, useEffect, useState } from 'react';
 import { EQuery } from '@/enums';
 import { useQueriesString, useActionParams } from '@/hooks';
+import { useSelector } from 'react-redux';
+import { getStateItemsTable } from '@/slices/itemSlice';
 const PaginationV1Style = styled.div`
   display: flex;
   gap: 1rem;
@@ -62,13 +64,10 @@ const ButtonIconAction = styled.div<{ $isDisable?: boolean }>`
   }
 `;
 
-interface IProps {
-  totalItems?: number;
-}
-
-export const PaginationV1 = ({ totalItems = 10 }: IProps) => {
+export const PaginationV1 = () => {
   const queryString = useQueriesString();
   const query = getQueries(queryString);
+  const totalItems = useSelector(getStateItemsTable).length;
 
   const { setParams } = useActionParams();
   const [totalPages, setTotalPages] = useState<number>(() =>

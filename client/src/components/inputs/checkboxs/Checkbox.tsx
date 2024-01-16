@@ -1,11 +1,5 @@
 import styled, { css } from 'styled-components';
 
-interface IProps {
-  title?: string;
-  isCycle?: boolean;
-  isChose: boolean;
-}
-
 const CheckboxStyle = styled.div<{
   $haveTitle: boolean;
   $isCycle: boolean;
@@ -47,9 +41,26 @@ const CheckboxStyle = styled.div<{
   }
 `;
 
-export function Checkbox({ title = '', isCycle = false, isChose }: IProps) {
+interface IProps {
+  title?: string;
+  isCycle?: boolean;
+  isChose: boolean;
+  onClick: any;
+}
+
+export function Checkbox({
+  title = '',
+  isCycle = false,
+  isChose,
+  onClick,
+}: IProps) {
   return (
-    <CheckboxStyle $haveTitle={!!title} $isCycle={isCycle} $isChose={isChose}>
+    <CheckboxStyle
+      $haveTitle={!!title}
+      $isCycle={isCycle}
+      $isChose={isChose}
+      onClick={onClick}
+    >
       <div className='checkbox' />
       <span>{title}</span>
     </CheckboxStyle>
